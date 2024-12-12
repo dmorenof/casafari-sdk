@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "CasafariSDK\\": "src/"
+    },
+    "require": {
+      "php": ">=8"
+    }
+  },
+  "require": {
+    "typedarray/typedarray": "^1.0",
+    "guzzlehttp/guzzle": "^7.9"
+  }
+}
