@@ -6,6 +6,8 @@
 
 namespace CasafariSDK\Entities;
 
+use CasafariSDK\Core\Entity;
+
 /**
  * Casafari Coordinates object
  * <code>
@@ -16,7 +18,7 @@ namespace CasafariSDK\Entities;
  * }
  * </code>
  */
-class Coordinates
+class Coordinates extends Entity
 {
     public string $latitude;
     public string $longitude;

@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\Entities\Property;
-use TypedArray\TypedArray;
 
 class PropertiesArray extends TypedArray
 {

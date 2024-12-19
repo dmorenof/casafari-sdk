@@ -6,6 +6,7 @@
 
 namespace CasafariSDK\Entities;
 
+use CasafariSDK\Core\Entity;
 use CasafariSDK\Enums\CountryEnum;
 
 /**
@@ -24,7 +25,7 @@ use CasafariSDK\Enums\CountryEnum;
  * }
  * </code>
  */
-class Location
+class Location extends Entity
 {
     public Coordinates $coordinates;
     public CountryEnum $countryCode;

@@ -3,7 +3,10 @@
  * @noinspection SpellCheckingInspection
  * @noinspection PhpUnused
  */
+
 namespace CasafariSDK\Entities;
+
+use CasafariSDK\Core\Entity;
 
 /**
  * Casafari Locale object
@@ -18,7 +21,7 @@ namespace CasafariSDK\Entities;
  * }
  * </code>
  */
-class Locale
+class Locale extends Entity
 {
     public string $title;
     public string $description;

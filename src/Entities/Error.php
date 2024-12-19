@@ -6,6 +6,8 @@
 
 namespace CasafariSDK\Entities;
 
+use CasafariSDK\Core\Entity;
+
 /**
  * Casafari Error object
  * <code>
@@ -15,7 +17,7 @@ namespace CasafariSDK\Entities;
  * }
  * </code>
  */
-class Error
+class Error extends Entity
 {
     public int $Code;
     public string $ShortText;

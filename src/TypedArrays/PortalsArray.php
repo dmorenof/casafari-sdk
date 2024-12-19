@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\Enums\PortalEnum;
-use TypedArray\TypedArray;
 
 class PortalsArray extends TypedArray
 {

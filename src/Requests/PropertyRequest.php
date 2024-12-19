@@ -2,15 +2,10 @@
 
 namespace CasafariSDK\Requests;
 
+use CasafariSDK\Core\Request;
 use CasafariSDK\TypedArrays\PropertiesArray;
 
-class PropertyRequest
+class PropertyRequest extends Request
 {
     public PropertiesArray $Properties;
-    public string $CorrelationId;
-    public string $EchoToken;
-    public int $PrimaryLangId;
-    public bool $RetransmissionIndicator;
-    public string $TimeStamp;
-    public float $Version;
 }

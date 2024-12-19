@@ -6,6 +6,7 @@
 
 namespace CasafariSDK\Entities;
 
+use CasafariSDK\Core\Entity;
 use CasafariSDK\Enums\BusinessTypeEnum;
 use CasafariSDK\Enums\CurrencyEnum;
 use CasafariSDK\Enums\EnergyRatingEnum;
@@ -63,7 +64,7 @@ use CasafariSDK\TypedArrays\PortalsArray;
  * }
  * </code>
  */
-class Property
+class Property extends Entity
 {
     public ?int $propertyId;
     public string $internalId;

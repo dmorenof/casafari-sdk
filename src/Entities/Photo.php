@@ -3,7 +3,11 @@
  * @noinspection SpellCheckingInspection
  * @noinspection PhpUnused
  */
+
 namespace CasafariSDK\Entities;
+
+use CasafariSDK\Core\Entity;
+
 /**
  * Casafari Photo object
  * <code>
@@ -15,7 +19,7 @@ namespace CasafariSDK\Entities;
  * }
  * </code>
  */
-class Photo
+class Photo extends Entity
 {
     public string $Url;
     public string $Category;

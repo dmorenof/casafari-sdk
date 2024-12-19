@@ -9,6 +9,8 @@
   },
   "require": {
     "typedarray/typedarray": "^1.0",
-    "guzzlehttp/guzzle": "^7.9"
+    "guzzlehttp/guzzle": "^7.9",
+    "netresearch/jsonmapper": "^5.0",
+    "alexanderpas/http-enum": "^1.0"
   }
 }

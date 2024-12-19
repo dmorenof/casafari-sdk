@@ -3,7 +3,10 @@
  * @noinspection SpellCheckingInspection
  * @noinspection PhpUnused
  */
+
 namespace CasafariSDK\Entities;
+
+use CasafariSDK\Core\Entity;
 
 /**
  * Casafari File object
@@ -15,7 +18,7 @@ namespace CasafariSDK\Entities;
  * }
  * </code>
  */
-class File
+class File extends Entity
 {
     public string $Filename;
     public string $Category;

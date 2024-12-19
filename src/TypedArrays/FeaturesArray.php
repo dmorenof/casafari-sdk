@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\Enums\FeatureEnum;
-use TypedArray\TypedArray;
 
 class FeaturesArray extends TypedArray
 {

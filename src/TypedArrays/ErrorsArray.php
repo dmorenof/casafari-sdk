@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\Entities\Error;
-use TypedArray\TypedArray;
 
 class ErrorsArray extends TypedArray
 {

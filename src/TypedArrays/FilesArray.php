@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\Entities\File;
-use TypedArray\TypedArray;
 
 class FilesArray extends TypedArray
 {
