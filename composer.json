@@ -4,13 +4,13 @@
       "CasafariSDK\\": "src/"
     },
     "require": {
-      "php": ">=8"
+      "php": ">=8.3"
     }
   },
   "require": {
     "typedarray/typedarray": "^1.0",
     "guzzlehttp/guzzle": "^7.9",
-    "netresearch/jsonmapper": "^5.0",
-    "alexanderpas/http-enum": "^1.0"
+    "alexanderpas/http-enum": "^1.0",
+    "json-mapper/json-mapper": "^2.22"
   }
 }

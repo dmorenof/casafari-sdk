@@ -13,4 +13,12 @@ class TypedArray extends \TypedArray\TypedArray implements Stringable
     {
         return json_encode($this, JSON_PRETTY_PRINT);
     }
+
+    /**
+     * @return string
+     */
+    public function getExpectedType(): string
+    {
+        return $this->expected_type;
+    }
 }
