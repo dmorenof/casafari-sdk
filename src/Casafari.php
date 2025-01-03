@@ -17,6 +17,7 @@ use JsonMapper\Exception\BuilderException;
 use JsonMapper\Handler\FactoryRegistry;
 use JsonMapper\Handler\PropertyMapper;
 use JsonMapper\JsonMapperBuilder;
+use Throwable;
 
 class Casafari
 {
@@ -48,7 +49,7 @@ class Casafari
     /**
      * @param PropertyRequest $PropertyRequest
      * @return PropertyResponse
-     * @throws Exception
+     * @throws Throwable
      */
     public function sendProperty(PropertyRequest $PropertyRequest): PropertyResponse
     {
@@ -106,15 +107,12 @@ class Casafari
 
         $factoryRegistry = new FactoryRegistry();
         $mapper = JsonMapperBuilder::new()
-            ->withObjectConstructorMiddleware($factoryRegistry)
             ->withPropertyMapper(new PropertyMapper($factoryRegistry))
             ->withMiddleware(new TypedArrayMiddleware())
             ->build();
 
         /* @var Response $Response */
         $Response = $mapper->mapToClass($json, $response_class);
-        echo $Response;
-        die();
 
         if (!isset($Response->Success) || !is_object($Response->Success)) {
             throw new Exception(implode(PHP_EOL, array_column((array)$Response->Errors, 'ShortText')));

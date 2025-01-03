@@ -7,6 +7,7 @@ use JsonMapper\JsonMapperInterface;
 use JsonMapper\Middleware\AbstractMiddleware;
 use JsonMapper\ValueObjects\PropertyMap;
 use JsonMapper\Wrapper\ObjectWrapper;
+use MyCLabs\Enum\Enum;
 use ReflectionClass;
 use ReflectionException;
 use stdClass;
@@ -46,6 +47,13 @@ class TypedArrayMiddleware extends AbstractMiddleware
                         }
                     }
                 }
+            } else if (enum_exists($type)) {
+                /* @var Enum $type */
+                $Object->{$property} = $type::from($value);
+            } else if (class_exists($type)) {
+                $Object->{$property} = $mapper->mapToClass($value, $type);
+            } else {
+                $Object->{$property} = $value;
             }
         }
     }
