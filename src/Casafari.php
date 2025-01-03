@@ -113,6 +113,8 @@ class Casafari
 
         /* @var Response $Response */
         $Response = $mapper->mapToClass($json, $response_class);
+        echo $Response;
+        die();
 
         if (!isset($Response->Success) || !is_object($Response->Success)) {
             throw new Exception(implode(PHP_EOL, array_column((array)$Response->Errors, 'ShortText')));

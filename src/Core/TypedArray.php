@@ -11,7 +11,7 @@ class TypedArray extends \TypedArray\TypedArray implements Stringable
      */
     public function __toString(): string
     {
-        return json_encode($this, JSON_PRETTY_PRINT);
+        return json_encode((array)$this);
     }
 
     /**

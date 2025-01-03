@@ -3,7 +3,6 @@
 namespace CasafariSDK\Core;
 
 use JsonMapper\Exception\BuilderException;
-use JsonMapper\JsonMapperFactory;
 use JsonMapper\JsonMapperInterface;
 use JsonMapper\Middleware\AbstractMiddleware;
 use JsonMapper\ValueObjects\PropertyMap;
@@ -33,17 +32,19 @@ class TypedArrayMiddleware extends AbstractMiddleware
             $type = $ReflectionClass->getProperty($property)->getType()->__toString();
 
             if (is_array($value) && is_subclass_of($type, TypedArray::class)) {
-                foreach ($value as $item) {
-                    if (!isset($Object->{$property})) {
-                        $Object->{$property} = new $type();
-                    }
-
+                if (!empty($value)) {
+                    $Object->{$property} = new $type();
                     $expected_type = $Object->{$property}->getExpectedType();
 
-                    $mapper = (new JsonMapperFactory())->bestFit();
-                    $mapper->unshift(new TypedArrayMiddleware());
-                    $ObjectValue = $mapper->mapToClass($item, $expected_type);
-                    $Object->{$property}->append($ObjectValue);
+                    foreach ($value as $item) {
+                        if (enum_exists($expected_type)) {
+                            $Object->{$property}->append($expected_type::from($item));
+                        } else if (class_exists($expected_type)) {
+                            $Object->{$property}->append($mapper->mapToClass($item, $expected_type));
+                        } else {
+                            $Object->{$property}->append($item);
+                        }
+                    }
                 }
             }
         }

@@ -20,6 +20,6 @@ class Entity implements JsonSerializable, Stringable
      */
     public function __toString(): string
     {
-        return json_encode($this, JSON_FORCE_OBJECT);
+        return json_encode($this);
     }
 }
