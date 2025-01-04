@@ -26,8 +26,9 @@ class Entity implements JsonSerializable, Stringable
             $type = $ReflectionClass->getProperty($property)->getType()->__toString();
 
             if (is_subclass_of($type, TypedArray::class)) {
-                $this->{$property} = new $type();
-                $expected_type = $this->{$property}->getExpectedType();
+                $TypedArrayClass = new $type();
+                $expected_type = $TypedArrayClass->getExpectedType();
+                $this->{$property} = $TypedArrayClass;
 
                 foreach ($value as $item) {
                     if (enum_exists($expected_type)) {
