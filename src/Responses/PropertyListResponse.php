@@ -2,6 +2,8 @@
 
 namespace CasafariSDK\Responses;
 
-class PropertyListResponse
+use CasafariSDK\Core\Response;
+
+class PropertyListResponse extends Response
 {
 }
