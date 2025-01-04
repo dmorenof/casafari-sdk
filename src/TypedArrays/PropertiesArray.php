@@ -3,7 +3,7 @@
 namespace CasafariSDK\TypedArrays;
 
 use CasafariSDK\Core\TypedArray;
-use CasafariSDK\Entities\Property;
+use CasafariSDK\DTOs\Property;
 
 class PropertiesArray extends TypedArray
 {

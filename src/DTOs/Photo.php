@@ -4,23 +4,25 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 
 /**
- * Casafari File object
+ * Casafari Photo object
  * <code>
  * {
- *     "Filename": "string",
+ *     "Url": "string",
  *     "Category": "string",
+ *     "Description": "string",
  *     "SortOrder": 0
  * }
  * </code>
  */
-class File extends Entity
+class Photo extends DTO
 {
-    public string $Filename;
+    public string $Url;
     public string $Category;
+    public string $Description;
     public int $SortOrder;
 }

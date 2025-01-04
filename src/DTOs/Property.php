@@ -4,9 +4,9 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 use CasafariSDK\Enums\BusinessTypeEnum;
 use CasafariSDK\Enums\CurrencyEnum;
 use CasafariSDK\Enums\EnergyRatingEnum;
@@ -64,7 +64,7 @@ use CasafariSDK\TypedArrays\PortalsArray;
  * }
  * </code>
  */
-class Property extends Entity
+class Property extends DTO
 {
     public ?int $propertyId;
     public string $internalId;

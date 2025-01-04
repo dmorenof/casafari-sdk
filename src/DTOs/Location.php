@@ -4,9 +4,9 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 use CasafariSDK\Enums\CountryEnum;
 
 /**
@@ -25,7 +25,7 @@ use CasafariSDK\Enums\CountryEnum;
  * }
  * </code>
  */
-class Location extends Entity
+class Location extends DTO
 {
     public Coordinates $coordinates;
     public CountryEnum $countryCode;

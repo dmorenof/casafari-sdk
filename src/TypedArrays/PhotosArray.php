@@ -3,7 +3,7 @@
 namespace CasafariSDK\TypedArrays;
 
 use CasafariSDK\Core\TypedArray;
-use CasafariSDK\Entities\Photo;
+use CasafariSDK\DTOs\Photo;
 
 class PhotosArray extends TypedArray
 {

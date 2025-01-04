@@ -3,6 +3,8 @@
 namespace CasafariSDK\Requests;
 
 use CasafariSDK\Core\Request;
+use CasafariSDK\DTOs\From;
+use CasafariSDK\DTOs\PropertyIncludes;
 
 /**
  * {
@@ -115,9 +117,9 @@ use CasafariSDK\Core\Request;
  */
 class PropertyListRequest extends Request
 {
-    public $PropertyIncludes;
-    public $PropertyId;
-    public $PortalId;
+    public PropertyIncludes $PropertyIncludes;
+    public int $PropertyId;
+    public int $PortalId;
     public $PropertyIds;
     public $PropertyButtonIds;
     public $PropertyButtonIdsToExclude;
@@ -163,6 +165,6 @@ class PropertyListRequest extends Request
     public $AgencyId;
     public $PropertyListSorts;
     public $InnertLocations;
-    public \CasafariSDK\Entities\From $From;
+    public From $From;
     public string $FreeText;
 }

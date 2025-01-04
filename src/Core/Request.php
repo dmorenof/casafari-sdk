@@ -2,7 +2,7 @@
 
 namespace CasafariSDK\Core;
 
-class Request extends Entity
+class Request extends DTO
 {
     public string $CorrelationId;
     public string $EchoToken;

@@ -4,9 +4,9 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 
 /**
  * Casafari Locale object
@@ -21,7 +21,7 @@ use CasafariSDK\Core\Entity;
  * }
  * </code>
  */
-class Locale extends Entity
+class Locale extends DTO
 {
     public string $title;
     public string $description;

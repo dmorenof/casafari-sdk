@@ -4,7 +4,7 @@ namespace CasafariSDK\Core;
 
 use CasafariSDK\TypedArrays\ErrorsArray;
 
-class Response extends Entity
+class Response extends DTO
 {
     public object $Success;
     public ErrorsArray $Errors;

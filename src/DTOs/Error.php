@@ -4,9 +4,9 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 
 /**
  * Casafari Error object
@@ -17,7 +17,7 @@ use CasafariSDK\Core\Entity;
  * }
  * </code>
  */
-class Error extends Entity
+class Error extends DTO
 {
     public int $Code;
     public string $ShortText;

@@ -3,7 +3,7 @@
 namespace CasafariSDK\TypedArrays;
 
 use CasafariSDK\Core\TypedArray;
-use CasafariSDK\Entities\File;
+use CasafariSDK\DTOs\File;
 
 class FilesArray extends TypedArray
 {

@@ -3,7 +3,7 @@
 namespace CasafariSDK\TypedArrays;
 
 use CasafariSDK\Core\TypedArray;
-use CasafariSDK\Entities\Locale;
+use CasafariSDK\DTOs\Locale;
 
 class LocalesArray extends TypedArray
 {

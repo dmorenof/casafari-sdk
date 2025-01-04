@@ -8,7 +8,7 @@ use ReflectionClass;
 use ReflectionException;
 use Stringable;
 
-class Entity implements JsonSerializable, Stringable
+class DTO implements JsonSerializable, Stringable
 {
     /**
      * @throws ReflectionException

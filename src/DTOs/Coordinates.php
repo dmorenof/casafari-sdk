@@ -4,9 +4,9 @@
  * @noinspection PhpUnused
  */
 
-namespace CasafariSDK\Entities;
+namespace CasafariSDK\DTOs;
 
-use CasafariSDK\Core\Entity;
+use CasafariSDK\Core\DTO;
 
 /**
  * Casafari Coordinates object
@@ -18,7 +18,7 @@ use CasafariSDK\Core\Entity;
  * }
  * </code>
  */
-class Coordinates extends Entity
+class Coordinates extends DTO
 {
     public string $latitude;
     public string $longitude;

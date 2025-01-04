@@ -2,7 +2,7 @@
 
 use CasafariSDK\Casafari;
 use CasafariSDK\Core\HttpClient;
-use CasafariSDK\Entities\Property;
+use CasafariSDK\DTOs\Property;
 use CasafariSDK\Enums\PropertyStatusEnum;
 use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyResponse;
