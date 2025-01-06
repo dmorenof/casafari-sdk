@@ -40,12 +40,12 @@ class Casafari
     }
 
     /**
-     * @param PropertyListRequest $propertyListRequest
+     * @param PropertyListRequest $PropertyListRequest
      * @return PropertyListResponse
      * @throws Exception
      */
-    public function getPropertyList(PropertyListRequest $propertyListRequest): PropertyListResponse
+    public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse
     {
-        return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/ListProperties', null, (string)$propertyListRequest);
+        return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/ListProperties', null, (string)$PropertyListRequest);
     }
 }
