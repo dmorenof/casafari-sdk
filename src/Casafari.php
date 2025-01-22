@@ -4,6 +4,7 @@ namespace CasafariSDK;
 
 use Alexanderpas\Common\HTTP\Method;
 use CasafariSDK\Core\HttpClient;
+use CasafariSDK\Core\HttpMiddleware;
 use CasafariSDK\Requests\PropertyListRequest;
 use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyListResponse;
@@ -12,11 +13,21 @@ use Exception;
 use InvalidArgumentException;
 use Throwable;
 
-class Casafari
+final class Casafari
 {
     public HttpClient $HttpClient;
 
-    public function __construct(string $server, string $accessToken)
+    final public function __construct(string $server, string $accessToken)
+    {
+        $this->setupHttpClient($server, $accessToken);
+    }
+
+    /**
+     * @param string $server
+     * @param string $accessToken
+     * @return void
+     */
+    private function setupHttpClient(string $server, string $accessToken): void
     {
         if (empty($server)) {
             throw new InvalidArgumentException('Invalid server URL');
@@ -30,11 +41,22 @@ class Casafari
     }
 
     /**
+     * @param HttpMiddleware $middleware
+     * @return $this
+     */
+    final public function withMiddleware(HttpMiddleware $middleware): Casafari
+    {
+        $this->HttpClient->addMiddleware($middleware);
+
+        return $this;
+    }
+
+    /**
      * @param PropertyRequest $PropertyRequest
      * @return PropertyResponse
      * @throws Throwable
      */
-    public function sendProperty(PropertyRequest $PropertyRequest): PropertyResponse
+    final public function sendProperty(PropertyRequest $PropertyRequest): PropertyResponse
     {
         return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/SendProperty', null, (string)$PropertyRequest);
     }
@@ -44,7 +66,7 @@ class Casafari
      * @return PropertyListResponse
      * @throws Exception
      */
-    public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse
+    final public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse
     {
         return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/ListProperties', null, (string)$PropertyListRequest);
     }

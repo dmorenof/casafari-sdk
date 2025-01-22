@@ -8,13 +8,14 @@ use GuzzleHttp\Client;
 use InvalidArgumentException;
 use Throwable;
 
-class HttpClient
+final class HttpClient
 {
     const string PRODUCTION_SERVER_URL = 'https://crmapi.casafaricrm.com/api/';
     const string DEVELOPMENT_SERVER_URL = 'https://crmapi.proppydev.com/api/';
     private Client $Client;
+    private array $Middlewares = [];
 
-    public function __construct(string $server, string $accessToken)
+    final public function __construct(string $server, string $accessToken)
     {
         if (!in_array($server, [self::PRODUCTION_SERVER_URL, self::DEVELOPMENT_SERVER_URL])) {
             throw new InvalidArgumentException('Invalid server URL');
@@ -35,6 +36,11 @@ class HttpClient
         ]);
     }
 
+    final public function addMiddleware(HttpMiddleware $HttpMiddleware): void
+    {
+        $this->Middlewares[] = $HttpMiddleware;
+    }
+
     /**
      * @template RESPONSE
      * @param class-string<RESPONSE> $response_class
@@ -45,9 +51,15 @@ class HttpClient
      * @return RESPONSE
      * @throws Exception
      */
-    public function request(string $response_class, Method $method, string $endpoint, ?array $query = null, ?string $json = null): Response
+    final public function request(string $response_class, Method $method, string $endpoint, ?array $query = null, ?string $json = null): Response
     {
         try {
+            foreach ($this->Middlewares as $Middleware) {
+                if (!$Middleware->beforeRequest($response_class, $method, $endpoint, $query, $json)) {
+                    throw new Exception('Request aborted by middleware ' . get_class($Middleware));
+                }
+            }
+
             $options = [];
 
             if ($query) {
@@ -60,6 +72,12 @@ class HttpClient
 
             $request = $this->Client->request($method->value, $endpoint, $options);
             $body = $request->getBody()->getContents();
+
+            foreach ($this->Middlewares as $Middleware) {
+                if (!$Middleware->afterRequest($response_class, $method, $endpoint, $query, $json, $request, $body)) {
+                    throw new Exception('Response aborted by middleware ' . get_class($Middleware));
+                }
+            }
         } catch (Throwable $Exception) {
             throw new Exception($Exception->getMessage());
         }
