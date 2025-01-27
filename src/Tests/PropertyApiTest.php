@@ -359,29 +359,27 @@ class PropertyApiTest extends TestCase
     }
 
     /**
-     * Tests the successful sending of a property via the Property API.
+     * Tests the successful deletion of a property via the Property API.
      *
-     * This method creates a mocked HTTP client and response to simulate the behavior of the API
-     * during a property send operation. It injects the mocked client into the PropertyApi instance,
-     * prepares a property request with the necessary data, and verifies that the response from
-     * the API is an instance of PropertyResponse.
+     * This method verifies that when a request to delete a property is successful,
+     * the response is of type PropertyResponse.
      *
      * @return void
      * @throws Exception
      * @throws ReflectionException
      */
-    public function testSendPropertySuccessfully(): void
+    public function testDeletePropertySuccessfully(): void
     {
-        $MockClient = $this->createMock(Client::class);
-        $MockResponse = new Response(
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(
             200,
             [],
             '{
   "Properties": [
     {
       "propertyId": 0,
-      "internalId": "ID000001",
-      "reference": "R-000001",
+      "internalId": "string",
+      "reference": "string",
       "status": "Active",
       "sold": true,
       "visibleOnWebsite": true,
@@ -400,25 +398,22 @@ class PropertyApiTest extends TestCase
       "total_area": 0.1,
       "locale": [
         {
-          "title": "Example Title",
-          "description": "Example Description",
-          "short": "Short description",
-          "seokeywords": "Key1, Key2, Key3",
-          "seodescription": "SEO description",
-          "language": "en"
+          "title": "string",
+          "description": "string",
+          "short": "string",
+          "seokeywords": "string",
+          "seodescription": "string",
+          "language": "pt"
         }
       ],
       "energy_rating": "APlus",
       "features_list": [
-        "AirConditioning",
-        "ClosedFireplace",
-        "Heating",
-        "SealedLandArea"
+        "AirConditioning"
       ],
       "location": {
         "coordinates": {
-          "latitude": "1.321321",
-          "longitude": "2.654654",
+          "latitude": "string",
+          "longitude": "string",
           "visible": true
         },
         "countryCode": "pt",
@@ -449,8 +444,8 @@ class PropertyApiTest extends TestCase
       ],
       "files": [
         {
-          "Filename": "Test file.pdf",
-          "Category": "Category 1",
+          "Filename": "string",
+          "Category": "string",
           "SortOrder": 0
         }
       ],
@@ -466,7 +461,8 @@ class PropertyApiTest extends TestCase
       "exclusive": true,
       "cadastralReference": "string",
       "createDate": "2019-08-24T14:15:22Z",
-      "lastChangeDate": "2019-08-24T14:15:22Z"
+      "lastChangeDate": "2019-08-24T14:15:22Z",
+      "inactiveReason": "string"
     }
   ],
   "Success": {},
@@ -489,26 +485,84 @@ class PropertyApiTest extends TestCase
   "TimeStamp": "string",
   "Version": 0.1
 }');
-        $MockClient->method('request')->willReturn($MockResponse);
+        $mockClient->method('request')->willReturn($mockResponse);
 
-        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($PropertyApi, $MockClient);
+        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($propertyApi, $mockClient);
 
-        $PropertyRequest = new PropertyRequest();
-        $PropertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
-        $PropertyRequest->Version = 0.1;
-        $PropertyRequest->CorrelationId = uniqid();
-        $PropertyRequest->Properties = new PropertiesArray();
+        $propertyRequest = new PropertyRequest();
+        $propertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
+        $propertyRequest->Version = 0.1;
+        $propertyRequest->CorrelationId = uniqid();
+        $propertyRequest->Properties = new PropertiesArray();
 
-        $Property = new Property();
-        $Property->internalId = 'test';
-        $Property->reference = 'test';
-        $Property->status = PropertyStatusEnum::Inactive;
+        $propertyResponse = $propertyApi->deleteProperty($propertyRequest);
 
-        $PropertyRequest->Properties[] = $Property;
-        $PropertyResponse = $PropertyApi->sendProperty($PropertyRequest);
+        $this->assertInstanceOf(PropertyResponse::class, $propertyResponse);
+    }
 
-        $this->assertInstanceOf(PropertyResponse::class, $PropertyResponse);
+    /**
+     * Tests deleting a property when the API responds with an error.
+     *
+     * This method validates behavior when the delete property operation fails, ensuring
+     * an exception is thrown with the relevant error message.
+     *
+     * @throws Throwable
+     * @throws Exception
+     */
+    public function testDeletePropertyWithError(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(
+            500,
+            [],
+            '{
+      "Errors": [
+        {
+          "Code": 500,
+          "ShortText": "Delete error"
+        }
+      ]
+    }');
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($propertyApi, $mockClient);
+
+        $propertyRequest = new PropertyRequest();
+        $propertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
+        $propertyRequest->Version = 0.1;
+        $propertyRequest->CorrelationId = uniqid();
+        $propertyRequest->Properties = new PropertiesArray();
+
+        $this->expectExceptionMessage('Delete error');
+
+        $propertyApi->deleteProperty($propertyRequest);
+    }
+
+    /**
+     * Tests the behavior of the deleteProperty method when the API
+     * responds with an invalid JSON response.
+     *
+     * This method verifies that an exception is raised for an invalid response format.
+     *
+     * @return void
+     * @throws Throwable
+     * @throws Exception
+     */
+    public function testDeletePropertyWithInvalidResponse(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(200, [], 'invalid-json');
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($propertyApi, $mockClient);
+
+        $this->expectExceptionMessage('Error parsing JSON response: Syntax error');
+
+        $propertyRequest = new PropertyRequest();
+        $propertyApi->deleteProperty($propertyRequest);
     }
 
     /**

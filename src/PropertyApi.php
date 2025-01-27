@@ -16,7 +16,7 @@ use Exception;
 final class PropertyApi extends CasafariCrmApi
 {
     /**
-     * Sends a property request to the server and retrieves the corresponding property response.
+     * Sends properties to the server and retrieves the corresponding property response.
      *
      * @param PropertyRequest $PropertyRequest The request object containing the property details to be sent.
      * @return PropertyResponse The response object containing the details returned by the server.
@@ -25,6 +25,18 @@ final class PropertyApi extends CasafariCrmApi
     final public function sendProperty(PropertyRequest $PropertyRequest): PropertyResponse
     {
         return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/SendProperty', null, (string)$PropertyRequest);
+    }
+
+    /**
+     * Deletes properties based on the details provided in the request object and retrieves the corresponding response.
+     *
+     * @param PropertyRequest $PropertyRequest The request object containing the property details to be deleted.
+     * @return PropertyResponse The response object with the details of the operation result.
+     * @throws Exception
+     */
+    final public function deleteProperty(PropertyRequest $PropertyRequest): PropertyResponse
+    {
+        return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/DeleteProperty', null, (string)$PropertyRequest);
     }
 
     /**

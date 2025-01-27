@@ -104,4 +104,5 @@ class Property extends DTO
     public string $cadastralReference;
     public string $createDate;
     public string $lastChangeDate;
+    public string $inactiveReason;
 }
