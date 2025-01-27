@@ -8,6 +8,11 @@ use GuzzleHttp\Client;
 use InvalidArgumentException;
 use Throwable;
 
+/**
+ * The HttpClient class is responsible for making HTTP requests.
+ * It supports adding middleware to manage actions before and after requests.
+ * Each request can handle JSON payloads and query parameters.
+ */
 final class HttpClient
 {
     const string PRODUCTION_SERVER_URL = 'https://crmapi.casafaricrm.com/api/';

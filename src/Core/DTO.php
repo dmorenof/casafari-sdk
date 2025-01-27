@@ -8,6 +8,20 @@ use ReflectionClass;
 use ReflectionException;
 use Stringable;
 
+/**
+ * Base Data Transfer Object (DTO) class that provides functionality for
+ * object instantiation from JSON-like objects, serialization to JSON,
+ * and string conversion through implementation of JsonSerializable
+ * and Stringable interfaces.
+ *
+ * The constructor supports recursive and type-safe object mapping,
+ * including support for enums and typed arrays.
+ *
+ * Methods:
+ * - __construct: Initializes the DTO object, optionally populating it with data from a given JSON-like object.
+ * - __toString: Converts the DTO object to a JSON-encoded string representation.
+ * - jsonSerialize: Prepares the DTO object for JSON serialization.
+ */
 class DTO implements JsonSerializable, Stringable
 {
     /**

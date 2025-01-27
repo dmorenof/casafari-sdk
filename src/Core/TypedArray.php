@@ -4,6 +4,10 @@ namespace CasafariSDK\Core;
 
 use Stringable;
 
+/**
+ * Represents a strongly typed array that validates its elements against a specified type.
+ * Extends \TypedArray\TypedArray and implements Stringable for string representation.
+ */
 class TypedArray extends \TypedArray\TypedArray implements Stringable
 {
     /**

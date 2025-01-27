@@ -11,7 +11,7 @@ use CasafariSDK\TypedArrays\PropertiesArray;
  * <code>
  * {
  *     "Properties": [],
- *     "Success": { },
+ *     "Success": {},
  *     "Errors": [],
  *     "Warnings": [],
  *     "CorrelationId": "string",

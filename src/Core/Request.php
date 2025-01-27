@@ -2,6 +2,11 @@
 
 namespace CasafariSDK\Core;
 
+/**
+ * Represents a base request data transfer object.
+ *
+ * Stores key information about a request, including identifiers, timestamps, and language details.
+ */
 class Request extends DTO
 {
     public string $CorrelationId;

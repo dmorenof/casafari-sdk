@@ -9,14 +9,18 @@ use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyListResponse;
 use CasafariSDK\Responses\PropertyResponse;
 use Exception;
-use Throwable;
 
+/**
+ * Handles operations related to property management in the Casafari CRM API.
+ */
 final class PropertyApi extends CasafariCrmApi
 {
     /**
-     * @param PropertyRequest $PropertyRequest
-     * @return PropertyResponse
-     * @throws Throwable
+     * Sends a property request to the server and retrieves the corresponding property response.
+     *
+     * @param PropertyRequest $PropertyRequest The request object containing the property details to be sent.
+     * @return PropertyResponse The response object containing the details returned by the server.
+     * @throws Exception
      */
     final public function sendProperty(PropertyRequest $PropertyRequest): PropertyResponse
     {
@@ -24,8 +28,10 @@ final class PropertyApi extends CasafariCrmApi
     }
 
     /**
-     * @param PropertyListRequest $PropertyListRequest
-     * @return PropertyListResponse
+     * Retrieves a list of properties by sending a property list request to the server.
+     *
+     * @param PropertyListRequest $PropertyListRequest The request object containing the criteria for listing properties.
+     * @return PropertyListResponse The response object containing the list of properties returned by the server.
      * @throws Exception
      */
     final public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse

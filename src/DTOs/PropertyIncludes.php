@@ -8,6 +8,20 @@ namespace CasafariSDK\DTOs;
 
 use CasafariSDK\Core\DTO;
 
+/**
+ * The property include object
+ * <code>
+ * {
+ *     "IncludeFeatures": true,
+ *     "IncludeBrokers": true,
+ *     "IncludeAgency": true,
+ *     "UseHtmlDescription": true,
+ *     "IncludeFeaturesByCategory": true,
+ *     "GetAgencyIsShopAsPropertyAgency": true,
+ *     "IncludePropertyOccupations": true
+ * }
+ * </code>
+ */
 class PropertyIncludes extends DTO
 {
     public bool $IncludeFeatures;

@@ -12,11 +12,22 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class PropertyApiTest
+ *
+ * Test suite for the PropertyApi class, ensuring the accuracy and reliability
+ * of property data handling, API requests, and error handling.
+ */
 class PropertyApiTest extends TestCase
 {
     /**
-     * @throws Throwable
-     * @throws Exception
+     * Tests the behavior of the `sendProperty` method when the API responds with an error.
+     *
+     * This test simulates an unsuccessful response (HTTP 500) with an error message from the API
+     * and ensures that the appropriate exception is thrown with the expected error message.
+     *
+     * @throws Throwable If an unexpected or uncaught exception occurs during the execution of the test.
+     * @throws Exception If the expected exception is not thrown or does not match the expected criteria.
      */
     public function testSendPropertyWithError(): void
     {
@@ -56,7 +67,14 @@ class PropertyApiTest extends TestCase
     }
 
     /**
-     * @throws ReflectionException
+     * Replaces the current HTTP client within the provided PropertyApi instance with a mock client for testing purposes.
+     *
+     * @param PropertyApi $PropertyApi The instance of PropertyApi whose HTTP client needs to be overridden.
+     * @param Client $mockClient The mock client to inject into the PropertyApi instance.
+     *
+     * @return void
+     *
+     * @throws ReflectionException If the property being accessed or modified does not exist or is inaccessible.
      */
     private function injectClient(PropertyApi $PropertyApi, Client $mockClient): void
     {
@@ -66,8 +84,16 @@ class PropertyApiTest extends TestCase
     }
 
     /**
-     * @throws Throwable
+     * Tests the successful sending of a property via the Property API.
+     *
+     * This method creates a mocked HTTP client and response to simulate the behavior of the API
+     * during a property send operation. It injects the mocked client into the PropertyApi instance,
+     * prepares a property request with the necessary data, and verifies that the response from
+     * the API is an instance of PropertyResponse.
+     *
+     * @return void
      * @throws Exception
+     * @throws ReflectionException
      */
     public function testSendPropertySuccessfully(): void
     {
@@ -211,7 +237,16 @@ class PropertyApiTest extends TestCase
     }
 
     /**
-     * @throws Throwable
+     * Tests sending a property when the API returns an invalid JSON response.
+     *
+     * This method sets up a mocked HTTP client and response to simulate an invalid JSON response
+     * from the Property API. The mocked response is injected into the PropertyApi instance.
+     * It then prepares a property request and verifies that the invalid JSON response
+     * produces the expected exception with the appropriate error message.
+     *
+     * @return void
+     * @throws Exception
+     * @throws ReflectionException
      * @throws Exception
      */
     public function testSendPropertyWithInvalidResponse(): void
