@@ -1,9 +1,9 @@
 <?php
 
-use CasafariSDK\Casafari;
 use CasafariSDK\Core\HttpClient;
 use CasafariSDK\DTOs\Property;
 use CasafariSDK\Enums\PropertyStatusEnum;
+use CasafariSDK\PropertyApi;
 use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyResponse;
 use CasafariSDK\TypedArrays\PropertiesArray;
@@ -12,7 +12,7 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
-class PropertiesTest extends TestCase
+class PropertyApiTest extends TestCase
 {
     /**
      * @throws Throwable
@@ -34,8 +34,8 @@ class PropertiesTest extends TestCase
 }');
         $MockClient->method('request')->willReturn($MockResponse);
 
-        $Casafari = new Casafari(HttpClient::DEVELOPMENT_SERVER_URL, 'CASAFARI_TOKEN');
-        $this->injectClient($Casafari, $MockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'CASAFARI_TOKEN');
+        $this->injectClient($PropertyApi, $MockClient);
 
         $PropertyRequest = new PropertyRequest();
         $PropertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
@@ -52,17 +52,17 @@ class PropertiesTest extends TestCase
 
         $this->expectExceptionMessage('This is an error');
 
-        $Casafari->sendProperty($PropertyRequest);
+        $PropertyApi->sendProperty($PropertyRequest);
     }
 
     /**
      * @throws ReflectionException
      */
-    private function injectClient(Casafari $Casafari, Client $mockClient): void
+    private function injectClient(PropertyApi $PropertyApi, Client $mockClient): void
     {
-        $Reflection = new ReflectionClass($Casafari->HttpClient);
+        $Reflection = new ReflectionClass($PropertyApi->HttpClient);
         $Property = $Reflection->getProperty('Client');
-        $Property->setValue($Casafari->HttpClient, $mockClient);
+        $Property->setValue($PropertyApi->HttpClient, $mockClient);
     }
 
     /**
@@ -190,8 +190,8 @@ class PropertiesTest extends TestCase
 }');
         $MockClient->method('request')->willReturn($MockResponse);
 
-        $Casafari = new Casafari(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($Casafari, $MockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $MockClient);
 
         $PropertyRequest = new PropertyRequest();
         $PropertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
@@ -205,7 +205,7 @@ class PropertiesTest extends TestCase
         $Property->status = PropertyStatusEnum::Inactive;
 
         $PropertyRequest->Properties[] = $Property;
-        $PropertyResponse = $Casafari->sendProperty($PropertyRequest);
+        $PropertyResponse = $PropertyApi->sendProperty($PropertyRequest);
 
         $this->assertInstanceOf(PropertyResponse::class, $PropertyResponse);
     }
@@ -220,7 +220,7 @@ class PropertiesTest extends TestCase
         $mockResponse = new Response(200, [], 'invalid-json');
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $Casafari = new Casafari(HttpClient::DEVELOPMENT_SERVER_URL, 'CASAFARI_TOKEN');
+        $Casafari = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'CASAFARI_TOKEN');
         $this->injectClient($Casafari, $mockClient);
 
         $this->expectExceptionMessage('Error parsing JSON response: Syntax error');

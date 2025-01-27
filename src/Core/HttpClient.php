@@ -36,7 +36,7 @@ final class HttpClient
         ]);
     }
 
-    final public function addMiddleware(HttpMiddleware $HttpMiddleware): void
+    final public function addMiddleware(HttpMiddlewareInterface $HttpMiddleware): void
     {
         $this->Middlewares[] = $HttpMiddleware;
     }
