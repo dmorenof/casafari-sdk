@@ -8,7 +8,7 @@ use InvalidArgumentException;
  * Base API client for interacting with the Casafari CRM API.
  * Provides methods for setting up the HTTP client and attaching middleware.
  * Production documentation:
- * https://crmapi.proppydev.com/doc.html
+ * https://crmapi.casafaricrm.com/doc.html
  * Development documentation:
  * https://crmapi.proppydev.com/doc.html
  */
