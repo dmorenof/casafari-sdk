@@ -192,4 +192,6 @@ use CasafariSDK\Core\Response;
  */
 class PropertyListResponse extends Response
 {
+    public array $PropertyList;
+    public int $Count;
 }

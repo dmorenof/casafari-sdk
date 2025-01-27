@@ -36,6 +36,6 @@ final class PropertyApi extends CasafariCrmApi
      */
     final public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse
     {
-        return $this->HttpClient->request(PropertyResponse::class, Method::POST, 'Property/ListProperties', null, (string)$PropertyListRequest);
+        return $this->HttpClient->request(PropertyListResponse::class, Method::POST, 'Property/ListProperties', null, (string)$PropertyListRequest);
     }
 }
