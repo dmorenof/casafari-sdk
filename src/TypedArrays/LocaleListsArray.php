@@ -2,8 +2,8 @@
 
 namespace CasafariSDK\TypedArrays;
 
+use CasafariSDK\Core\TypedArray;
 use CasafariSDK\DTOs\LocaleList;
-use TypedArray\TypedArray;
 
 class LocaleListsArray extends TypedArray
 {
