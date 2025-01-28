@@ -5,8 +5,10 @@ namespace CasafariSDK;
 use Alexanderpas\Common\HTTP\Method;
 use CasafariSDK\Core\CasafariCrmApi;
 use CasafariSDK\Requests\PropertyListRequest;
+use CasafariSDK\Requests\PropertyLocationRequest;
 use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyListResponse;
+use CasafariSDK\Responses\PropertyLocationResponse;
 use CasafariSDK\Responses\PropertyResponse;
 use Exception;
 
@@ -49,5 +51,17 @@ final class PropertyApi extends CasafariCrmApi
     final public function getPropertyList(PropertyListRequest $PropertyListRequest): PropertyListResponse
     {
         return $this->HttpClient->request(PropertyListResponse::class, Method::POST, 'Property/ListProperties', null, (string)$PropertyListRequest);
+    }
+
+    /**
+     * Get Locations,
+     *
+     * @param PropertyLocationRequest $PropertyLocationRequest
+     * @return PropertyLocationResponse
+     * @throws Exception
+     */
+    final public function getLocations(PropertyLocationRequest $PropertyLocationRequest): PropertyLocationResponse
+    {
+        return $this->HttpClient->request(PropertyLocationResponse::class, Method::POST, 'Property/Location', null, (string)$PropertyLocationRequest);
     }
 }

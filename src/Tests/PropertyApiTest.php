@@ -5,8 +5,10 @@ use CasafariSDK\DTOs\Property;
 use CasafariSDK\Enums\PropertyStatusEnum;
 use CasafariSDK\PropertyApi;
 use CasafariSDK\Requests\PropertyListRequest;
+use CasafariSDK\Requests\PropertyLocationRequest;
 use CasafariSDK\Requests\PropertyRequest;
 use CasafariSDK\Responses\PropertyListResponse;
+use CasafariSDK\Responses\PropertyLocationResponse;
 use CasafariSDK\Responses\PropertyResponse;
 use CasafariSDK\TypedArrays\PropertiesArray;
 use GuzzleHttp\Client;
@@ -823,5 +825,199 @@ class PropertyApiTest extends TestCase
 
         $propertyRequest = new PropertyRequest();
         $Casafari->sendProperty($propertyRequest);
+    }
+
+    /**
+     * Tests successful retrieval of locations via the `getLocations` method.
+     *
+     * This test simulates a successful response with a list of location hierarchy elements
+     * and ensures that the returned object is an instance of PropertyLocationResponse.
+     *
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testGetLocationsSuccessfully(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(
+            200,
+            [],
+            '{
+  "Locations": [
+    {
+      "id": 0,
+      "parent_id": 0,
+      "name": "string",
+      "level": 0
+    }
+  ],
+  "Success": {},
+  "Errors": [
+    {
+      "Code": 0,
+      "ShortText": "string"
+    }
+  ],
+  "Warnings": [
+    {
+      "Code": 0,
+      "ShortText": "string"
+    }
+  ],
+  "CorrelationId": "string",
+  "EchoToken": "string",
+  "PrimaryLangId": 0,
+  "RetransmissionIndicator": true,
+  "TimeStamp": "string",
+  "Version": 0
+}'
+        );
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
+
+        $PropertyLocationRequest = new PropertyLocationRequest(json_decode('{
+  "CountryCode": "pt",
+  "ParentId": 0,
+  "ActiveType": 0,
+  "Level": 0,
+  "CorrelationId": "string",
+  "EchoToken": "string",
+  "PrimaryLangId": 0,
+  "RetransmissionIndicator": true,
+  "TimeStamp": "string",
+  "Version": 0
+}'));
+
+        $PropertyLocationResponse = $PropertyApi->getLocations($PropertyLocationRequest);
+
+        $this->assertInstanceOf(PropertyLocationResponse::class, $PropertyLocationResponse);
+    }
+
+    /**
+     * Tests retrieving an empty list of locations via the API.
+     *
+     * This test simulates a successful API response with no locations and verifies that
+     * the returned instance of PropertyLocationResponse is valid but contains an empty list.
+     *
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testGetLocationsWithEmptyResponse(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(
+            200,
+            [],
+            '{
+                "Locations": [],
+                "Success": {},
+                "Errors": [],
+                "Warnings": [],
+                "CorrelationId": "string",
+                "EchoToken": "string",
+                "PrimaryLangId": 1,
+                "RetransmissionIndicator": true,
+                "TimeStamp": "string",
+                "Version": 0.1
+            }'
+        );
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
+
+        $PropertyLocationRequest = new PropertyLocationRequest();
+        $PropertyLocationRequest->CorrelationId = 'string';
+        $PropertyLocationRequest->EchoToken = 'string';
+        $PropertyLocationRequest->PrimaryLangId = 1;
+        $PropertyLocationRequest->RetransmissionIndicator = true;
+        $PropertyLocationRequest->TimeStamp = 'string';
+        $PropertyLocationRequest->Version = 0.1;
+
+        $PropertyLocationResponse = $PropertyApi->getLocations($PropertyLocationRequest);
+
+        $this->assertEmpty($PropertyLocationResponse->Locations);
+    }
+
+    /**
+     * Tests the behavior when the API returns an invalid JSON response for `getLocations`.
+     *
+     * This test simulates an invalid JSON response and verifies that an exception is thrown
+     * with the appropriate error message.
+     *
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testGetLocationsWithInvalidResponse(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(200, [], 'invalid-json');
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
+
+        $this->expectExceptionMessage('Error parsing JSON response: Syntax error');
+
+        $PropertyLocationRequest = new PropertyLocationRequest();
+        $PropertyLocationRequest->CorrelationId = 'string';
+        $PropertyLocationRequest->EchoToken = 'string';
+        $PropertyLocationRequest->PrimaryLangId = 1;
+        $PropertyLocationRequest->RetransmissionIndicator = true;
+        $PropertyLocationRequest->TimeStamp = 'string';
+        $PropertyLocationRequest->Version = 0.1;
+
+        $PropertyApi->getLocations($PropertyLocationRequest);
+    }
+
+    /**
+     * Tests the behavior when the API returns an error for `getLocations`.
+     *
+     * This test simulates an API error response and verifies that an exception is thrown
+     * with the appropriate error message.
+     *
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testGetLocationsWithError(): void
+    {
+        $mockClient = $this->createMock(Client::class);
+        $mockResponse = new Response(
+            500,
+            [],
+            '{
+                "Errors": [
+                    {
+                        "Code": 500,
+                        "ShortText": "Location retrieval error"
+                    }
+                ],
+                "Warnings": [],
+                "CorrelationId": "string",
+                "EchoToken": "string",
+                "PrimaryLangId": 1,
+                "RetransmissionIndicator": true,
+                "TimeStamp": "string",
+                "Version": 0.1
+            }'
+        );
+        $mockClient->method('request')->willReturn($mockResponse);
+
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
+
+        $PropertyLocationRequest = new PropertyLocationRequest();
+        $PropertyLocationRequest->CorrelationId = 'string';
+        $PropertyLocationRequest->EchoToken = 'string';
+        $PropertyLocationRequest->PrimaryLangId = 1;
+        $PropertyLocationRequest->RetransmissionIndicator = true;
+        $PropertyLocationRequest->TimeStamp = 'string';
+        $PropertyLocationRequest->Version = 0.1;
+
+        $this->expectExceptionMessage('Location retrieval error');
+
+        $PropertyApi->getLocations($PropertyLocationRequest);
     }
 }
