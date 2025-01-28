@@ -30,6 +30,7 @@ class PropertyApiTest extends TestCase
      *
      * @throws Exception
      * @throws ReflectionException
+     * @throws Exception
      */
     public function testGetPropertyListSuccessfully(): void
     {
@@ -356,6 +357,237 @@ class PropertyApiTest extends TestCase
         $this->expectExceptionMessage('This is an error');
 
         $PropertyApi->sendProperty($PropertyRequest);
+    }
+
+    /**
+     * Tests the successful sending of a property using the Property API.
+     *
+     * This method simulates the behavior of the API client by using mocked objects and requests.
+     * It prepares a sample property request and validates the returned response to ensure proper processing.
+     *
+     * @return void
+     * @throws \Exception|Exception
+     */
+    public function testSendPropertySuccessfully(): void
+    {
+        $MockClient = $this->createMock(Client::class);
+        $MockResponse = new Response(
+            500,
+            [],
+            '{
+  "Properties": [
+    {
+      "propertyId": 0,
+      "internalId": "string",
+      "reference": "string",
+      "status": "Active",
+      "sold": true,
+      "visibleOnWebsite": true,
+      "type": "Apartment",
+      "bathrooms": 0,
+      "bedrooms": 0,
+      "condition_type": "New",
+      "construction_year": 0,
+      "price": 0,
+      "second_price": 0,
+      "price_visible": true,
+      "currency": "EUR",
+      "businessType": "Sale",
+      "plot_area": 0,
+      "living_area": 0,
+      "total_area": 0,
+      "locale": [
+        {
+          "title": "string",
+          "description": "string",
+          "short": "string",
+          "seokeywords": "string",
+          "seodescription": "string",
+          "language": "pt"
+        }
+      ],
+      "energy_rating": "APlus",
+      "features_list": [
+        "AirConditioning"
+      ],
+      "location": {
+        "coordinates": {
+          "latitude": "string",
+          "longitude": "string",
+          "visible": true
+        },
+        "countryCode": "pt",
+        "locationId": 0,
+        "zone": "string",
+        "address": "string",
+        "zipcode": "string",
+        "regionName": "string",
+        "cityName": "string",
+        "localityName": "string"
+      },
+      "listing_agent": "string",
+      "photos": [
+        {
+          "Url": "string",
+          "Category": "string",
+          "Description": "string",
+          "SortOrder": 0
+        }
+      ],
+      "photosWithoutWatermark": [
+        {
+          "Url": "string",
+          "Category": "string",
+          "Description": "string",
+          "SortOrder": 0
+        }
+      ],
+      "files": [
+        {
+          "Filename": "string",
+          "Category": "string",
+          "SortOrder": 0
+        }
+      ],
+      "portals": [
+        "APlaceInTheSun"
+      ],
+      "video": "string",
+      "widepanorama": "string",
+      "floorplan": "string",
+      "numberOfFloors": 0,
+      "floorNumber": 0,
+      "floorNumberString": "string",
+      "exclusive": true,
+      "cadastralReference": "string",
+      "createDate": "2019-08-24T14:15:22Z",
+      "lastChangeDate": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "Success": {},
+  "Errors": [
+    {
+      "Code": 0,
+      "ShortText": "string"
+    }
+  ],
+  "Warnings": [
+    {
+      "Code": 0,
+      "ShortText": "string"
+    }
+  ],
+  "CorrelationId": "string",
+  "EchoToken": "string",
+  "PrimaryLangId": 0,
+  "RetransmissionIndicator": true,
+  "TimeStamp": "string",
+  "Version": 0
+}');
+        $MockClient->method('request')->willReturn($MockResponse);
+
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'CASAFARI_TOKEN');
+        $this->injectClient($PropertyApi, $MockClient);
+
+        $PropertyRequest = new PropertyRequest(json_decode('{
+  "Properties": [
+    {
+      "propertyId": 0,
+      "internalId": "string",
+      "reference": "string",
+      "status": "Active",
+      "sold": true,
+      "visibleOnWebsite": true,
+      "type": "Apartment",
+      "bathrooms": 0,
+      "bedrooms": 0,
+      "condition_type": "New",
+      "construction_year": 0,
+      "price": 0,
+      "second_price": 0,
+      "price_visible": true,
+      "currency": "EUR",
+      "businessType": "Sale",
+      "plot_area": 0,
+      "living_area": 0,
+      "total_area": 0,
+      "locale": [
+        {
+          "title": "string",
+          "description": "string",
+          "short": "string",
+          "seokeywords": "string",
+          "seodescription": "string",
+          "language": "pt"
+        }
+      ],
+      "energy_rating": "APlus",
+      "features_list": [
+        "AirConditioning"
+      ],
+      "location": {
+        "coordinates": {
+          "latitude": "string",
+          "longitude": "string",
+          "visible": true
+        },
+        "countryCode": "pt",
+        "locationId": 0,
+        "zone": "string",
+        "address": "string",
+        "zipcode": "string",
+        "regionName": "string",
+        "cityName": "string",
+        "localityName": "string"
+      },
+      "listing_agent": "string",
+      "photos": [
+        {
+          "Url": "string",
+          "Category": "string",
+          "Description": "string",
+          "SortOrder": 0
+        }
+      ],
+      "photosWithoutWatermark": [
+        {
+          "Url": "string",
+          "Category": "string",
+          "Description": "string",
+          "SortOrder": 0
+        }
+      ],
+      "files": [
+        {
+          "Filename": "string",
+          "Category": "string",
+          "SortOrder": 0
+        }
+      ],
+      "portals": [
+        "APlaceInTheSun"
+      ],
+      "video": "string",
+      "widepanorama": "string",
+      "floorplan": "string",
+      "numberOfFloors": 0,
+      "floorNumber": 0,
+      "floorNumberString": "string",
+      "exclusive": true,
+      "cadastralReference": "string",
+      "createDate": "2019-08-24T14:15:22Z",
+      "lastChangeDate": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "CorrelationId": "string",
+  "EchoToken": "string",
+  "PrimaryLangId": 0,
+  "RetransmissionIndicator": true,
+  "TimeStamp": "string",
+  "Version": 0
+}'));
+        $PropertyResponse = $PropertyApi->sendProperty($PropertyRequest);
+        $this->assertInstanceOf(PropertyResponse::class, $PropertyResponse);
     }
 
     /**

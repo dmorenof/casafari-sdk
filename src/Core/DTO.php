@@ -3,6 +3,7 @@
 namespace CasafariSDK\Core;
 
 use BackedEnum;
+use InvalidArgumentException;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionException;
@@ -32,7 +33,7 @@ class DTO implements JsonSerializable, Stringable
      * @param object|null $json Optional JSON-like object whose properties will be used
      *                           to initialize the class instance.
      * @return void
-     * @throws ReflectionException
+     * @throws InvalidArgumentException
      */
     public function __construct(?object $json = null)
     {
@@ -44,7 +45,13 @@ class DTO implements JsonSerializable, Stringable
         $object_vars = get_object_vars($json);
 
         foreach ($object_vars as $property => $value) {
-            $type = $ReflectionClass->getProperty($property)->getType()->__toString();
+            try {
+                $ReflectionProperty = $ReflectionClass->getProperty($property);
+            } catch (ReflectionException) {
+                throw new InvalidArgumentException("Property '$property' does not exist in class '{$ReflectionClass->getName()}'.");
+            }
+
+            $type = $ReflectionProperty->getType()->__toString();
 
             if (is_subclass_of($type, TypedArray::class)) {
                 $this->{$property} = $TypedArrayClass = new $type();
@@ -64,6 +71,10 @@ class DTO implements JsonSerializable, Stringable
                 /* @var BackedEnum $type */
                 $this->{$property} = $type::from($value);
             } else if (class_exists($type)) {
+                if (!is_object($value)) {
+                    throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($value) . ".");
+                }
+
                 $this->{$property} = new $type($value);
             } else {
                 $this->{$property} = $value;

@@ -6,6 +6,7 @@
 
 namespace CasafariSDK\DTOs;
 
+use CasafariSDK\Core\DTO;
 use CasafariSDK\TypedArrays\PropertyButtonsArray;
 
 /**
@@ -21,7 +22,13 @@ use CasafariSDK\TypedArrays\PropertyButtonsArray;
  * }
  * </code>
  */
-class LocaleList extends Locale
+class LocaleList extends DTO
 {
     public PropertyButtonsArray $labels;
+    public string $title;
+    public string $description;
+    public string $short;
+    public string $seokeywords;
+    public string $seodescription;
+    public string $language;
 }

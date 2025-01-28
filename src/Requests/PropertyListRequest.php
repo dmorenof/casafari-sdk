@@ -11,7 +11,7 @@ use CasafariSDK\TypedArrays\BusinessTypeEnumsArray;
 use CasafariSDK\TypedArrays\ConditionTypeIdEnumsArray;
 use CasafariSDK\TypedArrays\FeatureEnumsArray;
 use CasafariSDK\TypedArrays\IntegersArray;
-use CasafariSDK\TypedArrays\LocationListsArray;
+use CasafariSDK\TypedArrays\LocationListRequestsArray;
 use CasafariSDK\TypedArrays\PropertyListSortEnumsArray;
 use CasafariSDK\TypedArrays\PropertyTypeIdEnumsArray;
 use CasafariSDK\TypedArrays\TypologyIdEnumsArray;
@@ -143,7 +143,7 @@ class PropertyListRequest extends Request
     public TypologyIdEnumsArray $TypologyIds;
     public FeatureEnumsArray $DetailIds;
     public IntegersArray $NumericDetailIds;
-    public LocationListsArray $Locations;
+    public LocationListRequestsArray $Locations;
     public float $PriceFrom;
     public float $PriceTo;
     public int $MinBedrooms;
