@@ -25,6 +25,13 @@ use Stringable;
 class DTO implements JsonSerializable, Stringable
 {
     /**
+     * Constructs a new instance of the class, optionally initializing it with data
+     * from a provided JSON-like object by mapping its properties to the class's
+     * properties.
+     *
+     * @param object|null $json Optional JSON-like object whose properties will be used
+     *                           to initialize the class instance.
+     * @return void
      * @throws ReflectionException
      */
     public function __construct(?object $json = null)
