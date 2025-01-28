@@ -13,7 +13,7 @@ use CasafariSDK\Enums\PortalEnum;
  * It ensures type-safety by enforcing that all elements added to the array
  * adhere to the given type constraint.
  */
-class PortalsArray extends TypedArray
+class PortalEnumsArray extends TypedArray
 {
     protected string $expected_type = PortalEnum::class;
 }

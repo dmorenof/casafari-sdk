@@ -3,6 +3,7 @@
 namespace CasafariSDK\Responses;
 
 use CasafariSDK\Core\Response;
+use CasafariSDK\TypedArrays\PropertyListArray;
 
 /**
  * Property list response object
@@ -192,6 +193,6 @@ use CasafariSDK\Core\Response;
  */
 class PropertyListResponse extends Response
 {
-    public array $PropertyList;
+    public PropertyListArray $PropertyList;
     public int $Count;
 }

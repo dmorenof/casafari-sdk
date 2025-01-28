@@ -4,9 +4,21 @@ namespace CasafariSDK\Requests;
 
 use CasafariSDK\Core\Request;
 use CasafariSDK\DTOs\From;
+use CasafariSDK\DTOs\InnertLocations;
 use CasafariSDK\DTOs\PropertyIncludes;
+use CasafariSDK\Enums\LanguageEnum;
+use CasafariSDK\TypedArrays\BusinessTypeEnumsArray;
+use CasafariSDK\TypedArrays\ConditionTypeIdEnumsArray;
+use CasafariSDK\TypedArrays\FeatureEnumsArray;
+use CasafariSDK\TypedArrays\IntegersArray;
+use CasafariSDK\TypedArrays\LocationListsArray;
+use CasafariSDK\TypedArrays\PropertyListSortEnumsArray;
+use CasafariSDK\TypedArrays\PropertyTypeIdEnumsArray;
+use CasafariSDK\TypedArrays\TypologyIdEnumsArray;
 
 /**
+ * Example JSON
+ * <code>
  * {
  *     "PropertyIncludes": {
  *         "IncludeFeatures": true,
@@ -114,57 +126,58 @@ use CasafariSDK\DTOs\PropertyIncludes;
  *     "TimeStamp": "string",
  *     "Version": 0.1
  * }
+ * </code>
  */
 class PropertyListRequest extends Request
 {
     public PropertyIncludes $PropertyIncludes;
     public int $PropertyId;
     public int $PortalId;
-    public $PropertyIds;
-    public $PropertyButtonIds;
-    public $PropertyButtonIdsToExclude;
-    public $Reference;
-    public $BusinessTypeIds;
-    public $ConditionTypeIds;
-    public $PropertyTypeIds;
-    public $TypologyIds;
-    public $DetailIds;
-    public $NumericDetailIds;
-    public $Locations;
-    public $PriceFrom;
-    public $PriceTo;
-    public $MinBedrooms;
-    public $MaxBedrooms;
-    public $MinBathrooms;
-    public $MaxBathrooms;
-    public $MinLivingArea;
-    public $MaxLivingArea;
-    public $MinPlotArea;
-    public $MaxPlotArea;
-    public $MinTotalArea;
-    public $MaxTotalArea;
-    public $OnFocus;
-    public $Opportunity;
-    public $Featured;
-    public $ReturnAll;
-    public $ExcludeBuildings;
-    public $Active;
-    public $VisibleOnWebsite;
-    public $Sold;
-    public $Building_Id;
-    public $Zone;
-    public $SequenceNmbr;
-    public $MaxResponses;
-    public $Lang;
-    public $HasVideo;
-    public $HasFloorplan;
-    public $HasWidepanorama;
-    public $HasExclusive;
-    public $ExcludePOA;
-    public $AgentId;
-    public $AgencyId;
-    public $PropertyListSorts;
-    public $InnertLocations;
+    public IntegersArray $PropertyIds;
+    public IntegersArray $PropertyButtonIds;
+    public IntegersArray $PropertyButtonIdsToExclude;
+    public string $Reference;
+    public BusinessTypeEnumsArray $BusinessTypeIds;
+    public ConditionTypeIdEnumsArray $ConditionTypeIds;
+    public PropertyTypeIdEnumsArray $PropertyTypeIds;
+    public TypologyIdEnumsArray $TypologyIds;
+    public FeatureEnumsArray $DetailIds;
+    public IntegersArray $NumericDetailIds;
+    public LocationListsArray $Locations;
+    public float $PriceFrom;
+    public float $PriceTo;
+    public int $MinBedrooms;
+    public int $MaxBedrooms;
+    public int $MinBathrooms;
+    public int $MaxBathrooms;
+    public int $MinLivingArea;
+    public int $MaxLivingArea;
+    public int $MinPlotArea;
+    public int $MaxPlotArea;
+    public int $MinTotalArea;
+    public int $MaxTotalArea;
+    public bool $OnFocus;
+    public bool $Opportunity;
+    public bool $Featured;
+    public bool $ReturnAll;
+    public bool $ExcludeBuildings;
+    public bool $Active;
+    public bool $VisibleOnWebsite;
+    public bool $Sold;
+    public int $Building_Id;
+    public string $Zone;
+    public int $SequenceNmbr;
+    public int $MaxResponses;
+    public LanguageEnum $Lang;
+    public bool $HasVideo;
+    public bool $HasFloorplan;
+    public bool $HasWidepanorama;
+    public bool $HasExclusive;
+    public bool $ExcludePOA;
+    public int $AgentId;
+    public int $AgencyId;
+    public PropertyListSortEnumsArray $PropertyListSorts;
+    public InnertLocations $InnertLocations;
     public From $From;
     public string $FreeText;
 }

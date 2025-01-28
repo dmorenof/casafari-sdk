@@ -13,11 +13,11 @@ use CasafariSDK\Enums\EnergyRatingEnum;
 use CasafariSDK\Enums\PropertyConditionTypeEnum;
 use CasafariSDK\Enums\PropertyStatusEnum;
 use CasafariSDK\Enums\PropertyTypeEnum;
-use CasafariSDK\TypedArrays\FeaturesArray;
+use CasafariSDK\TypedArrays\FeatureEnumsArray;
 use CasafariSDK\TypedArrays\FilesArray;
 use CasafariSDK\TypedArrays\LocalesArray;
 use CasafariSDK\TypedArrays\PhotosArray;
-use CasafariSDK\TypedArrays\PortalsArray;
+use CasafariSDK\TypedArrays\PortalEnumsArray;
 
 /**
  * Casafari Property object
@@ -87,13 +87,13 @@ class Property extends DTO
     public float $total_area;
     public LocalesArray $locale;
     public EnergyRatingEnum $energy_rating;
-    public FeaturesArray $features_list;
+    public FeatureEnumsArray $features_list;
     public Location $location;
     public string $listing_agent;
     public PhotosArray $photos;
     public PhotosArray $photosWithoutWatermark;
     public FilesArray $files;
-    public PortalsArray $portals;
+    public PortalEnumsArray $portals;
     public string $video;
     public string $widepanorama;
     public string $floorplan;

@@ -33,7 +33,7 @@ class PropertyApiTest extends TestCase
      */
     public function testGetPropertyListSuccessfully(): void
     {
-        $mockClient = $this->createMock(Client::class);
+        $MockClient = $this->createMock(Client::class);
         $mockResponse = new Response(
             200,
             [],
@@ -41,21 +41,21 @@ class PropertyApiTest extends TestCase
   "PropertyList": [
     {
       "id": 0,
-      "businessType": "string",
+      "businessType": "Sale",
       "businessTypeLocale": "string",
-      "type": "string",
+      "type": "Apartment",
       "typeLocale": "string",
-      "condition_type": "string",
+      "condition_type": "New",
       "conditionTypeLocale": "string",
       "features_list": [
-        "string"
+        "AirConditioning"
       ],
-      "currency": "string",
-      "status": "string",
-      "energy_rating": "string",
+      "currency": "EUR",
+      "status": "Active",
+      "energy_rating": "APlus",
       "locale": [
         {
-          "language": "string",
+          "language": "es",
           "labels": [
             {
               "id": 0,
@@ -219,15 +219,15 @@ class PropertyApiTest extends TestCase
   "Version": 0.1
 }'
         );
-        $mockClient->method('request')->willReturn($mockResponse);
+        $MockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $MockClient);
 
-        $propertyListRequest = new PropertyListRequest();
-        $propertyListResponse = $propertyApi->getPropertyList($propertyListRequest);
+        $PropertyListRequest = new PropertyListRequest();
+        $PropertyListResponse = $PropertyApi->getPropertyList($PropertyListRequest);
 
-        $this->assertInstanceOf(PropertyListResponse::class, $propertyListResponse);
+        $this->assertInstanceOf(PropertyListResponse::class, $PropertyListResponse);
     }
 
     /**
@@ -263,7 +263,7 @@ class PropertyApiTest extends TestCase
             200,
             [],
             '{
-  "PropertyList": [],
+  "PropertyList": {},
   "Count": 0,
   "Success": {},
   "Errors": [],
@@ -278,13 +278,13 @@ class PropertyApiTest extends TestCase
         );
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
 
-        $propertyListRequest = new PropertyListRequest();
-        $propertyListResponse = $propertyApi->getPropertyList($propertyListRequest);
+        $PropertyListRequest = new PropertyListRequest();
+        $PropertyListResponse = $PropertyApi->getPropertyList($PropertyListRequest);
 
-        $this->assertCount(0, $propertyListResponse->PropertyList);
+        $this->assertEquals(0, $PropertyListResponse->Count);
     }
 
     /**
@@ -303,13 +303,13 @@ class PropertyApiTest extends TestCase
         $mockResponse = new Response(200, [], 'invalid-json');
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
 
         $this->expectExceptionMessage('Error parsing JSON response: Syntax error');
 
-        $propertyListRequest = new PropertyListRequest();
-        $propertyApi->getPropertyList($propertyListRequest);
+        $PropertyListRequest = new PropertyListRequest();
+        $PropertyApi->getPropertyList($PropertyListRequest);
     }
 
     /**
@@ -487,8 +487,8 @@ class PropertyApiTest extends TestCase
 }');
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
 
         $propertyRequest = new PropertyRequest();
         $propertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
@@ -496,7 +496,7 @@ class PropertyApiTest extends TestCase
         $propertyRequest->CorrelationId = uniqid();
         $propertyRequest->Properties = new PropertiesArray();
 
-        $propertyResponse = $propertyApi->deleteProperty($propertyRequest);
+        $propertyResponse = $PropertyApi->deleteProperty($propertyRequest);
 
         $this->assertInstanceOf(PropertyResponse::class, $propertyResponse);
     }
@@ -526,8 +526,8 @@ class PropertyApiTest extends TestCase
     }');
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
 
         $propertyRequest = new PropertyRequest();
         $propertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
@@ -537,7 +537,7 @@ class PropertyApiTest extends TestCase
 
         $this->expectExceptionMessage('Delete error');
 
-        $propertyApi->deleteProperty($propertyRequest);
+        $PropertyApi->deleteProperty($propertyRequest);
     }
 
     /**
@@ -556,13 +556,13 @@ class PropertyApiTest extends TestCase
         $mockResponse = new Response(200, [], 'invalid-json');
         $mockClient->method('request')->willReturn($mockResponse);
 
-        $propertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
-        $this->injectClient($propertyApi, $mockClient);
+        $PropertyApi = new PropertyApi(HttpClient::DEVELOPMENT_SERVER_URL, 'FAKE_TOKEN');
+        $this->injectClient($PropertyApi, $mockClient);
 
         $this->expectExceptionMessage('Error parsing JSON response: Syntax error');
 
         $propertyRequest = new PropertyRequest();
-        $propertyApi->deleteProperty($propertyRequest);
+        $PropertyApi->deleteProperty($propertyRequest);
     }
 
     /**
