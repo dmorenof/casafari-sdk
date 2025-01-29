@@ -1,4 +1,8 @@
 {
+  "name": "dmorenof/casafari-sdk",
+  "description": "Example of CasafariCrmApi integration.",
+  "type": "package",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "CasafariSDK\\": "src/"
