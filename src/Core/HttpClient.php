@@ -75,11 +75,11 @@ final class HttpClient
                 $options = ['json' => $json];
             }
 
-            $request = $this->Client->request($method->value, $endpoint, $options);
-            $body = $request->getBody()->getContents();
+            $response = $this->Client->request($method->value, $endpoint, $options);
+            $body = $response->getBody()->getContents();
 
             foreach ($this->Middlewares as $Middleware) {
-                if (!$Middleware->afterRequest($response_class, $method, $endpoint, $query, $json, $request, $body)) {
+                if (!$Middleware->afterRequest($response_class, $method, $endpoint, $query, $json, $response, $body)) {
                     throw new Exception('Response aborted by middleware ' . get_class($Middleware));
                 }
             }

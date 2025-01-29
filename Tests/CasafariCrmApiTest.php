@@ -1,16 +1,9 @@
 <?php
 
-namespace CasafariSDK\Tests;
-
 use CasafariSDK\Core\CasafariCrmApi;
 use CasafariSDK\Core\HttpClient;
 use CasafariSDK\Core\HttpMiddlewareInterface;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
-use ReflectionException;
-use stdClass;
-use TypeError;
 
 /**
  * CasafariCrmApiTest is a test class to validate the functionality of the CasafariCrmApi class.

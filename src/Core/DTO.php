@@ -54,20 +54,36 @@ class DTO implements JsonSerializable, Stringable
             $type = $ReflectionProperty->getType()->__toString();
 
             if (is_subclass_of($type, TypedArray::class)) {
+                if (!is_array($value)) {
+                    throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($value) . ".");
+                }
+
                 $this->{$property} = $TypedArrayClass = new $type();
                 $expected_type = $TypedArrayClass->getExpectedType();
 
                 foreach ($value as $item) {
                     if (enum_exists($expected_type)) {
+                        if (!is_string($item) && !is_int($value)) {
+                            throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($item) . ".");
+                        }
+
                         /* @var BackedEnum $expected_type */
                         $this->{$property}->append($expected_type::from($item));
                     } else if (class_exists($expected_type)) {
+                        if (!is_object($item)) {
+                            throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($item) . ".");
+                        }
+
                         $this->{$property}->append(new $expected_type($item));
                     } else {
                         $this->{$property}->append($item);
                     }
                 }
             } else if (enum_exists($type)) {
+                if (!is_string($value) && !is_int($value)) {
+                    throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($value) . ".");
+                }
+
                 /* @var BackedEnum $type */
                 $this->{$property} = $type::from($value);
             } else if (class_exists($type)) {
