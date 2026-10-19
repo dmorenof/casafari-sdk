@@ -67,12 +67,14 @@ final class HttpClient
 
             $options = [];
 
-            if ($query) {
-                $options = ['query' => $query];
+            if ($query !== null) {
+                $options['query'] = $query;
             }
 
-            if ($json) {
-                $options = ['json' => $json];
+            // The DTO has already been serialized. Guzzle's 'json' option
+            // would encode the JSON string for a second time.
+            if ($json !== null) {
+                $options['body'] = $json;
             }
 
             $response = $this->Client->request($method->value, $endpoint, $options);

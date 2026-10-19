@@ -342,3 +342,44 @@ $PropertyApi->withMiddleware(new CustomLoggerMiddleware());
 
 Middleware allows you to easily extend and customize the behavior of the SDK, whether it involves logging, adding
 headers, handling responses, or injecting additional functionality.
+
+---
+
+## CRM API v1 coverage
+
+This package targets the **Casafari CRM API** (the `crmapi.casafaricrm.com` contract), **not**
+the separate Casafari REST/Platform APIs at `api.casafari.com` or `platform.casafari.com`.
+The contract snapshot is in `src/Core/v1.json`; verify it against your own CRM account
+before relying on it in production.
+
+| API class | Supported operations |
+| --- | --- |
+| `PropertyApi` | `sendProperty`, `deleteProperty`, `getPropertyList`, `getLocations`, `getInnerLocations`, `recordHit` |
+| `AgencyApi` | `getAgencies` |
+| `EntityApi` | `getAgents` |
+| `LeadApi` | `insertLead`, `listLeads` |
+| `CasafariGoApi` | `getUrl`, `createUser`, `deleteUser` |
+| `CodeTableApi` | `getCodeTable` |
+
+All new POST operations accept typed request DTOs, and return typed response DTOs.
+GET `CodeTable` maps initialized request fields to its documented `rq.*` query fields.
+
+```php
+use CasafariSDK\LeadApi;
+use CasafariSDK\Requests\LeadListRequest;
+use CasafariSDK\Core\HttpClient;
+
+$api = new LeadApi(HttpClient::PRODUCTION_SERVER_URL, $accessToken);
+$request = new LeadListRequest();
+$request->StartDate = '2025-01-01T00:00:00Z';
+$request->EndDate = '2025-01-31T23:59:59Z';
+$result = $api->listLeads($request);
+```
+
+API calls require an account-authorized token. Do not publish tokens, and do not enable
+full request/response logging where personal customer details could be exposed.
+
+### Testing
+
+Run `composer install` and `vendor/bin/phpunit -c phpunit.xml`.
+The tests use mocked Guzzle responses and do **not** make live API requests.

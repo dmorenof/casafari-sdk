@@ -64,4 +64,15 @@ final class PropertyApi extends CasafariCrmApi
     {
         return $this->HttpClient->request(PropertyLocationResponse::class, Method::POST, 'Property/Location', null, (string)$PropertyLocationRequest);
     }
+    /** Returns the CRM hierarchy of countries, regions, cities and localities. */
+    final public function getInnerLocations(): \CasafariSDK\Responses\PropertyInnerLocationResponse
+    {
+        return $this->HttpClient->request(\CasafariSDK\Responses\PropertyInnerLocationResponse::class, Method::POST, 'Property/InnerLocations');
+    }
+
+    /** Records a property visit (hit) on the CRM API. */
+    final public function recordHit(\CasafariSDK\Requests\PropertyHitRequest $request): \CasafariSDK\Responses\PropertyHitResponse
+    {
+        return $this->HttpClient->request(\CasafariSDK\Responses\PropertyHitResponse::class, Method::POST, 'Property/Hit', null, (string)$request);
+    }
 }
