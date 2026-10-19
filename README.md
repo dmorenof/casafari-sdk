@@ -1,5 +1,10 @@
 # Casafari SDK Usage Guide
 
+[![PHP SDK CI](https://github.com/dmorenof/casafari-sdk/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dmorenof/casafari-sdk/actions/workflows/ci.yml)
+[![Composer validation](https://github.com/dmorenof/casafari-sdk/actions/workflows/composer-validation.yml/badge.svg?branch=master)](https://github.com/dmorenof/casafari-sdk/actions/workflows/composer-validation.yml)
+[![Packagist Version](https://img.shields.io/packagist/v/dmorenof/casafari-sdk)](https://packagist.org/packages/dmorenof/casafari-sdk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+
 This guide provides an overview of how to use the Casafari SDK to interact with property and location data via its API.
 It covers installation, setup, key features, middleware usage, error handling, and helpful examples to demonstrate the
 SDK's functionality.
@@ -41,13 +46,15 @@ To install it in your project, run the following Composer command:
 composer require dmorenof/casafari-sdk
 ```
 
-This installs a stable tagged release when one is available. Until the first stable tag is published, install the current development branch explicitly (for evaluation only):
+The first tagged version is **v0.1.0**. Composer resolves the newest compatible
+version, subject to your project's constraints. For applications pinning the
+initial 0.x compatibility line, use:
 
 ```bash
-composer require dmorenof/casafari-sdk:dev-master
+composer require dmorenof/casafari-sdk:^0.1
 ```
 
-A versioned release is still pending; see [RELEASING.md](RELEASING.md) for release checks.
+See [RELEASING.md](RELEASING.md) for the versioning and release procedure.
 
 ---
 
@@ -407,3 +414,27 @@ public request type.
 The SDK's own code is offered under the [MIT license](LICENSE.md), subject to
 confirmation of rights over any incorporated third-party material. It is not
 an official Casafari client. See [third-party API notices](NOTICE.md).
+
+## Continuous integration and contributions
+
+Every pull request to `master` runs PHP 8.3 tests and Composer metadata
+validation (both required for merge). Additional jobs exercise newer supported
+PHP versions, minimum dependency versions and dependency security advisories.
+The suite uses mocked HTTP responses; it **does not** establish live CRM API
+compatibility.
+
+Coverage reports are archived with the CI run; coverage is a diagnostic, not
+a claim of live API testing.
+
+Run the same essential checks locally:
+
+```sh
+composer validate --strict --no-check-lock
+composer install
+find src Tests -name '*.php' -print0 | xargs -0 -n1 php -l
+vendor/bin/phpunit -c phpunit.xml
+composer audit
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) to contribute and
+[RELEASING.md](RELEASING.md) for future versions.
