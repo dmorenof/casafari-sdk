@@ -54,6 +54,11 @@ class DTO implements JsonSerializable, Stringable
             $type = $ReflectionProperty->getType()->__toString();
 
             if (is_subclass_of($type, TypedArray::class)) {
+                // Some CRM responses represent an empty collection as {} rather than [].
+                // Only an empty object is unambiguously equivalent to an empty array.
+                if (is_object($value) && get_object_vars($value) === []) {
+                    $value = [];
+                }
                 if (!is_array($value)) {
                     throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($value) . ".");
                 }
@@ -63,7 +68,7 @@ class DTO implements JsonSerializable, Stringable
 
                 foreach ($value as $item) {
                     if (enum_exists($expected_type)) {
-                        if (!is_string($item) && !is_int($value)) {
+                        if (!is_string($item) && !is_int($item)) {
                             throw new InvalidArgumentException("Property {$ReflectionClass->getName()}::$property of type $type cannot be instantiated from " . gettype($item) . ".");
                         }
 
@@ -109,8 +114,10 @@ class DTO implements JsonSerializable, Stringable
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): object
     {
-        return get_object_vars($this);
+        // DTOs are JSON objects, including when none of their optional
+        // properties has been populated (where JSON [] would be incorrect).
+        return (object)get_object_vars($this);
     }
 }
