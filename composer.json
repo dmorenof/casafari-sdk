@@ -1,6 +1,6 @@
 {
   "name": "dmorenof/casafari-sdk",
-  "description": "Example of CasafariCrmApi integration.",
+  "description": "Unofficial PHP SDK for the Casafari CRM API, with typed DTOs, typed collections and HTTP middleware.",
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -16,5 +16,24 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^11.5"
+  },
+  "keywords": [
+    "casafari",
+    "casafari-crm",
+    "sdk",
+    "php",
+    "api-client",
+    "real-estate"
+  ],
+  "homepage": "https://github.com/dmorenof/casafari-sdk",
+  "authors": [
+    {
+      "name": "David Moreno Falero",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/dmorenof/casafari-sdk/issues",
+    "source": "https://github.com/dmorenof/casafari-sdk"
   }
 }
