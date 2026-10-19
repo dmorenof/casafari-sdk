@@ -21,7 +21,7 @@ class ListLeadsOpportunity extends \CasafariSDK\Core\DTO
     public string $EventType;
     public string $SalePrice;
     public \CasafariSDK\TypedArrays\ListLeadsAgentsArray $Agents;
-    public \CasafariSDK\TypedArrays\ListLeadsPropertysArray $Properties;
+    public \CasafariSDK\TypedArrays\ListLeadsPropertiesArray $Properties;
     public \CasafariSDK\DTOs\ListLeadsCustomer $Customer;
     public \CasafariSDK\TypedArrays\ListLeadsEventsArray $Events;
 }

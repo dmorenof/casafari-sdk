@@ -8,5 +8,5 @@ namespace CasafariSDK\Responses;
  */
 class LeadListResponse extends \CasafariSDK\Core\Response
 {
-    public \CasafariSDK\TypedArrays\ListLeadsOpportunitysArray $Opportunities;
+    public \CasafariSDK\TypedArrays\ListLeadsOpportunitiesArray $Opportunities;
 }
