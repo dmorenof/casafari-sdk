@@ -200,12 +200,14 @@ $PropertyApi = new PropertyApi($server, $access_token);
 
 // This will return a /CasafariSDK/Responses/PropertyResponse object
 $response = $PropertyApi->deleteProperty(new PropertyRequest((object)[
-    'TimeStamp' => date(DATE_RFC3339_EXTENDED)
-    'Version' => 0.1
-    'CorrelationId' => uniqid()
-    'Properties' => (object)[
-        'internalId' => 'unique_id_1',
-        'reference' => 'reference_1',
+    'TimeStamp' => date(DATE_RFC3339_EXTENDED),
+    'Version' => 0.1,
+    'CorrelationId' => uniqid(),
+    'Properties' => [
+        (object)[
+            'internalId' => 'unique_id_1',
+            'reference' => 'reference_1',
+        ],
     ]
 ]));
 ```
@@ -383,3 +385,12 @@ full request/response logging where personal customer details could be exposed.
 
 Run `composer install` and `vendor/bin/phpunit -c phpunit.xml`.
 The tests use mocked Guzzle responses and do **not** make live API requests.
+
+### Existing API schema mismatch to review
+
+The pre-existing `PropertyListRequest::Locations` field is a collection
+(`LocationListRequestsArray`), while the bundled CRM Swagger v1 describes
+`FilterRq.Locations` as a **single** `LocationList` object. Existing client
+code may rely on the SDK shape. This difference is intentionally left
+unchanged pending a live contract check, rather than silently changing a
+public request type.
