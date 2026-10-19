@@ -1,64 +1,63 @@
-# Releasing the Casafari CRM SDK on Packagist
+# Releasing Casafari SDK
 
-## Current package state
+**Current public baseline:** [v0.1.0](https://github.com/dmorenof/casafari-sdk/releases/tag/v0.1.0)
+at commit `121295207bc8b6f3d2a003413dee8a20ba4d81ae`.
+It was tagged and released manually. It must never be retagged or overwritten.
 
-- Packagist package: https://packagist.org/packages/dmorenof/casafari-sdk
-- GitHub repository: https://github.com/dmorenof/casafari-sdk
-- As of 2026-10-19 the package is already listed, with `dev-master` and
-  `dev-develop` and automatic updates, but has no versioned release.
-- Version numbers are inferred from Git tags. Do **not** add a `version`
-  field to `composer.json`.
+- Package: https://packagist.org/packages/dmorenof/casafari-sdk
+- Default branch: `master` (protected)
+- PHP: `>=8.3`
+- License: MIT for the SDK's own code, with third-party notices in `NOTICE.md`
+- Source API contract: Casafari **CRM** Swagger snapshot `src/Core/v1.json`,
+  not the distinct Casafari REST API
+- Automated unit tests mock HTTP; no authorized live CRM integration test is
+  performed by CI.
 
-## Release checklist (do not skip)
+## Future versions
 
-1. Review ownership and redistribution rights for any third-party API
-   documentation or specifications, especially `src/Core/v1.json`.
-2. Confirm the MIT license text and separate Casafari disclaimer. Do not
-   represent third-party materials as MIT licensed unless authorized.
-3. Review and merge the CRM functionality PR after verifying its compatibility
-   with a current authorized Casafari CRM contract. No live API tests are
-   provided by the mock-only suite.
-4. Ensure the release branch has its complete `composer.json`, SDK classes,
-   current README and a passing CI run. Confirm there are no credentials
-   in the history or release archive.
-5. On the final tested commit, run:
-   
-   ```sh
-   composer validate --strict
-   composer install --no-interaction --prefer-dist
-   vendor/bin/phpunit -c phpunit.xml
-   ```
+The workflow `.github/workflows/release.yml` automates publication **only
+after** a pull request changing the root `VERSION` file merges to `master`.
 
-6. Choose a version. `v0.1.0` is a suggested first public stable-tagged
-   package version if the external CRM contract is still under validation.
-   The tag name is **not** a claim of production-readiness.
-7. After merging and confirming the intended commit, create and push a Git tag
-   on that **specific** commit, then optionally a GitHub Release:
-   
-   ```sh
-   git fetch origin --tags
-   git switch master
-   git pull --ff-only
-   git tag -a v0.1.0 -m "First public Casafari CRM SDK release"
-   git push origin v0.1.0
-   ```
-
-8. Check https://packagist.org/packages/dmorenof/casafari-sdk for the new
-   tagged version. If automatic sync does not occur, use the package's
-   Packagist Update action / GitHub sync settings.
-9. Test installation in a **clean** PHP 8.3+ project:
+1. Create a release PR against `master`, updating `VERSION` to the next
+   numeric semantic version (e.g. `0.1.1`; **no** leading `v`).
+   Make sure all intended implementation changes are already included.
+2. Review the diff, dependency alerts and compatibility impact.
+3. Await mandatory GitHub status checks: `test` and `validate`.
+   Additional CI jobs cover newer PHP versions, minimum dependencies and
+   Composer security advisories. Do not merge with failing checks.
+4. Merge the release PR. The publication workflow reads `VERSION`, validates
+   the manifest, installs dependencies, runs PHP syntax checks and PHPUnit,
+   and audits dependencies **before** creating a Git tag.
+5. If the tag is new, the workflow creates `vX.Y.Z` pointing to that precise
+   merge commit and publishes GitHub Release notes. Existing tags are
+   **never moved or overwritten**. If a tag exists at a different commit,
+   publication is skipped, even on manual reruns.
+6. Verify the new tag and release in GitHub, then verify synchronization
+   at https://packagist.org/packages/dmorenof/casafari-sdk.
+   If webhook sync is delayed, use Packagist's Update action.
+7. Smoke-test installation in a clean PHP 8.3+ consumer project:
    
    ```sh
    composer require dmorenof/casafari-sdk:^0.1
    ```
 
-10. Publish release notes describing SDK features, breaking changes and
-    the lack of validation against a live Casafari CRM account.
+The first merge that introduces `VERSION=0.1.0` does **not** recreate
+`v0.1.0`: the workflow detects the existing tag and leaves it alone.
 
-## Important versioning constraint
+## Library-specific points
 
-Packagist has made stable-version metadata immutable. Never force-move
-published version tags, and do not tag a branch before checking its final
-commit. Publish a new patch version for any corrective changes.
+- Composer determines the package version from the Git tag: do not add a
+  `version` field to `composer.json`.
+- Do not commit `composer.lock` to this library merely to get CI passing;
+  testing lowest and currently resolvable dependency versions is intentional.
+- Never embed an API access token in CI, logs, test fixtures or releases.
+- Review third-party specifications and the terms under which any copies of
+  their material may be redistributed; the MIT license cannot grant rights
+  to third-party material.
+- Avoid promises of live API compatibility until an authorized integration
+  test has actually been performed.
+- Packagist versions are immutable. Fix mistakes in a **new** patch release;
+  never force-update an already published tag.
 
-Reference: https://blog.packagist.com/immutable-versions-on-packagist/
+Packagist immutability background:
+https://blog.packagist.com/immutable-versions-on-packagist/
