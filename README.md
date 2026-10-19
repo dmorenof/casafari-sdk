@@ -41,7 +41,13 @@ To install it in your project, run the following Composer command:
 composer require dmorenof/casafari-sdk
 ```
 
-This will download and include the latest version of the SDK and its dependencies into your project automatically.
+This installs a stable tagged release when one is available. Until the first stable tag is published, install the current development branch explicitly (for evaluation only):
+
+```bash
+composer require dmorenof/casafari-sdk:dev-master
+```
+
+A versioned release is still pending; see [RELEASING.md](RELEASING.md) for release checks.
 
 ---
 
@@ -394,3 +400,10 @@ The pre-existing `PropertyListRequest::Locations` field is a collection
 code may rely on the SDK shape. This difference is intentionally left
 unchanged pending a live contract check, rather than silently changing a
 public request type.
+
+
+## License and independence
+
+The SDK's own code is offered under the [MIT license](LICENSE.md), subject to
+confirmation of rights over any incorporated third-party material. It is not
+an official Casafari client. See [third-party API notices](NOTICE.md).
