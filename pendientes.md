@@ -32,7 +32,7 @@ Este repositorio no recibe cambios de migración hasta cerrar las fases 1 y 2. M
 ## 1. Fase 3: evaluación y migración (tras las fases 1 y 2)
 
 - [ ] **Aclarar el contrato:** este SDK cubre el CRM API v1; el SDK generado de la suite del generador cubre la API REST de `platform.casafari.com`. Decidir si ambos contratos se mantienen.
-- [x] Generar un SDK desde `contract/v1.json` con el generador estable (sdk-generator 1.4.0) y comparar su API pública con la actual: 14 operaciones, mismas peticiones (método, URL y cuerpo) en 13 de 14 con los mismos datos; `CodeTable` difiere solo en el booleano de la query (`true` frente a `1`). En la rama `claude/busy-franklin-9x9zpa`, sin fusionar.
+- [x] Generar un SDK desde `contract/v1.json` con el generador estable (sdk-generator 1.5.0) y comparar su API pública con la actual: 14 operaciones, mismas peticiones (método, URL y cuerpo) en 13 de 14 con los mismos datos; `CodeTable` difiere solo en el booleano de la query (`true` frente a `1`). En la rama `claude/busy-franklin-9x9zpa`, sin fusionar.
 - [ ] Verificar con la API real el desajuste de `Locations` (el SDK anterior lo modelaba como colección; el contrato y el SDK generado, como objeto único `LocationList`) y el formato de los booleanos de la query (`true` frente a `1`).
 - [ ] Decidir la estrategia: sustituir el código manual manteniendo compatibilidad (capa de adaptación o major nuevo) o mantener los dos paquetes.
 - [ ] Probar operaciones representativas con credenciales reales y comparar respuestas con las del SDK actual. Requiere autorización del titular de las credenciales.
