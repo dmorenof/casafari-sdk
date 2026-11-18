@@ -6,6 +6,7 @@ on:
   push:
     branches: [master]
     tags: ['v*']
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -34,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Check PHP syntax
-        run: find src Tests -name '*.php' -print0 | xargs -0 -n1 php -l
+        run: find src lib bin Tests -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: Run tests and collect coverage
         run: |
           mkdir -p coverage

@@ -1,20 +1,20 @@
 {
   "name": "dmorenof/casafari-sdk",
-  "description": "Unofficial PHP SDK for the Casafari CRM API, with typed DTOs, typed collections and HTTP middleware.",
+  "description": "Unofficial PHP SDK for the Casafari CRM API, generated from its Swagger contract with sdk-generator.",
   "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "CasafariSDK\\": "src/"
+      "CasafariSDK\\": "src/",
+      "CasafariSDK\\Middlewares\\": "lib/Middlewares/"
     }
   },
   "require": {
     "php": ">=8.3",
-    "typedarray/typedarray": "^1.0",
-    "guzzlehttp/guzzle": "^7.9",
-    "alexanderpas/http-enum": "^1.0"
+    "dmorenof/sdk-runtime": "^1.1"
   },
   "require-dev": {
+    "dmorenof/sdk-generator": "^1.3.1",
     "phpunit/phpunit": "^11.5"
   },
   "keywords": [
@@ -35,5 +35,15 @@
   "support": {
     "issues": "https://github.com/dmorenof/casafari-sdk/issues",
     "source": "https://github.com/dmorenof/casafari-sdk"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CasafariSDK\\Tests\\": "Tests/"
+    }
+  },
+  "scripts": {
+    "regenerate": "@php bin/regenerate.php",
+    "regenerate:check": "@php bin/regenerate.php --check",
+    "test": "phpunit"
   }
 }

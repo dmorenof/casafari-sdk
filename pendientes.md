@@ -25,15 +25,15 @@ Este repositorio no recibe cambios de migración hasta cerrar las fases 1 y 2. M
 
 ## 0. Línea base ya disponible
 
-- [x] Cobertura completa del Casafari **CRM API v1** (`src/Core/v1.json`): Agency, Entity, Leads, CasafariGo, CodeTable y Property, con DTOs y colecciones tipadas.
+- [x] Cobertura completa del Casafari **CRM API v1** (`contract/v1.json`): Agency, Entity, Leads, CasafariGo, CodeTable y Property, con DTOs y colecciones tipadas.
 - [x] Middlewares (`EchoMiddleware`, `LogMiddleware`) y pruebas con HTTP simulado (contrato Swagger, rutas y cobertura).
 - [x] Licencia MIT, `NOTICE.md`, CI con matriz PHP, auditoría de dependencias y publicación automática por `VERSION` en Packagist.
 
 ## 1. Fase 3: evaluación y migración (tras las fases 1 y 2)
 
 - [ ] **Aclarar el contrato:** este SDK cubre el CRM API v1; el SDK generado de la suite del generador cubre la API REST de `platform.casafari.com`. Decidir si ambos contratos se mantienen.
-- [ ] Generar un SDK desde `src/Core/v1.json` con el generador estable y comparar su API pública con la actual (clases, métodos, DTOs, middlewares).
-- [ ] Resolver el desajuste conocido de `PropertyListRequest::Locations` (colección frente a objeto único) documentado en el README.
+- [x] Generar un SDK desde `contract/v1.json` con el generador estable (sdk-generator 1.3.1) y comparar su API pública con la actual: 14 operaciones, mismas peticiones (método, URL y cuerpo) en 13 de 14 con los mismos datos; `CodeTable` difiere solo en el booleano de la query (`true` frente a `1`). En la rama `claude/busy-franklin-9x9zpa`, sin fusionar.
+- [ ] Verificar con la API real el desajuste de `Locations` (el SDK anterior lo modelaba como colección; el contrato y el SDK generado, como objeto único `LocationList`) y el formato de los booleanos de la query (`true` frente a `1`).
 - [ ] Decidir la estrategia: sustituir el código manual manteniendo compatibilidad (capa de adaptación o major nuevo) o mantener los dos paquetes.
 - [ ] Probar operaciones representativas con credenciales reales y comparar respuestas con las del SDK actual. Requiere autorización del titular de las credenciales.
 - [ ] Plan de rollback y guía de migración para consumidores de v0.1.x.

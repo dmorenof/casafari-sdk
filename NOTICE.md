@@ -18,7 +18,7 @@ or the operators of the Casafari CRM service.
 
 ## Pre-release source review
 
-The repository currently includes `src/Core/v1.json`, a Swagger schema of the
+The repository currently includes `contract/v1.json`, a Swagger schema of the
 Casafari CRM API. Before distributing the first versioned release, confirm
 that its redistribution is authorized, or remove/restructure it as appropriate.
 A public repository and a permissively licensed SDK do **not** in themselves

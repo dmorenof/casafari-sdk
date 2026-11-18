@@ -1,0 +1,39 @@
+<?php
+declare(strict_types=1);
+
+namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
+
+/**
+ * Multi culture property description
+ */
+final class LocaleList extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [];
+
+    /**
+     * Property description
+     */
+    public string $description;
+    /**
+     * Property buttons
+     */
+    public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\LocaleList\LabelsCollection $labels;
+    public string $language;
+    /**
+     * Property SEO/Description
+     */
+    public string $seodescription;
+    /**
+     * Property SEO/Keywords
+     */
+    public string $seokeywords;
+    /**
+     * Property short description
+     */
+    public string $short;
+    /**
+     * Property title
+     */
+    public string $title;
+
+}
