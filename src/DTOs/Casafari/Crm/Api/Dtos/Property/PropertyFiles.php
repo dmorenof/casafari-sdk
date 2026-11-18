@@ -8,8 +8,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
  */
 final class PropertyFiles extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'SortOrder' => [
         'format' => 'int32',

@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead;
 
 final class LeadtRs extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'LeadId' => [
         'format' => 'int32',

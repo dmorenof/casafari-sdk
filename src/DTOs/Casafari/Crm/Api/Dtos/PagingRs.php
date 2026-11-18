@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos;
 
 final class PagingRs extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'CurrentPage' => [
         'format' => 'int32',

@@ -5,17 +5,9 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
 
 final class PropertyFrom extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'Date' => [
         'format' => 'date-time',
-    ],
-    'Type' => [
-        'enum' => [
-            'Created',
-            'Modified',
-        ],
     ],
 ];
 

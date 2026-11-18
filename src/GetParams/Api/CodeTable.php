@@ -5,7 +5,6 @@ namespace CasafariSDK\GetParams\Api;
 
 final class CodeTable extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
     public const array OPERATION_FIELDS = [
     'path' => [],
     'query' => [

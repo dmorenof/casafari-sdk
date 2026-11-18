@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead;
 
 final class ListLeadsEvent extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'EventTypeID' => [
         'format' => 'int32',

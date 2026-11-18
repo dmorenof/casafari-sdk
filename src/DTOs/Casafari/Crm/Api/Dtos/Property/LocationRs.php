@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
 
 final class LocationRs extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'PrimaryLangId' => [
         'format' => 'int32',

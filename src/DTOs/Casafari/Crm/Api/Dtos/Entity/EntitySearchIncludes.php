@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Entity;
 
 final class EntitySearchIncludes extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     public bool $IncludeAgencies;
     public bool $IncludeAgenciesLocales;
     public bool $IncludeEntityFiles;

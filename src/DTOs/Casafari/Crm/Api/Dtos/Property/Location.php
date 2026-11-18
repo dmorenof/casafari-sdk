@@ -8,19 +8,7 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
  */
 final class Location extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
-    'countryCode' => [
-        'enum' => [
-            'br',
-            'es',
-            'fr',
-            'it',
-            'pa',
-            'pt',
-        ],
-    ],
     'locationId' => [
         'format' => 'int32',
     ],

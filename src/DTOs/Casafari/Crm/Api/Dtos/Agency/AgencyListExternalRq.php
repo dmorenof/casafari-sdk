@@ -5,27 +5,7 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Agency;
 
 final class AgencyListExternalRq extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
-    'Lang' => [
-        'enum' => [
-            'da',
-            'de',
-            'en',
-            'es',
-            'fi',
-            'fr',
-            'it',
-            'nl',
-            'no',
-            'pl',
-            'pt',
-            'ru',
-            'sv',
-            'zh',
-        ],
-    ],
     'PrimaryLangId' => [
         'format' => 'int32',
     ],

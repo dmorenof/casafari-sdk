@@ -8,29 +8,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
  */
 final class Locale extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
-    protected const array VALIDATION = [
-    'language' => [
-        'enum' => [
-            'da',
-            'de',
-            'en',
-            'es',
-            'fi',
-            'fr',
-            'it',
-            'nl',
-            'no',
-            'pl',
-            'pt',
-            'ru',
-            'sv',
-            'zh',
-        ],
-    ],
-];
-
     /**
      * Property description
      */

@@ -8,8 +8,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\CodeTables;
  */
 final class CodeNameValue extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'CultureId' => [
         'format' => 'int32',

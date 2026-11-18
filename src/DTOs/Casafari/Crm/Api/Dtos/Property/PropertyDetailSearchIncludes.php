@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
 
 final class PropertyDetailSearchIncludes extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     public bool $GetAgencyIsShopAsPropertyAgency;
     public bool $IncludeAgency;
     public bool $IncludeBrokers;

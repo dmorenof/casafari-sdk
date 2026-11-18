@@ -3,7 +3,7 @@
 ## [0.2.0] — unreleased
 
 The hand-written SDK is replaced by one generated from the CRM Swagger contract (`contract/v1.json`, moved from
-`src/Core/v1.json`) with sdk-generator 1.3.1 on sdk-runtime ^1.1. The 14 operations are the same; the namespace,
+`src/Core/v1.json`) with sdk-generator 1.4.0 on sdk-runtime ^1.1. The 14 operations are the same; the namespace,
 class and method names changed (see "Moving from 0.1" in the README).
 
 - `src/` is generated; `composer regenerate` rewrites it and `composer regenerate:check` (also a test) fails if it

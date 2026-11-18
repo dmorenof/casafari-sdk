@@ -5,35 +5,9 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead;
 
 final class GetLeadRq extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
-    'Category' => [
-        'enum' => [
-            'Listings',
-            'Sales',
-        ],
-    ],
     'EndDate' => [
         'format' => 'date-time',
-    ],
-    'Language' => [
-        'enum' => [
-            'da',
-            'de',
-            'en',
-            'es',
-            'fi',
-            'fr',
-            'it',
-            'nl',
-            'no',
-            'pl',
-            'pt',
-            'ru',
-            'sv',
-            'zh',
-        ],
     ],
     'PrimaryLangId' => [
         'format' => 'int32',

@@ -8,8 +8,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\CodeTables;
  */
 final class CodeTableRs extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'PrimaryLangId' => [
         'format' => 'int32',

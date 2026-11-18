@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property;
 
 final class FilterRq extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     protected const array VALIDATION = [
     'AgencyId' => [
         'format' => 'int32',
@@ -16,24 +14,6 @@ final class FilterRq extends \Dmorenof\SdkRuntime\DTO
     ],
     'Building_Id' => [
         'format' => 'int32',
-    ],
-    'Lang' => [
-        'enum' => [
-            'da',
-            'de',
-            'en',
-            'es',
-            'fi',
-            'fr',
-            'it',
-            'nl',
-            'no',
-            'pl',
-            'pt',
-            'ru',
-            'sv',
-            'zh',
-        ],
     ],
     'MaxBathrooms' => [
         'format' => 'int32',

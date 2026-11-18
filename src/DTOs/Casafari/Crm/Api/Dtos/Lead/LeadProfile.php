@@ -5,8 +5,6 @@ namespace CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead;
 
 final class LeadProfile extends \Dmorenof\SdkRuntime\DTO
 {
-    public const array REQUIRED_FIELDS = [];
-
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\LeadFromTo $Bathrooms;
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\LeadFromTo $Bedrooms;
     public \CasafariSDK\Collections\StringCollection $Cities;
