@@ -66,15 +66,30 @@ final class FilterRq extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyId;
+    public int $AgencyId {
+        set {
+            $this->assigning('AgencyId', $value);
+            $this->AgencyId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $AgentId;
+    public int $AgentId {
+        set {
+            $this->assigning('AgentId', $value);
+            $this->AgentId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $Building_Id;
+    public int $Building_Id {
+        set {
+            $this->assigning('Building_Id', $value);
+            $this->Building_Id = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\FilterRq\TypeIdsCollection $BusinessTypeIds;
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\FilterRq\ConditionTypeIdsArray\TypeIdsCollection $ConditionTypeIds;
     /**
@@ -104,56 +119,116 @@ final class FilterRq extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $MaxBathrooms;
+    public int $MaxBathrooms {
+        set {
+            $this->assigning('MaxBathrooms', $value);
+            $this->MaxBathrooms = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MaxBedrooms;
+    public int $MaxBedrooms {
+        set {
+            $this->assigning('MaxBedrooms', $value);
+            $this->MaxBedrooms = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MaxLivingArea;
+    public int $MaxLivingArea {
+        set {
+            $this->assigning('MaxLivingArea', $value);
+            $this->MaxLivingArea = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MaxPlotArea;
+    public int $MaxPlotArea {
+        set {
+            $this->assigning('MaxPlotArea', $value);
+            $this->MaxPlotArea = $value;
+        }
+    }
     /**
      * This is the number of properties that are get for each page (SequenceNmbr)
      * The Max amount of properties that can be get is 100
      * Format: int32
      */
-    public int $MaxResponses;
+    public int $MaxResponses {
+        set {
+            $this->assigning('MaxResponses', $value);
+            $this->MaxResponses = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MaxTotalArea;
+    public int $MaxTotalArea {
+        set {
+            $this->assigning('MaxTotalArea', $value);
+            $this->MaxTotalArea = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MinBathrooms;
+    public int $MinBathrooms {
+        set {
+            $this->assigning('MinBathrooms', $value);
+            $this->MinBathrooms = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MinBedrooms;
+    public int $MinBedrooms {
+        set {
+            $this->assigning('MinBedrooms', $value);
+            $this->MinBedrooms = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MinLivingArea;
+    public int $MinLivingArea {
+        set {
+            $this->assigning('MinLivingArea', $value);
+            $this->MinLivingArea = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MinPlotArea;
+    public int $MinPlotArea {
+        set {
+            $this->assigning('MinPlotArea', $value);
+            $this->MinPlotArea = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $MinTotalArea;
+    public int $MinTotalArea {
+        set {
+            $this->assigning('MinTotalArea', $value);
+            $this->MinTotalArea = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection $NumericDetailIds;
     public bool $OnFocus;
     public bool $Opportunity;
     /**
      * Format: int32
      */
-    public int $PortalId;
+    public int $PortalId {
+        set {
+            $this->assigning('PortalId', $value);
+            $this->PortalId = $value;
+        }
+    }
     /**
      * Format: double
      */
@@ -166,13 +241,23 @@ final class FilterRq extends \Dmorenof\SdkRuntime\DTO
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection $PropertyButtonIds;
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection $PropertyButtonIdsToExclude;
     /**
      * Format: int32
      */
-    public int $PropertyId;
+    public int $PropertyId {
+        set {
+            $this->assigning('PropertyId', $value);
+            $this->PropertyId = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection $PropertyIds;
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\PropertyDetailSearchIncludes $PropertyIncludes;
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\PropertyListSorts $PropertyListSorts;
@@ -188,7 +273,12 @@ final class FilterRq extends \Dmorenof\SdkRuntime\DTO
      * Starts with the value 1
      * Format: int32
      */
-    public int $SequenceNmbr;
+    public int $SequenceNmbr {
+        set {
+            $this->assigning('SequenceNmbr', $value);
+            $this->SequenceNmbr = $value;
+        }
+    }
     public bool $Sold;
     /**
      * ISO 8601 encoded timestamp indicating the creation date and time of the message.

@@ -83,36 +83,71 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyID;
+    public int $AgencyID {
+        set {
+            $this->assigning('AgencyID', $value);
+            $this->AgencyID = $value;
+        }
+    }
     public bool $AlreadyBought;
     /**
      * Format: date-time
      */
-    public string $BirthDate;
+    public string $BirthDate {
+        set {
+            $this->assigning('BirthDate', $value);
+            $this->BirthDate = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $BrokerID;
+    public int $BrokerID {
+        set {
+            $this->assigning('BrokerID', $value);
+            $this->BrokerID = $value;
+        }
+    }
     public string $Cellphone;
     public string $ColorCode;
     /**
      * Format: int32
      */
-    public int $ColorLevel;
+    public int $ColorLevel {
+        set {
+            $this->assigning('ColorLevel', $value);
+            $this->ColorLevel = $value;
+        }
+    }
     public string $CompanyName;
     public string $CountryISO;
     /**
      * Format: date-time
      */
-    public string $CreateDate;
+    public string $CreateDate {
+        set {
+            $this->assigning('CreateDate', $value);
+            $this->CreateDate = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $CultureID;
+    public int $CultureID {
+        set {
+            $this->assigning('CultureID', $value);
+            $this->CultureID = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $CustomerOriginID;
+    public int $CustomerOriginID {
+        set {
+            $this->assigning('CustomerOriginID', $value);
+            $this->CustomerOriginID = $value;
+        }
+    }
     public string $EmailAddress;
     /**
      * This object is the representative object of first element in locales list
@@ -125,7 +160,12 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $EntityAccessLevelID;
+    public int $EntityAccessLevelID {
+        set {
+            $this->assigning('EntityAccessLevelID', $value);
+            $this->EntityAccessLevelID = $value;
+        }
+    }
     public string $EntityDefaultPhoto;
     /**
      * This object is the representative object of first element in locales list
@@ -135,13 +175,23 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $EntityID;
+    public int $EntityID {
+        set {
+            $this->assigning('EntityID', $value);
+            $this->EntityID = $value;
+        }
+    }
     public string $EntityName;
     public string $EntityTitle;
     /**
      * Format: int32
      */
-    public int $EntityType;
+    public int $EntityType {
+        set {
+            $this->assigning('EntityType', $value);
+            $this->EntityType = $value;
+        }
+    }
     public string $ExternalCode;
     public string $ExtraPhone1;
     public string $ExtraPhone1Desc;
@@ -157,19 +207,39 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $JobType;
+    public int $JobType {
+        set {
+            $this->assigning('JobType', $value);
+            $this->JobType = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $LastAutoMailingDate;
+    public string $LastAutoMailingDate {
+        set {
+            $this->assigning('LastAutoMailingDate', $value);
+            $this->LastAutoMailingDate = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $LastChangeDate;
+    public string $LastChangeDate {
+        set {
+            $this->assigning('LastChangeDate', $value);
+            $this->LastChangeDate = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $LawyerID;
+    public int $LawyerID {
+        set {
+            $this->assigning('LawyerID', $value);
+            $this->LawyerID = $value;
+        }
+    }
     public string $LinkedInUrl;
     public string $NIB;
     public bool $NewFromWebsite;
@@ -178,11 +248,21 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $OptinDate;
+    public string $OptinDate {
+        set {
+            $this->assigning('OptinDate', $value);
+            $this->OptinDate = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $ParentAgencyID;
+    public int $ParentAgencyID {
+        set {
+            $this->assigning('ParentAgencyID', $value);
+            $this->ParentAgencyID = $value;
+        }
+    }
     public string $PhoneNumber;
     public bool $ReceivesSMS;
     public string $SpokenLanguages;
@@ -190,20 +270,35 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $TelemarketerID;
+    public int $TelemarketerID {
+        set {
+            $this->assigning('TelemarketerID', $value);
+            $this->TelemarketerID = $value;
+        }
+    }
     public string $Timezone;
     public string $TwitterUrl;
     public string $UTCOffset;
     /**
      * Format: int32
      */
-    public int $UserID;
+    public int $UserID {
+        set {
+            $this->assigning('UserID', $value);
+            $this->UserID = $value;
+        }
+    }
     public bool $VisibleOnLuxuryWebsite;
     public bool $VisibleOnWebsite;
     /**
      * Format: date-time
      */
-    public string $VisitDate;
+    public string $VisitDate {
+        set {
+            $this->assigning('VisitDate', $value);
+            $this->VisitDate = $value;
+        }
+    }
     public string $VisitNotes;
     public string $Webpage;
     public string $WishPropertyDtoCities;
@@ -229,11 +324,21 @@ final class EntityDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $WishPropertyDtoNumberRoomsFrom;
+    public int $WishPropertyDtoNumberRoomsFrom {
+        set {
+            $this->assigning('WishPropertyDtoNumberRoomsFrom', $value);
+            $this->WishPropertyDtoNumberRoomsFrom = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $WishPropertyDtoNumberRoomsTo;
+    public int $WishPropertyDtoNumberRoomsTo {
+        set {
+            $this->assigning('WishPropertyDtoNumberRoomsTo', $value);
+            $this->WishPropertyDtoNumberRoomsTo = $value;
+        }
+    }
     /**
      * Format: double
      */

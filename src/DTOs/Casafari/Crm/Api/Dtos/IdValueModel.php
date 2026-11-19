@@ -17,11 +17,21 @@ final class IdValueModel extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $Id;
+    public int $Id {
+        set {
+            $this->assigning('Id', $value);
+            $this->Id = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $ParentId;
+    public int $ParentId {
+        set {
+            $this->assigning('ParentId', $value);
+            $this->ParentId = $value;
+        }
+    }
     public string $Value;
 
 }

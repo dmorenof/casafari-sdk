@@ -13,7 +13,7 @@ is edited by hand.
 
 ## Installation
 
-PHP 8.3 or later.
+PHP 8.4 or later.
 
 ```bash
 composer require dmorenof/casafari-sdk

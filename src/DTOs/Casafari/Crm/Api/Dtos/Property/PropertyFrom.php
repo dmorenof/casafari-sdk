@@ -14,7 +14,12 @@ final class PropertyFrom extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $Date;
+    public string $Date {
+        set {
+            $this->assigning('Date', $value);
+            $this->Date = $value;
+        }
+    }
     public \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\PropertyFrom\TypeEnum $Type;
 
 }

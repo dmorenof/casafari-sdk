@@ -14,7 +14,12 @@ final class DetailsObjects extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CategoryId;
+    public int $CategoryId {
+        set {
+            $this->assigning('CategoryId', $value);
+            $this->CategoryId = $value;
+        }
+    }
     public string $CategoryInnerText;
     public \CasafariSDK\Collections\StringCollection $Name;
 

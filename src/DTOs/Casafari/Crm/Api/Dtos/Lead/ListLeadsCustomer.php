@@ -15,7 +15,12 @@ final class ListLeadsCustomer extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $DateOfBirth;
+    public string $DateOfBirth {
+        set {
+            $this->assigning('DateOfBirth', $value);
+            $this->DateOfBirth = $value;
+        }
+    }
     public string $EmailAddress;
     public string $IdentificationNumber;
     public string $Language;

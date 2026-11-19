@@ -22,12 +22,22 @@ final class CodeNameValue extends \Dmorenof\SdkRuntime\DTO
      * Gets or sets the culture associated with the value.
      * Format: int32
      */
-    public int $CultureId;
+    public int $CultureId {
+        set {
+            $this->assigning('CultureId', $value);
+            $this->CultureId = $value;
+        }
+    }
     /**
      * Gets or sets the unique identifier associated with the value.
      * Format: int32
      */
-    public int $Id;
+    public int $Id {
+        set {
+            $this->assigning('Id', $value);
+            $this->Id = $value;
+        }
+    }
     /**
      * Gets or sets the name associated with the value.
      */

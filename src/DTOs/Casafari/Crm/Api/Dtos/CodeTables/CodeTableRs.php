@@ -34,7 +34,12 @@ final class CodeTableRs extends \Dmorenof\SdkRuntime\DTO
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     /**
      * Gets or sets a list of code and name pairs for property types.
      */

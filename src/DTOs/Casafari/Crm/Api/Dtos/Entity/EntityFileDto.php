@@ -20,16 +20,31 @@ final class EntityFileDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $EntityFileID;
+    public int $EntityFileID {
+        set {
+            $this->assigning('EntityFileID', $value);
+            $this->EntityFileID = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $EntityID;
+    public int $EntityID {
+        set {
+            $this->assigning('EntityID', $value);
+            $this->EntityID = $value;
+        }
+    }
     public string $Filename;
     /**
      * Format: int32
      */
-    public int $SortOrder;
+    public int $SortOrder {
+        set {
+            $this->assigning('SortOrder', $value);
+            $this->SortOrder = $value;
+        }
+    }
     public bool $isPhoto;
 
 }

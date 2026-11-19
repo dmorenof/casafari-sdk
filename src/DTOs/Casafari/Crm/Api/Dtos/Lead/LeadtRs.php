@@ -29,12 +29,22 @@ final class LeadtRs extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $LeadId;
+    public int $LeadId {
+        set {
+            $this->assigning('LeadId', $value);
+            $this->LeadId = $value;
+        }
+    }
     /**
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     /**
      * When true, indicates the message is being re-sent after a failure.
      */

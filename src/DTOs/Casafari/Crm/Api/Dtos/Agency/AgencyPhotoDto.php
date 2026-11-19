@@ -20,15 +20,30 @@ final class AgencyPhotoDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyID;
+    public int $AgencyID {
+        set {
+            $this->assigning('AgencyID', $value);
+            $this->AgencyID = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $AgencyPhotoID;
+    public int $AgencyPhotoID {
+        set {
+            $this->assigning('AgencyPhotoID', $value);
+            $this->AgencyPhotoID = $value;
+        }
+    }
     public string $Path;
     /**
      * Format: int32
      */
-    public int $Sortorder;
+    public int $Sortorder {
+        set {
+            $this->assigning('Sortorder', $value);
+            $this->Sortorder = $value;
+        }
+    }
 
 }

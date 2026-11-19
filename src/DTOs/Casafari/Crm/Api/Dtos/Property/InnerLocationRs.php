@@ -30,7 +30,12 @@ final class InnerLocationRs extends \Dmorenof\SdkRuntime\DTO
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\InnerLocationRs\CitiesCollection $Regions;
     /**
      * When true, indicates the message is being re-sent after a failure.

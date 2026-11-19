@@ -23,15 +23,30 @@ final class LocationHierarchyElement extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $id;
+    public int $id {
+        set {
+            $this->assigning('id', $value);
+            $this->id = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $level;
+    public int $level {
+        set {
+            $this->assigning('level', $value);
+            $this->level = $value;
+        }
+    }
     public string $name;
     /**
      * Format: int32
      */
-    public int $parent_id;
+    public int $parent_id {
+        set {
+            $this->assigning('parent_id', $value);
+            $this->parent_id = $value;
+        }
+    }
 
 }

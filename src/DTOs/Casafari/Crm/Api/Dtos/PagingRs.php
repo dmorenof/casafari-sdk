@@ -30,23 +30,48 @@ final class PagingRs extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CurrentPage;
+    public int $CurrentPage {
+        set {
+            $this->assigning('CurrentPage', $value);
+            $this->CurrentPage = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $NextPage;
+    public int $NextPage {
+        set {
+            $this->assigning('NextPage', $value);
+            $this->NextPage = $value;
+        }
+    }
     public \CasafariSDK\Collections\StringCollection $PagingItems;
     /**
      * Format: int32
      */
-    public int $PreviousPage;
+    public int $PreviousPage {
+        set {
+            $this->assigning('PreviousPage', $value);
+            $this->PreviousPage = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $ResultsPerPage;
+    public int $ResultsPerPage {
+        set {
+            $this->assigning('ResultsPerPage', $value);
+            $this->ResultsPerPage = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $TotalPages;
+    public int $TotalPages {
+        set {
+            $this->assigning('TotalPages', $value);
+            $this->TotalPages = $value;
+        }
+    }
 
 }

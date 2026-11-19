@@ -16,7 +16,12 @@ final class PropertyButtons extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $id;
+    public int $id {
+        set {
+            $this->assigning('id', $value);
+            $this->id = $value;
+        }
+    }
     public string $text;
 
 }
