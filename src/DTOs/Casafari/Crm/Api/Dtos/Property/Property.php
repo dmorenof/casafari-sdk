@@ -48,12 +48,22 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Number of bathrooms
      * Format: int32
      */
-    public int $bathrooms;
+    public int $bathrooms {
+        set {
+            $this->assigning('bathrooms', $value);
+            $this->bathrooms = $value;
+        }
+    }
     /**
      * Number of rooms
      * Format: int32
      */
-    public int $bedrooms;
+    public int $bedrooms {
+        set {
+            $this->assigning('bedrooms', $value);
+            $this->bedrooms = $value;
+        }
+    }
     /**
      * Property business type
      */
@@ -70,11 +80,21 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Property built year
      * Format: int32
      */
-    public int $construction_year;
+    public int $construction_year {
+        set {
+            $this->assigning('construction_year', $value);
+            $this->construction_year = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $createDate;
+    public string $createDate {
+        set {
+            $this->assigning('createDate', $value);
+            $this->createDate = $value;
+        }
+    }
     /**
      * Property price
      */
@@ -99,7 +119,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Floor Number
      * Format: int32
      */
-    public int $floorNumber;
+    public int $floorNumber {
+        set {
+            $this->assigning('floorNumber', $value);
+            $this->floorNumber = $value;
+        }
+    }
     /**
      * Floor Number string
      */
@@ -115,7 +140,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $lastChangeDate;
+    public string $lastChangeDate {
+        set {
+            $this->assigning('lastChangeDate', $value);
+            $this->lastChangeDate = $value;
+        }
+    }
     /**
      * Email of assigned agent
      */
@@ -137,7 +167,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Number Of Floors
      * Format: int32
      */
-    public int $numberOfFloors;
+    public int $numberOfFloors {
+        set {
+            $this->assigning('numberOfFloors', $value);
+            $this->numberOfFloors = $value;
+        }
+    }
     /**
      * Property Photos
      */
@@ -159,7 +194,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Property sale/rent price
      * Format: int32
      */
-    public int $price;
+    public int $price {
+        set {
+            $this->assigning('price', $value);
+            $this->price = $value;
+        }
+    }
     /**
      * Property price_visible
      */
@@ -168,7 +208,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Property Id will be used to sync the two systems.
      * Format: int32
      */
-    public int $propertyId;
+    public int $propertyId {
+        set {
+            $this->assigning('propertyId', $value);
+            $this->propertyId = $value;
+        }
+    }
     /**
      * Property reference
      */
@@ -177,7 +222,12 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      * Property sale/rent price
      * Format: int32
      */
-    public int $second_price;
+    public int $second_price {
+        set {
+            $this->assigning('second_price', $value);
+            $this->second_price = $value;
+        }
+    }
     /**
      * To indicate that property marked is sold
      */

@@ -18,10 +18,20 @@ final class AgencyLocaleDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyID;
+    public int $AgencyID {
+        set {
+            $this->assigning('AgencyID', $value);
+            $this->AgencyID = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $CultureID;
+    public int $CultureID {
+        set {
+            $this->assigning('CultureID', $value);
+            $this->CultureID = $value;
+        }
+    }
 
 }

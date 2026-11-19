@@ -56,21 +56,41 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $ConsumerCreditSrcPolicyDate;
+    public string $ConsumerCreditSrcPolicyDate {
+        set {
+            $this->assigning('ConsumerCreditSrcPolicyDate', $value);
+            $this->ConsumerCreditSrcPolicyDate = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $ConsumerCreditSrcPolicyInitDate;
+    public string $ConsumerCreditSrcPolicyInitDate {
+        set {
+            $this->assigning('ConsumerCreditSrcPolicyInitDate', $value);
+            $this->ConsumerCreditSrcPolicyInitDate = $value;
+        }
+    }
     public string $ConsumerCreditSrcPolicyNumber;
     /**
      * Format: date-time
      */
-    public string $CreateDate;
+    public string $CreateDate {
+        set {
+            $this->assigning('CreateDate', $value);
+            $this->CreateDate = $value;
+        }
+    }
     public string $CreditCategory;
     /**
      * Format: int32
      */
-    public int $CreditMediatorId;
+    public int $CreditMediatorId {
+        set {
+            $this->assigning('CreditMediatorId', $value);
+            $this->CreditMediatorId = $value;
+        }
+    }
     public string $CreditMediatorLicense;
     public string $CreditTypes;
     public string $Emailaddress;
@@ -91,13 +111,23 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $IndependentCreditMediatorId;
+    public int $IndependentCreditMediatorId {
+        set {
+            $this->assigning('IndependentCreditMediatorId', $value);
+            $this->IndependentCreditMediatorId = $value;
+        }
+    }
     public string $InstagramURL;
     public bool $IsProppy;
     /**
      * Format: date-time
      */
-    public string $LastLogin;
+    public string $LastLogin {
+        set {
+            $this->assigning('LastLogin', $value);
+            $this->LastLogin = $value;
+        }
+    }
     public string $LinkedInURL;
     public string $LogoURL;
     public string $MainDomainName;
@@ -105,11 +135,21 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $MortgageCreditSrcPolicyDate;
+    public string $MortgageCreditSrcPolicyDate {
+        set {
+            $this->assigning('MortgageCreditSrcPolicyDate', $value);
+            $this->MortgageCreditSrcPolicyDate = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $MortgageCreditSrcPolicyInitDate;
+    public string $MortgageCreditSrcPolicyInitDate {
+        set {
+            $this->assigning('MortgageCreditSrcPolicyInitDate', $value);
+            $this->MortgageCreditSrcPolicyInitDate = $value;
+        }
+    }
     public string $MortgageCreditSrcPolicyNumber;
     public string $PartnerBanks;
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\User\UserDto\BanksNamesMap $PartnerBanksNames;
@@ -123,7 +163,12 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $ProppyUserId;
+    public int $ProppyUserId {
+        set {
+            $this->assigning('ProppyUserId', $value);
+            $this->ProppyUserId = $value;
+        }
+    }
     public string $ReceptionRestriction;
     public string $RegVerification;
     public string $SocialDesignation;
@@ -133,7 +178,12 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $UserID;
+    public int $UserID {
+        set {
+            $this->assigning('UserID', $value);
+            $this->UserID = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\User\UserDto\UserPortalsCollection $UserPortals;
     public bool $UsesPropertyButtons;
     public bool $UsesRealEstate;

@@ -31,23 +31,43 @@ final class CreditMediatorsDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CityId;
+    public int $CityId {
+        set {
+            $this->assigning('CityId', $value);
+            $this->CityId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $CountryId;
+    public int $CountryId {
+        set {
+            $this->assigning('CountryId', $value);
+            $this->CountryId = $value;
+        }
+    }
     public string $Courtname;
     public string $CreditCompanyName;
     /**
      * Format: int32
      */
-    public int $CreditMediatorId;
+    public int $CreditMediatorId {
+        set {
+            $this->assigning('CreditMediatorId', $value);
+            $this->CreditMediatorId = $value;
+        }
+    }
     public string $CreditMediatorLicense;
     public string $CreditMediatorName;
     /**
      * Format: int32
      */
-    public int $DistrictId;
+    public int $DistrictId {
+        set {
+            $this->assigning('DistrictId', $value);
+            $this->DistrictId = $value;
+        }
+    }
     public string $Email;
     public string $GMapLat;
     public string $GMapLot;
@@ -60,7 +80,12 @@ final class CreditMediatorsDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $LocalityId;
+    public int $LocalityId {
+        set {
+            $this->assigning('LocalityId', $value);
+            $this->LocalityId = $value;
+        }
+    }
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Location\LocationDto $Location;
     public string $ManagingPartner;
     public string $MobilePhone;
@@ -74,7 +99,12 @@ final class CreditMediatorsDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $UserId;
+    public int $UserId {
+        set {
+            $this->assigning('UserId', $value);
+            $this->UserId = $value;
+        }
+    }
     public string $ZipCode;
 
 }

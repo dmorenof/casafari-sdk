@@ -17,12 +17,22 @@ final class AgencyDtoShort extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyID;
+    public int $AgencyID {
+        set {
+            $this->assigning('AgencyID', $value);
+            $this->AgencyID = $value;
+        }
+    }
     public string $AgencyName;
     public string $LogoPath;
     /**
      * Format: int32
      */
-    public int $ParentID;
+    public int $ParentID {
+        set {
+            $this->assigning('ParentID', $value);
+            $this->ParentID = $value;
+        }
+    }
 
 }

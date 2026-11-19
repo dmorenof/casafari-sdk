@@ -19,7 +19,12 @@ final class PropertyPhotos extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $SortOrder;
+    public int $SortOrder {
+        set {
+            $this->assigning('SortOrder', $value);
+            $this->SortOrder = $value;
+        }
+    }
     public string $Url;
 
 }

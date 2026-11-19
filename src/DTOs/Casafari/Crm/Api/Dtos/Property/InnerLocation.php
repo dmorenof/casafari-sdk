@@ -20,15 +20,30 @@ final class InnerLocation extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CityId;
+    public int $CityId {
+        set {
+            $this->assigning('CityId', $value);
+            $this->CityId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $LocalityId;
+    public int $LocalityId {
+        set {
+            $this->assigning('LocalityId', $value);
+            $this->LocalityId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $RegionId;
+    public int $RegionId {
+        set {
+            $this->assigning('RegionId', $value);
+            $this->RegionId = $value;
+        }
+    }
     public string $Zonename;
 
 }

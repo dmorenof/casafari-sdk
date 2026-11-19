@@ -41,7 +41,12 @@ final class AgencyDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgencyID;
+    public int $AgencyID {
+        set {
+            $this->assigning('AgencyID', $value);
+            $this->AgencyID = $value;
+        }
+    }
     public string $AgencyMobilePhone;
     public string $AgencyName;
     public string $AgencyPhone;
@@ -58,17 +63,32 @@ final class AgencyDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $ConsumerCreditSrcPolicyDate;
+    public string $ConsumerCreditSrcPolicyDate {
+        set {
+            $this->assigning('ConsumerCreditSrcPolicyDate', $value);
+            $this->ConsumerCreditSrcPolicyDate = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $ConsumerCreditSrcPolicyInitDate;
+    public string $ConsumerCreditSrcPolicyInitDate {
+        set {
+            $this->assigning('ConsumerCreditSrcPolicyInitDate', $value);
+            $this->ConsumerCreditSrcPolicyInitDate = $value;
+        }
+    }
     public string $ConsumerCreditSrcPolicyNumber;
     public string $Courtname;
     /**
      * Format: date-time
      */
-    public string $CreateDate;
+    public string $CreateDate {
+        set {
+            $this->assigning('CreateDate', $value);
+            $this->CreateDate = $value;
+        }
+    }
     public string $CreditCategory;
     public string $CreditMediatorLicense;
     public string $CreditMediatorName;
@@ -83,7 +103,12 @@ final class AgencyDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $IndependentCreditMediatorId;
+    public int $IndependentCreditMediatorId {
+        set {
+            $this->assigning('IndependentCreditMediatorId', $value);
+            $this->IndependentCreditMediatorId = $value;
+        }
+    }
     public string $InstagramURL;
     public string $InsuranceCompany;
     public string $InsuranceContractID;
@@ -101,17 +126,32 @@ final class AgencyDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: date-time
      */
-    public string $MortgageCreditSrcPolicyDate;
+    public string $MortgageCreditSrcPolicyDate {
+        set {
+            $this->assigning('MortgageCreditSrcPolicyDate', $value);
+            $this->MortgageCreditSrcPolicyDate = $value;
+        }
+    }
     /**
      * Format: date-time
      */
-    public string $MortgageCreditSrcPolicyInitDate;
+    public string $MortgageCreditSrcPolicyInitDate {
+        set {
+            $this->assigning('MortgageCreditSrcPolicyInitDate', $value);
+            $this->MortgageCreditSrcPolicyInitDate = $value;
+        }
+    }
     public string $MortgageCreditSrcPolicyNumber;
     public string $OfficeHours;
     /**
      * Format: int32
      */
-    public int $ParentID;
+    public int $ParentID {
+        set {
+            $this->assigning('ParentID', $value);
+            $this->ParentID = $value;
+        }
+    }
     public string $PartnerBanks;
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyDto\BanksNamesCollection $PartnerBanksNames;
     public string $ReceptionRestriction;
@@ -127,7 +167,12 @@ final class AgencyDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $UserID;
+    public int $UserID {
+        set {
+            $this->assigning('UserID', $value);
+            $this->UserID = $value;
+        }
+    }
     public string $YoutubeURL;
     public string $ZipCode;
 

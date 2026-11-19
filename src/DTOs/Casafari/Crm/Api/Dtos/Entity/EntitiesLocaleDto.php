@@ -17,13 +17,23 @@ final class EntitiesLocaleDto extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CultureID;
+    public int $CultureID {
+        set {
+            $this->assigning('CultureID', $value);
+            $this->CultureID = $value;
+        }
+    }
     public string $Description;
     public string $DescriptionLuxury;
     /**
      * Format: int32
      */
-    public int $EntityID;
+    public int $EntityID {
+        set {
+            $this->assigning('EntityID', $value);
+            $this->EntityID = $value;
+        }
+    }
     public string $ShortDescription;
     public string $Title;
 

@@ -15,6 +15,11 @@ final class ForceAgent extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AgentId;
+    public int $AgentId {
+        set {
+            $this->assigning('AgentId', $value);
+            $this->AgentId = $value;
+        }
+    }
 
 }

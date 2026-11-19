@@ -22,6 +22,11 @@ final class ListingAgent extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $id;
+    public int $id {
+        set {
+            $this->assigning('id', $value);
+            $this->id = $value;
+        }
+    }
 
 }

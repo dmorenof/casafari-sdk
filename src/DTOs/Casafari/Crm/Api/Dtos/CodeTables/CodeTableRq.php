@@ -38,12 +38,22 @@ final class CodeTableRq extends \Dmorenof\SdkRuntime\DTO
      * sets a value for the language of results.
      * Format: int32
      */
-    public int $Lang;
+    public int $Lang {
+        set {
+            $this->assigning('Lang', $value);
+            $this->Lang = $value;
+        }
+    }
     /**
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     /**
      * When true, indicates the message is being re-sent after a failure.
      */

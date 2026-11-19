@@ -21,7 +21,12 @@ final class PropertyListRs extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $Count;
+    public int $Count {
+        set {
+            $this->assigning('Count', $value);
+            $this->Count = $value;
+        }
+    }
     /**
      * A reference for additional message identification, assigned by the requesting host system.
      */
@@ -34,7 +39,12 @@ final class PropertyListRs extends \Dmorenof\SdkRuntime\DTO
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\PropertyListRs\PropertyListCollection $PropertyList;
     /**
      * When true, indicates the message is being re-sent after a failure.

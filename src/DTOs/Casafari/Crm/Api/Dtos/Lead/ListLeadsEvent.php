@@ -19,7 +19,12 @@ final class ListLeadsEvent extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $EventTypeID;
+    public int $EventTypeID {
+        set {
+            $this->assigning('EventTypeID', $value);
+            $this->EventTypeID = $value;
+        }
+    }
     public string $Location;
     public string $StartDate;
     public string $Title;

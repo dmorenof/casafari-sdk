@@ -22,15 +22,30 @@ final class LeadSettings extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $AssignToCustomerOriginId;
+    public int $AssignToCustomerOriginId {
+        set {
+            $this->assigning('AssignToCustomerOriginId', $value);
+            $this->AssignToCustomerOriginId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $AssignToPropertyId;
+    public int $AssignToPropertyId {
+        set {
+            $this->assigning('AssignToPropertyId', $value);
+            $this->AssignToPropertyId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $AssignToStatusId;
+    public int $AssignToStatusId {
+        set {
+            $this->assigning('AssignToStatusId', $value);
+            $this->AssignToStatusId = $value;
+        }
+    }
     public \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\ForceAgent $ForceAgent;
     public bool $IncludeMailing;
     public bool $IncludeOptIn;

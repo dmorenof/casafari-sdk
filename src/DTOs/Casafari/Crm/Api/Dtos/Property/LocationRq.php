@@ -23,7 +23,12 @@ final class LocationRq extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $ActiveType;
+    public int $ActiveType {
+        set {
+            $this->assigning('ActiveType', $value);
+            $this->ActiveType = $value;
+        }
+    }
     /**
      * Allows end-to-end correlation of log messages with the corresponding Web service message throughout the processing of the Web service message.
      */
@@ -36,16 +41,31 @@ final class LocationRq extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $Level;
+    public int $Level {
+        set {
+            $this->assigning('Level', $value);
+            $this->Level = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $ParentId;
+    public int $ParentId {
+        set {
+            $this->assigning('ParentId', $value);
+            $this->ParentId = $value;
+        }
+    }
     /**
      * The primary language preference for the message encoded as ISO 639-3.
      * Format: int32
      */
-    public int $PrimaryLangId;
+    public int $PrimaryLangId {
+        set {
+            $this->assigning('PrimaryLangId', $value);
+            $this->PrimaryLangId = $value;
+        }
+    }
     /**
      * When true, indicates the message is being re-sent after a failure.
      */

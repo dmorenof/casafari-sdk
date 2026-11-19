@@ -17,10 +17,20 @@ final class LeadFromTo extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $From;
+    public int $From {
+        set {
+            $this->assigning('From', $value);
+            $this->From = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $To;
+    public int $To {
+        set {
+            $this->assigning('To', $value);
+            $this->To = $value;
+        }
+    }
 
 }

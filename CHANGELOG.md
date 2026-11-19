@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0]
+
+Regenerated with sdk-generator 1.6.0 on sdk-runtime ^1.4.2. **PHP 8.4 is now the minimum.**
+
+- A model checks each value where it enters it: every property that has rules has a `set` hook, so `$filter->price_from = -1` raises right away and the value is not stored. Nothing is validated again when a request is sent; `$model->validate()` checks everything on demand.
+- The range of `int32` properties is asserted.
+- A property with a hook cannot be unset (`unset($model->x)` is an error in PHP 8.4); assign a value instead.
+- A list stored in a plain array property is not checked when edited in place (`$model->ids[] = 1`); assign the whole list.
+
 ## [0.2.0] — unreleased
 
 The hand-written SDK is replaced by one generated from the CRM Swagger contract (`contract/v1.json`, moved from

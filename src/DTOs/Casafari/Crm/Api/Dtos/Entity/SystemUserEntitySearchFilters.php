@@ -25,22 +25,42 @@ final class SystemUserEntitySearchFilters extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $CityId;
+    public int $CityId {
+        set {
+            $this->assigning('CityId', $value);
+            $this->CityId = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $CountryId;
+    public int $CountryId {
+        set {
+            $this->assigning('CountryId', $value);
+            $this->CountryId = $value;
+        }
+    }
     public bool $GetInactive;
     public bool $IncludeChildrenAgencies;
     /**
      * Format: int32
      */
-    public int $LocalityId;
+    public int $LocalityId {
+        set {
+            $this->assigning('LocalityId', $value);
+            $this->LocalityId = $value;
+        }
+    }
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection $LocationIds;
     public string $Name;
     /**
      * Format: int32
      */
-    public int $RegionId;
+    public int $RegionId {
+        set {
+            $this->assigning('RegionId', $value);
+            $this->RegionId = $value;
+        }
+    }
 
 }

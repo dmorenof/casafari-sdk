@@ -25,7 +25,12 @@ final class PropertyLocationList extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $locationId;
+    public int $locationId {
+        set {
+            $this->assigning('locationId', $value);
+            $this->locationId = $value;
+        }
+    }
     public string $regionName;
     public string $zipcode;
     public string $zone;

@@ -14,7 +14,12 @@ final class Error extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $Code;
+    public int $Code {
+        set {
+            $this->assigning('Code', $value);
+            $this->Code = $value;
+        }
+    }
     public string $ShortText;
 
 }

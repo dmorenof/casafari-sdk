@@ -17,10 +17,20 @@ final class PagingRq extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: int32
      */
-    public int $Current;
+    public int $Current {
+        set {
+            $this->assigning('Current', $value);
+            $this->Current = $value;
+        }
+    }
     /**
      * Format: int32
      */
-    public int $ResultsPerPage;
+    public int $ResultsPerPage {
+        set {
+            $this->assigning('ResultsPerPage', $value);
+            $this->ResultsPerPage = $value;
+        }
+    }
 
 }
