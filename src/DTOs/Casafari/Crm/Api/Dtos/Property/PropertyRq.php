@@ -52,6 +52,7 @@ final class PropertyRq extends \Dmorenof\SdkRuntime\DTO
             'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
             'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
             'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'Properties' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Properties = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\PropertyRq\PropertiesCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\Property::class)) : parent::assignMember($name, $value),
             'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
             'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
             'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),

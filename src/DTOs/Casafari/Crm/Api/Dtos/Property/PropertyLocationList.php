@@ -40,6 +40,7 @@ final class PropertyLocationList extends \Dmorenof\SdkRuntime\DTO
         match ($name) {
             'City' => is_string($value) ? $this->City = $value : parent::assignMember($name, $value),
             'Country' => is_string($value) ? $this->Country = $value : parent::assignMember($name, $value),
+            'Description' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Description = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\PropertyLocationList\DescriptionCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\PropertyLocationDescription::class)) : parent::assignMember($name, $value),
             'InnerLocation' => $value instanceof \stdClass ? $this->InnerLocation = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\InnerLocation($value) : parent::assignMember($name, $value),
             'Locality' => is_string($value) ? $this->Locality = $value : parent::assignMember($name, $value),
             'Region' => is_string($value) ? $this->Region = $value : parent::assignMember($name, $value),

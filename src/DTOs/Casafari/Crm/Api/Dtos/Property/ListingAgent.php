@@ -36,6 +36,7 @@ final class ListingAgent extends \Dmorenof\SdkRuntime\DTO
             'Cellphone' => is_string($value) ? $this->Cellphone = $value : parent::assignMember($name, $value),
             'Email' => is_string($value) ? $this->Email = $value : parent::assignMember($name, $value),
             'IsPrimaryAgent' => is_bool($value) ? $this->IsPrimaryAgent = $value : parent::assignMember($name, $value),
+            'Locale' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Locale = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\ListingAgent\LocaleCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\AgentLocale::class)) : parent::assignMember($name, $value),
             'Name' => is_string($value) ? $this->Name = $value : parent::assignMember($name, $value),
             'Phone' => is_string($value) ? $this->Phone = $value : parent::assignMember($name, $value),
             'Photo' => is_string($value) ? $this->Photo = $value : parent::assignMember($name, $value),
