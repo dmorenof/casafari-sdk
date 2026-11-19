@@ -77,8 +77,10 @@ final class AgencyListRs extends \Dmorenof\SdkRuntime\DTO
     protected function assignMember(string $name, mixed $value): void
     {
         match ($name) {
+            'Agencies' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Agencies = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyListRs\AgenciesCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Agency\AgencyDto::class)) : parent::assignMember($name, $value),
             'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
             'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'Errors' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Errors = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyListRs\ErrorsCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Error::class)) : parent::assignMember($name, $value),
             'LocationsLookups' => $value instanceof \stdClass ? $this->LocationsLookups = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Location\LocationsLookups($value) : parent::assignMember($name, $value),
             'PagingRs' => $value instanceof \stdClass ? $this->PagingRs = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\PagingRs($value) : parent::assignMember($name, $value),
             'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
@@ -86,6 +88,7 @@ final class AgencyListRs extends \Dmorenof\SdkRuntime\DTO
             'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
             'TotalRecords' => is_int($value) ? $this->TotalRecords = $value : parent::assignMember($name, $value),
             'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            'Warnings' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->Warnings = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyListRs\WarningsCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Warning::class)) : parent::assignMember($name, $value),
             default => parent::assignMember($name, $value),
         };
     }

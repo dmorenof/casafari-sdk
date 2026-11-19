@@ -254,6 +254,7 @@ final class UserDto extends \Dmorenof\SdkRuntime\DTO
             'TaxPayerNumber' => is_string($value) ? $this->TaxPayerNumber = $value : parent::assignMember($name, $value),
             'TwitterURL' => is_string($value) ? $this->TwitterURL = $value : parent::assignMember($name, $value),
             'UserID' => is_int($value) ? $this->UserID = $value : parent::assignMember($name, $value),
+            'UserPortals' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->UserPortals = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\User\UserDto\UserPortalsCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\User\UserPortalDto::class)) : parent::assignMember($name, $value),
             'UsesPropertyButtons' => is_bool($value) ? $this->UsesPropertyButtons = $value : parent::assignMember($name, $value),
             'UsesRealEstate' => is_bool($value) ? $this->UsesRealEstate = $value : parent::assignMember($name, $value),
             'UsesRentals' => is_bool($value) ? $this->UsesRentals = $value : parent::assignMember($name, $value),

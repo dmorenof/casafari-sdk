@@ -38,6 +38,7 @@ final class LocaleList extends \Dmorenof\SdkRuntime\DTO
     {
         match ($name) {
             'description' => is_string($value) ? $this->description = $value : parent::assignMember($name, $value),
+            'labels' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->labels = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Property\LocaleList\LabelsCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\PropertyButtons::class)) : parent::assignMember($name, $value),
             'language' => is_string($value) ? $this->language = $value : parent::assignMember($name, $value),
             'seodescription' => is_string($value) ? $this->seodescription = $value : parent::assignMember($name, $value),
             'seokeywords' => is_string($value) ? $this->seokeywords = $value : parent::assignMember($name, $value),
