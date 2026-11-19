@@ -47,4 +47,18 @@ final class LeadRq extends \Dmorenof\SdkRuntime\DTO
      */
     public float $Version;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Contact' => $value instanceof \stdClass ? $this->Contact = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\LeadEntity($value) : parent::assignMember($name, $value),
+            'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
+            'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
+            'Settings' => $value instanceof \stdClass ? $this->Settings = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\LeadSettings($value) : parent::assignMember($name, $value),
+            'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
+            'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

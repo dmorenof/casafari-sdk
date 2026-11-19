@@ -22,4 +22,12 @@ final class PropertyFrom extends \Dmorenof\SdkRuntime\DTO
     }
     public \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\PropertyFrom\TypeEnum $Type;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Date' => is_string($value) ? $this->Date = $value : parent::assignMember($name, $value),
+            'Type' => is_string($value) ? $this->Type = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\PropertyFrom\TypeEnum::from($value) : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

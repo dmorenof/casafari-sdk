@@ -47,4 +47,15 @@ final class EntityFileDto extends \Dmorenof\SdkRuntime\DTO
     }
     public bool $isPhoto;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'EntityFileID' => is_int($value) ? $this->EntityFileID = $value : parent::assignMember($name, $value),
+            'EntityID' => is_int($value) ? $this->EntityID = $value : parent::assignMember($name, $value),
+            'Filename' => is_string($value) ? $this->Filename = $value : parent::assignMember($name, $value),
+            'SortOrder' => is_int($value) ? $this->SortOrder = $value : parent::assignMember($name, $value),
+            'isPhoto' => is_bool($value) ? $this->isPhoto = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

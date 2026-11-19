@@ -46,4 +46,14 @@ final class AgencyPhotoDto extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AgencyID' => is_int($value) ? $this->AgencyID = $value : parent::assignMember($name, $value),
+            'AgencyPhotoID' => is_int($value) ? $this->AgencyPhotoID = $value : parent::assignMember($name, $value),
+            'Path' => is_string($value) ? $this->Path = $value : parent::assignMember($name, $value),
+            'Sortorder' => is_int($value) ? $this->Sortorder = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

@@ -74,4 +74,19 @@ final class AgencyListRs extends \Dmorenof\SdkRuntime\DTO
      */
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyListRs\WarningsCollection $Warnings;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
+            'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'LocationsLookups' => $value instanceof \stdClass ? $this->LocationsLookups = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Location\LocationsLookups($value) : parent::assignMember($name, $value),
+            'PagingRs' => $value instanceof \stdClass ? $this->PagingRs = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\PagingRs($value) : parent::assignMember($name, $value),
+            'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
+            'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
+            'TotalRecords' => is_int($value) ? $this->TotalRecords = $value : parent::assignMember($name, $value),
+            'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

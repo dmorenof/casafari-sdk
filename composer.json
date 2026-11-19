@@ -11,10 +11,10 @@
   },
   "require": {
     "php": ">=8.4",
-    "dmorenof/sdk-runtime": "^1.4.2"
+    "dmorenof/sdk-runtime": "^1.5.0"
   },
   "require-dev": {
-    "dmorenof/sdk-generator": "^1.6.0",
+    "dmorenof/sdk-generator": "^1.7.0",
     "phpunit/phpunit": "^11.5"
   },
   "keywords": [

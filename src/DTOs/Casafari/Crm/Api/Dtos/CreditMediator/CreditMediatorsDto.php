@@ -107,4 +107,36 @@ final class CreditMediatorsDto extends \Dmorenof\SdkRuntime\DTO
     }
     public string $ZipCode;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AMI' => is_string($value) ? $this->AMI = $value : parent::assignMember($name, $value),
+            'Address' => is_string($value) ? $this->Address = $value : parent::assignMember($name, $value),
+            'CityId' => is_int($value) ? $this->CityId = $value : parent::assignMember($name, $value),
+            'CountryId' => is_int($value) ? $this->CountryId = $value : parent::assignMember($name, $value),
+            'Courtname' => is_string($value) ? $this->Courtname = $value : parent::assignMember($name, $value),
+            'CreditCompanyName' => is_string($value) ? $this->CreditCompanyName = $value : parent::assignMember($name, $value),
+            'CreditMediatorId' => is_int($value) ? $this->CreditMediatorId = $value : parent::assignMember($name, $value),
+            'CreditMediatorLicense' => is_string($value) ? $this->CreditMediatorLicense = $value : parent::assignMember($name, $value),
+            'CreditMediatorName' => is_string($value) ? $this->CreditMediatorName = $value : parent::assignMember($name, $value),
+            'DistrictId' => is_int($value) ? $this->DistrictId = $value : parent::assignMember($name, $value),
+            'Email' => is_string($value) ? $this->Email = $value : parent::assignMember($name, $value),
+            'GMapLat' => is_string($value) ? $this->GMapLat = $value : parent::assignMember($name, $value),
+            'GMapLot' => is_string($value) ? $this->GMapLot = $value : parent::assignMember($name, $value),
+            'InsuranceCompany' => is_string($value) ? $this->InsuranceCompany = $value : parent::assignMember($name, $value),
+            'InsuranceContractID' => is_string($value) ? $this->InsuranceContractID = $value : parent::assignMember($name, $value),
+            'InsuranceValue' => is_float($value) ? $this->InsuranceValue = $value : parent::assignMember($name, $value),
+            'LocalityId' => is_int($value) ? $this->LocalityId = $value : parent::assignMember($name, $value),
+            'Location' => $value instanceof \stdClass ? $this->Location = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Location\LocationDto($value) : parent::assignMember($name, $value),
+            'ManagingPartner' => is_string($value) ? $this->ManagingPartner = $value : parent::assignMember($name, $value),
+            'MobilePhone' => is_string($value) ? $this->MobilePhone = $value : parent::assignMember($name, $value),
+            'OfficeHours' => is_string($value) ? $this->OfficeHours = $value : parent::assignMember($name, $value),
+            'Phone' => is_string($value) ? $this->Phone = $value : parent::assignMember($name, $value),
+            'SocialCapital' => is_float($value) ? $this->SocialCapital = $value : parent::assignMember($name, $value),
+            'TaxPayerNumber' => is_string($value) ? $this->TaxPayerNumber = $value : parent::assignMember($name, $value),
+            'UserId' => is_int($value) ? $this->UserId = $value : parent::assignMember($name, $value),
+            'ZipCode' => is_string($value) ? $this->ZipCode = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

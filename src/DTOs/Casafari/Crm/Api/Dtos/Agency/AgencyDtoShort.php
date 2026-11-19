@@ -35,4 +35,14 @@ final class AgencyDtoShort extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AgencyID' => is_int($value) ? $this->AgencyID = $value : parent::assignMember($name, $value),
+            'AgencyName' => is_string($value) ? $this->AgencyName = $value : parent::assignMember($name, $value),
+            'LogoPath' => is_string($value) ? $this->LogoPath = $value : parent::assignMember($name, $value),
+            'ParentID' => is_int($value) ? $this->ParentID = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

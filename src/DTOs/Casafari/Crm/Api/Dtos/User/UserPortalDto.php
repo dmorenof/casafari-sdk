@@ -47,4 +47,15 @@ final class UserPortalDto extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'ManagerOnly' => is_bool($value) ? $this->ManagerOnly = $value : parent::assignMember($name, $value),
+            'MaxProperties' => is_int($value) ? $this->MaxProperties = $value : parent::assignMember($name, $value),
+            'PortalID' => is_int($value) ? $this->PortalID = $value : parent::assignMember($name, $value),
+            'PortalLogo' => is_string($value) ? $this->PortalLogo = $value : parent::assignMember($name, $value),
+            'UserID' => is_int($value) ? $this->UserID = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

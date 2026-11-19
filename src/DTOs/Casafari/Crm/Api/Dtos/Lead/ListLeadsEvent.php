@@ -29,4 +29,18 @@ final class ListLeadsEvent extends \Dmorenof\SdkRuntime\DTO
     public string $StartDate;
     public string $Title;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Description' => is_string($value) ? $this->Description = $value : parent::assignMember($name, $value),
+            'EndDate' => is_string($value) ? $this->EndDate = $value : parent::assignMember($name, $value),
+            'EventID' => is_string($value) ? $this->EventID = $value : parent::assignMember($name, $value),
+            'EventType' => is_string($value) ? $this->EventType = $value : parent::assignMember($name, $value),
+            'EventTypeID' => is_int($value) ? $this->EventTypeID = $value : parent::assignMember($name, $value),
+            'Location' => is_string($value) ? $this->Location = $value : parent::assignMember($name, $value),
+            'StartDate' => is_string($value) ? $this->StartDate = $value : parent::assignMember($name, $value),
+            'Title' => is_string($value) ? $this->Title = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

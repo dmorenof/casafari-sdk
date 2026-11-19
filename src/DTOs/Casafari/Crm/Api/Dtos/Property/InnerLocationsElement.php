@@ -61,4 +61,15 @@ final class InnerLocationsElement extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'cityId' => is_int($value) ? $this->cityId = $value : parent::assignMember($name, $value),
+            'countryId' => is_int($value) ? $this->countryId = $value : parent::assignMember($name, $value),
+            'id' => is_int($value) ? $this->id = $value : parent::assignMember($name, $value),
+            'name' => is_string($value) ? $this->name = $value : parent::assignMember($name, $value),
+            'regionId' => is_int($value) ? $this->regionId = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

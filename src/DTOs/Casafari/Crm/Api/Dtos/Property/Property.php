@@ -258,4 +258,42 @@ final class Property extends \Dmorenof\SdkRuntime\DTO
      */
     public string $widepanorama;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'bathrooms' => is_int($value) ? $this->bathrooms = $value : parent::assignMember($name, $value),
+            'bedrooms' => is_int($value) ? $this->bedrooms = $value : parent::assignMember($name, $value),
+            'businessType' => is_string($value) ? $this->businessType = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\BusinessTypeEnum::from($value) : parent::assignMember($name, $value),
+            'cadastralReference' => is_string($value) ? $this->cadastralReference = $value : parent::assignMember($name, $value),
+            'condition_type' => is_string($value) ? $this->condition_type = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\ConditionTypeEnum::from($value) : parent::assignMember($name, $value),
+            'construction_year' => is_int($value) ? $this->construction_year = $value : parent::assignMember($name, $value),
+            'createDate' => is_string($value) ? $this->createDate = $value : parent::assignMember($name, $value),
+            'currency' => is_string($value) ? $this->currency = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\CurrencyEnum::from($value) : parent::assignMember($name, $value),
+            'energy_rating' => is_string($value) ? $this->energy_rating = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\EnergyRatingEnum::from($value) : parent::assignMember($name, $value),
+            'exclusive' => is_bool($value) ? $this->exclusive = $value : parent::assignMember($name, $value),
+            'floorNumber' => is_int($value) ? $this->floorNumber = $value : parent::assignMember($name, $value),
+            'floorNumberString' => is_string($value) ? $this->floorNumberString = $value : parent::assignMember($name, $value),
+            'floorplan' => is_string($value) ? $this->floorplan = $value : parent::assignMember($name, $value),
+            'internalId' => is_string($value) ? $this->internalId = $value : parent::assignMember($name, $value),
+            'lastChangeDate' => is_string($value) ? $this->lastChangeDate = $value : parent::assignMember($name, $value),
+            'listing_agent' => is_string($value) ? $this->listing_agent = $value : parent::assignMember($name, $value),
+            'living_area' => is_float($value) ? $this->living_area = $value : parent::assignMember($name, $value),
+            'location' => $value instanceof \stdClass ? $this->location = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\Location($value) : parent::assignMember($name, $value),
+            'numberOfFloors' => is_int($value) ? $this->numberOfFloors = $value : parent::assignMember($name, $value),
+            'plot_area' => is_float($value) ? $this->plot_area = $value : parent::assignMember($name, $value),
+            'price' => is_int($value) ? $this->price = $value : parent::assignMember($name, $value),
+            'price_visible' => is_bool($value) ? $this->price_visible = $value : parent::assignMember($name, $value),
+            'propertyId' => is_int($value) ? $this->propertyId = $value : parent::assignMember($name, $value),
+            'reference' => is_string($value) ? $this->reference = $value : parent::assignMember($name, $value),
+            'second_price' => is_int($value) ? $this->second_price = $value : parent::assignMember($name, $value),
+            'sold' => is_bool($value) ? $this->sold = $value : parent::assignMember($name, $value),
+            'status' => is_string($value) ? $this->status = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\StatusEnum::from($value) : parent::assignMember($name, $value),
+            'total_area' => is_float($value) ? $this->total_area = $value : parent::assignMember($name, $value),
+            'type' => is_string($value) ? $this->type = \CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\Property\TypeEnum::from($value) : parent::assignMember($name, $value),
+            'video' => is_string($value) ? $this->video = $value : parent::assignMember($name, $value),
+            'visibleOnWebsite' => is_bool($value) ? $this->visibleOnWebsite = $value : parent::assignMember($name, $value),
+            'widepanorama' => is_string($value) ? $this->widepanorama = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

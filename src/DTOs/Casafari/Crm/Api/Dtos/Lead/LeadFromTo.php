@@ -33,4 +33,12 @@ final class LeadFromTo extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'From' => is_int($value) ? $this->From = $value : parent::assignMember($name, $value),
+            'To' => is_int($value) ? $this->To = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

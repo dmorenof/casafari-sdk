@@ -22,4 +22,12 @@ final class ForceAgent extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AgentEmail' => is_string($value) ? $this->AgentEmail = $value : parent::assignMember($name, $value),
+            'AgentId' => is_int($value) ? $this->AgentId = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

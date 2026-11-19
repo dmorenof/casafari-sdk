@@ -74,4 +74,16 @@ final class PagingRs extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CurrentPage' => is_int($value) ? $this->CurrentPage = $value : parent::assignMember($name, $value),
+            'NextPage' => is_int($value) ? $this->NextPage = $value : parent::assignMember($name, $value),
+            'PagingItems' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_string($item)) ? $this->PagingItems = new \CasafariSDK\Collections\StringCollection($value) : parent::assignMember($name, $value),
+            'PreviousPage' => is_int($value) ? $this->PreviousPage = $value : parent::assignMember($name, $value),
+            'ResultsPerPage' => is_int($value) ? $this->ResultsPerPage = $value : parent::assignMember($name, $value),
+            'TotalPages' => is_int($value) ? $this->TotalPages = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

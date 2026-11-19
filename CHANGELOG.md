@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.0]
+
+Regenerated with sdk-generator 1.7.0 on sdk-runtime ^1.5.0. No change to what the SDK accepts or sends: 80 models now convert their common JSON members (scalars, enum cases, plain nested models, lists of scalars) inline, which takes about 9% less time per call on PHP 8.4 than 0.3.0.
+
 ## [0.3.0]
 
 Regenerated with sdk-generator 1.6.0 on sdk-runtime ^1.4.2. **PHP 8.4 is now the minimum.**

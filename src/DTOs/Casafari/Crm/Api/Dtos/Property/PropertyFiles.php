@@ -26,4 +26,13 @@ final class PropertyFiles extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Category' => is_string($value) ? $this->Category = $value : parent::assignMember($name, $value),
+            'Filename' => is_string($value) ? $this->Filename = $value : parent::assignMember($name, $value),
+            'SortOrder' => is_int($value) ? $this->SortOrder = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

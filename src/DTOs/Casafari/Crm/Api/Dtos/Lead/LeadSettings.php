@@ -51,4 +51,19 @@ final class LeadSettings extends \Dmorenof\SdkRuntime\DTO
     public bool $IncludeOptIn;
     public string $LeadTitle;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AssignToAgentCurrentlyAssignedToCustomer' => is_bool($value) ? $this->AssignToAgentCurrentlyAssignedToCustomer = $value : parent::assignMember($name, $value),
+            'AssignToAgentCurrentlyAssignedToProperty' => is_bool($value) ? $this->AssignToAgentCurrentlyAssignedToProperty = $value : parent::assignMember($name, $value),
+            'AssignToCustomerOriginId' => is_int($value) ? $this->AssignToCustomerOriginId = $value : parent::assignMember($name, $value),
+            'AssignToPropertyId' => is_int($value) ? $this->AssignToPropertyId = $value : parent::assignMember($name, $value),
+            'AssignToStatusId' => is_int($value) ? $this->AssignToStatusId = $value : parent::assignMember($name, $value),
+            'ForceAgent' => $value instanceof \stdClass ? $this->ForceAgent = new \CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Lead\ForceAgent($value) : parent::assignMember($name, $value),
+            'IncludeMailing' => is_bool($value) ? $this->IncludeMailing = $value : parent::assignMember($name, $value),
+            'IncludeOptIn' => is_bool($value) ? $this->IncludeOptIn = $value : parent::assignMember($name, $value),
+            'LeadTitle' => is_string($value) ? $this->LeadTitle = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

@@ -78,4 +78,24 @@ final class AgencySearchFilters extends \Dmorenof\SdkRuntime\DTO
     }
     public bool $ShowOnlyVisibleOnWebsite;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AgenciesIds' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_int($item)) ? $this->AgenciesIds = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection($value) : parent::assignMember($name, $value),
+            'AgencyHierarchyId' => is_int($value) ? $this->AgencyHierarchyId = $value : parent::assignMember($name, $value),
+            'CityId' => is_int($value) ? $this->CityId = $value : parent::assignMember($name, $value),
+            'CountryId' => is_int($value) ? $this->CountryId = $value : parent::assignMember($name, $value),
+            'ExtraField1' => is_bool($value) ? $this->ExtraField1 = $value : parent::assignMember($name, $value),
+            'IncludeChildAgencies' => is_bool($value) ? $this->IncludeChildAgencies = $value : parent::assignMember($name, $value),
+            'IsShop' => is_bool($value) ? $this->IsShop = $value : parent::assignMember($name, $value),
+            'LocalityId' => is_int($value) ? $this->LocalityId = $value : parent::assignMember($name, $value),
+            'LocationIds' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_int($item)) ? $this->LocationIds = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection($value) : parent::assignMember($name, $value),
+            'Name' => is_string($value) ? $this->Name = $value : parent::assignMember($name, $value),
+            'OnlyChildAgencies' => is_bool($value) ? $this->OnlyChildAgencies = $value : parent::assignMember($name, $value),
+            'ParentIds' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_int($item)) ? $this->ParentIds = new \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencySearchFilters\AgenciesIdsCollection($value) : parent::assignMember($name, $value),
+            'RegionId' => is_int($value) ? $this->RegionId = $value : parent::assignMember($name, $value),
+            'ShowOnlyVisibleOnWebsite' => is_bool($value) ? $this->ShowOnlyVisibleOnWebsite = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

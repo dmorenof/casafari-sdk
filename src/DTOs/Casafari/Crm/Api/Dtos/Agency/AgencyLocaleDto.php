@@ -34,4 +34,13 @@ final class AgencyLocaleDto extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'AgencyDescription' => is_string($value) ? $this->AgencyDescription = $value : parent::assignMember($name, $value),
+            'AgencyID' => is_int($value) ? $this->AgencyID = $value : parent::assignMember($name, $value),
+            'CultureID' => is_int($value) ? $this->CultureID = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

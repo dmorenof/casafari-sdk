@@ -49,4 +49,14 @@ final class LocationHierarchyElement extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'id' => is_int($value) ? $this->id = $value : parent::assignMember($name, $value),
+            'level' => is_int($value) ? $this->level = $value : parent::assignMember($name, $value),
+            'name' => is_string($value) ? $this->name = $value : parent::assignMember($name, $value),
+            'parent_id' => is_int($value) ? $this->parent_id = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }
