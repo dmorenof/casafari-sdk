@@ -22,4 +22,12 @@ final class Warning extends \Dmorenof\SdkRuntime\DTO
     }
     public string $ShortText;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Code' => is_int($value) ? $this->Code = $value : parent::assignMember($name, $value),
+            'ShortText' => is_string($value) ? $this->ShortText = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

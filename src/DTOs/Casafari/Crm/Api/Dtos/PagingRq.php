@@ -33,4 +33,12 @@ final class PagingRq extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Current' => is_int($value) ? $this->Current = $value : parent::assignMember($name, $value),
+            'ResultsPerPage' => is_int($value) ? $this->ResultsPerPage = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

@@ -29,4 +29,18 @@ final class ListingAgent extends \Dmorenof\SdkRuntime\DTO
         }
     }
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'Active' => is_bool($value) ? $this->Active = $value : parent::assignMember($name, $value),
+            'Cellphone' => is_string($value) ? $this->Cellphone = $value : parent::assignMember($name, $value),
+            'Email' => is_string($value) ? $this->Email = $value : parent::assignMember($name, $value),
+            'IsPrimaryAgent' => is_bool($value) ? $this->IsPrimaryAgent = $value : parent::assignMember($name, $value),
+            'Name' => is_string($value) ? $this->Name = $value : parent::assignMember($name, $value),
+            'Phone' => is_string($value) ? $this->Phone = $value : parent::assignMember($name, $value),
+            'Photo' => is_string($value) ? $this->Photo = $value : parent::assignMember($name, $value),
+            'id' => is_int($value) ? $this->id = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

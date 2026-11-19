@@ -46,4 +46,14 @@ final class InnerLocation extends \Dmorenof\SdkRuntime\DTO
     }
     public string $Zonename;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CityId' => is_int($value) ? $this->CityId = $value : parent::assignMember($name, $value),
+            'LocalityId' => is_int($value) ? $this->LocalityId = $value : parent::assignMember($name, $value),
+            'RegionId' => is_int($value) ? $this->RegionId = $value : parent::assignMember($name, $value),
+            'Zonename' => is_string($value) ? $this->Zonename = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

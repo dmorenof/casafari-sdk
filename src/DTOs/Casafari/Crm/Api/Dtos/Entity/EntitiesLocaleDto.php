@@ -37,4 +37,16 @@ final class EntitiesLocaleDto extends \Dmorenof\SdkRuntime\DTO
     public string $ShortDescription;
     public string $Title;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CultureID' => is_int($value) ? $this->CultureID = $value : parent::assignMember($name, $value),
+            'Description' => is_string($value) ? $this->Description = $value : parent::assignMember($name, $value),
+            'DescriptionLuxury' => is_string($value) ? $this->DescriptionLuxury = $value : parent::assignMember($name, $value),
+            'EntityID' => is_int($value) ? $this->EntityID = $value : parent::assignMember($name, $value),
+            'ShortDescription' => is_string($value) ? $this->ShortDescription = $value : parent::assignMember($name, $value),
+            'Title' => is_string($value) ? $this->Title = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

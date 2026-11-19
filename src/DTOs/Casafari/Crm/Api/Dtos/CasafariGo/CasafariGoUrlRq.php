@@ -48,4 +48,19 @@ final class CasafariGoUrlRq extends \Dmorenof\SdkRuntime\DTO
     public string $emailAddress;
     public string $webhookUrl;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
+            'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
+            'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
+            'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            'canViewAll' => is_bool($value) ? $this->canViewAll = $value : parent::assignMember($name, $value),
+            'emailAddress' => is_string($value) ? $this->emailAddress = $value : parent::assignMember($name, $value),
+            'webhookUrl' => is_string($value) ? $this->webhookUrl = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

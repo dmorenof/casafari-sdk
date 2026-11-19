@@ -44,4 +44,15 @@ final class CodeNameValue extends \Dmorenof\SdkRuntime\DTO
     public string $Name;
     public string $Zone;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'City' => is_string($value) ? $this->City = $value : parent::assignMember($name, $value),
+            'CultureId' => is_int($value) ? $this->CultureId = $value : parent::assignMember($name, $value),
+            'Id' => is_int($value) ? $this->Id = $value : parent::assignMember($name, $value),
+            'Name' => is_string($value) ? $this->Name = $value : parent::assignMember($name, $value),
+            'Zone' => is_string($value) ? $this->Zone = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

@@ -71,4 +71,16 @@ final class CodeTableRs extends \Dmorenof\SdkRuntime\DTO
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\Agency\AgencyListRs\WarningsCollection $Warnings;
     public \CasafariSDK\Collections\Casafari\Crm\Api\Dtos\CodeTables\CodeTableRs\BusinessTypesCollection $Zones;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
+            'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
+            'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
+            'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }

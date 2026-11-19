@@ -70,4 +70,20 @@ final class CodeTableRq extends \Dmorenof\SdkRuntime\DTO
      */
     public float $Version;
 
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'CorrelationId' => is_string($value) ? $this->CorrelationId = $value : parent::assignMember($name, $value),
+            'EchoToken' => is_string($value) ? $this->EchoToken = $value : parent::assignMember($name, $value),
+            'IncludeBusinessTypes' => is_bool($value) ? $this->IncludeBusinessTypes = $value : parent::assignMember($name, $value),
+            'IncludePropertyTypes' => is_bool($value) ? $this->IncludePropertyTypes = $value : parent::assignMember($name, $value),
+            'IncludeZones' => is_bool($value) ? $this->IncludeZones = $value : parent::assignMember($name, $value),
+            'Lang' => is_int($value) ? $this->Lang = $value : parent::assignMember($name, $value),
+            'PrimaryLangId' => is_int($value) ? $this->PrimaryLangId = $value : parent::assignMember($name, $value),
+            'RetransmissionIndicator' => is_bool($value) ? $this->RetransmissionIndicator = $value : parent::assignMember($name, $value),
+            'TimeStamp' => is_string($value) ? $this->TimeStamp = $value : parent::assignMember($name, $value),
+            'Version' => is_float($value) ? $this->Version = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
 }
