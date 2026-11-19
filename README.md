@@ -1,440 +1,136 @@
-# Casafari SDK Usage Guide
+# Casafari SDK
 
 [![PHP SDK CI](https://github.com/dmorenof/casafari-sdk/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dmorenof/casafari-sdk/actions/workflows/ci.yml)
 [![Composer validation](https://github.com/dmorenof/casafari-sdk/actions/workflows/composer-validation.yml/badge.svg?branch=master)](https://github.com/dmorenof/casafari-sdk/actions/workflows/composer-validation.yml)
 [![Packagist Version](https://img.shields.io/packagist/v/dmorenof/casafari-sdk)](https://packagist.org/packages/dmorenof/casafari-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 
-This guide provides an overview of how to use the Casafari SDK to interact with property and location data via its API.
-It covers installation, setup, key features, middleware usage, error handling, and helpful examples to demonstrate the
-SDK's functionality.
-
----
-
-## Table of Contents
-
-1. [Installation](#installation)
-2. [Setup](#setup)
-3. [Error Handling](#error-handling)
-4. [Features with Examples](#features-with-examples)
-    - Insert Property
-    - List Properties
-    - Delete Property
-    - Retrieve Locations
-5. [Middleware Usage](#middleware-usage)
-    - Using Built-In Middlewares
-    - Creating Custom Middleware
-
----
+Unofficial PHP SDK for the **Casafari CRM API v1** (agencies, agents, leads, properties, locations, code tables).
+The code in `src/` is **generated** from the API's Swagger contract (`contract/v1.json`) by
+[sdk-generator](https://github.com/dmorenof/sdk-generator) and runs on [sdk-runtime](https://github.com/dmorenof/sdk-runtime):
+typed models, typed collections, validation before sending, one exception type per kind of failure. Nothing in `src/`
+is edited by hand.
 
 ## Installation
 
-### Prerequisites
-
-To use the Casafari SDK, ensure you have the following installed:
-
-- **PHP 8.3 or later**
-- [Composer](https://getcomposer.org/) for dependency management
-
-### Installation via Composer
-
-The SDK library is available as a public package on Packagist under the name `dmorenof/casafari-sdk`.
-
-To install it in your project, run the following Composer command:
+PHP 8.3 or later.
 
 ```bash
 composer require dmorenof/casafari-sdk
 ```
 
-The first tagged version is **v0.1.0**. Composer resolves the newest compatible
-version, subject to your project's constraints. For applications pinning the
-initial 0.x compatibility line, use:
-
-```bash
-composer require dmorenof/casafari-sdk:^0.1
-```
-
-See [RELEASING.md](RELEASING.md) for the versioning and release procedure.
-
----
-
-### Installation from the GitHub Repository
-
-You can also clone the repository directly from GitHub if you want to work with the SDK's source code.
-The repository is available at the following URL:
-
-```bash
-git clone https://github.com/dmorenof/casafari-sdk.git
-```
-
-After cloning, install the dependencies by running:
-
-```bash
-composer install
-```
-
-Include Composer's autoloader in your project to ensure the SDK classes are properly loaded:
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-```
-
----
-
 ## Setup
 
-Before interacting with the Casafari SDK, configure your environment with the following essential details:
-
-1. **Server URL**: Use `HttpClient::DEVELOPMENT_SERVER_URL` for development or `HttpClient::PRODUCTION_SERVER_URL` for
-   production.
-2. **Access Token**: A valid API token is required for authentication.
-
-Example of initializing the API Client for development:
+The production server is the default. Credentials go in the `Authorization` header (the contract declares no
+security scheme, so the value is sent exactly as you give it):
 
 ```php
-use CasafariSDK\Core\HttpClient;
-use CasafariSDK\PropertyApi;
+use CasafariSDK\Client;
+use CasafariSDK\Configuration;
 
-$server = HttpClient::DEVELOPMENT_SERVER_URL; // or your server URL
-$access_token = 'Basic <YOUR_ACCESS_TOKEN>'; // Replace it with your access token
+$configuration = new Configuration();
+$configuration->headers = ['Authorization' => 'Basic <YOUR_ACCESS_TOKEN>'];
+// $configuration->baseUrl = 'https://crmapi.proppydev.com'; // development server
 
-$PropertyApi = new PropertyApi($server, $access_token);
+$client = Client::connect($configuration);
 ```
 
-Make sure the `$server` and `$access_token` values are configured properly in your application to avoid authentication
-issues.
+`Configuration` also takes `httpClient` (any PSR-18 client), `middleware`, `retryPolicy`, `redirectPolicy`; see the
+[runtime documentation](https://github.com/dmorenof/sdk-runtime/tree/main/docs).
 
----
+## Calling operations
 
-## Error Handling
-
-The SDK provides a streamlined way to handle errors, such as invalid API requests, network errors, or unexpected issues,
-by using PHP exceptions.
-All operations should be wrapped in `try-catch` blocks to gracefully handle errors and ensure
-proper application flow.
-
-The possible errors are ***Exception***, ***TypeError*** and ***InvalidArgumentException***
-
-### Basic Approach for Handling Errors
-
-Use the `try-catch` block to catch exceptions thrown during SDK operations:
+Each route is one class under `CasafariSDK\Resources\` (instance) and `CasafariSDK\Api\` (static facade); the request
+body is a typed model. Names follow the route: `POST /api/Property/ListProperties` is `Property\ListProperties::post()`.
 
 ```php
-try {
-    $PropertyApi = new PropertyApi($server, $access_token);
-    
-    // Perform an operation
-    $response = $PropertyApi->sendProperty($request);
-    
-    // Process the response
-    var_dump($response);
-} catch (Throwable $Throwable) {
-    // Example of how to handle the errors
-    echo $Throwable::class . ': ' . $Throwable->getMessage() . PHP_EOL;
-}
+use CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\FilterRq;
+use CasafariSDK\DTOs\Casafari\Crm\Api\Dtos\Property\LocationList;
+use CasafariSDK\Enums\Casafari\Crm\Api\Dtos\Property\LocationList\CountryCodeEnum;
+use CasafariSDK\Resources\Api\Property\ListProperties;
+
+$filter = new FilterRq();
+$filter->Active = true;
+$filter->Locations = new LocationList();
+$filter->Locations->CountryCode = CountryCodeEnum::Es;
+
+$response = $client->resource(ListProperties::class)->post($filter);   // PropertyListRs
 ```
 
-### Best Practices for Error Handling
-
-1. **Log Errors**: Always log errors for debugging purposes, especially in production systems.
-2. **Handle Specific Error Types**: Catch specific exception types if needed for more granular error handling.
-3. **Graceful Fallbacks**: Provide clear feedback to users or use fallback mechanisms when operations fail.
-
----
-
-## Features with Examples
-
-Below are the main SDK features with code examples demonstrating how to implement them.
-
----
-
-### 1. Insert a Property
-
-This feature inserts properties into the Casafari system.
-
-#### Example Using Direct Object Construction
+Or with the facade, configured once:
 
 ```php
-$PropertyApi = new PropertyApi($server, $access_token);
-
-$PropertyRequest = new PropertyRequest();
-$PropertyRequest->TimeStamp = date(DATE_RFC3339_EXTENDED);
-$PropertyRequest->Version = 0.1;
-$PropertyRequest->CorrelationId = uniqid();
-$PropertyRequest->Properties = new PropertiesArray();
-
-$Property = new Property();
-$Property->internalId = 'unique_id_1';
-$Property->reference = 'reference_1';
-$Property->status = PropertyStatusEnum::Active;
-
-// Example of adding a record to a TypedArray after construction
-$PropertyRequest->Properties[] = $Property;
-
-// This will return a /CasafariSDK/Responses/PropertyResponse object
-$response = $PropertyApi->sendProperty($PropertyRequest);
+\CasafariSDK\ExternalApiVersionSDK::configure($configuration);
+$response = \CasafariSDK\Api\Property\ListProperties::post($filter);
 ```
 
----
-
-### 2. List Properties
-
-This feature retrieves a list of properties filtered by various criteria (for example, location, status, visibility).
-
-#### Example with Location-Based Filtering
+A body can also be built from decoded JSON: `new FilterRq($jsonObject)`. Query parameters travel in a parameters
+object, e.g. `CodeTable`:
 
 ```php
-$PropertyApi = new PropertyApi($server, $access_token);
-
-$PropertyListRequest = new PropertyListRequest();
-$PropertyListRequest->Active = true; // Only active properties
-$PropertyListRequest->VisibleOnWebsite = true; // Visible on website
-
-$Location = new LocationListRequest();
-$Location->CountryCode = CountryEnum::es; // Filter by Spain
-
-// Example of adding a record to a TypedArray on construction
-$PropertyListRequest->Locations = new LocationListRequestsArray([$Location]);
-
-// This will return a /CasafariSDK/Responses/PropertyListResponse object
-$response = $PropertyApi->getPropertyList($PropertyListRequest);
+$params = new \CasafariSDK\GetParams\Api\CodeTable();
+$params->rqIncludeBusinessTypes = true;   // wire name rq.includeBusinessTypes
+$params->rqLang = 724;
+$codes = $client->resource(\CasafariSDK\Resources\Api\CodeTable::class)->get($params);
 ```
 
----
+Reading a property that was never set throws; test with `isset()`.
 
-### 3. Delete a Property
+## Errors
 
-This feature deletes specified properties from the system.
-
-#### Example Using Direct Object Construction
-
-```php
-$PropertyApi = new PropertyApi($server, $access_token);
-
-// This will return a /CasafariSDK/Responses/PropertyResponse object
-$response = $PropertyApi->deleteProperty(new PropertyRequest((object)[
-    'TimeStamp' => date(DATE_RFC3339_EXTENDED),
-    'Version' => 0.1,
-    'CorrelationId' => uniqid(),
-    'Properties' => [
-        (object)[
-            'internalId' => 'unique_id_1',
-            'reference' => 'reference_1',
-        ],
-    ]
-]));
-```
-
----
-
-### 4. Retrieve Locations
-
-This feature fetches location data based on specific filters like country, structure level, and preferred language.
-
-#### Example Using Multiple Filters
-
-```php
-$PropertyApi = new PropertyApi($server, $access_token);
-
-// This will return a /CasafariSDK/Responses/PropertyLocationResponse object
-$response = $PropertyApi->getLocations(new PropertyLocationRequest((object)[
-    'CountryCode' => CountryEnum::es->value, // Spain
-    'Level' => 1, // Level of location structure
-    'PrimaryLangId' => 724, // Language preference
-]));
-```
-
----
-
-## Middleware Usage
-
-Middleware is a powerful system that allows you to intercept and customize HTTP requests and responses processed through
-the SDK.
-All middleware classes must implement the `HttpMiddlewareInterface`, which provides the following methods:
-
-1. **`beforeRequest`**:
-    - Triggered **before** the HTTP request is sent.
-    - Allows you to modify the request details, such as the HTTP method, endpoint, query parameters, or JSON payload.
-    - If the method returns `false`, the request will be aborted.
-
-2. **`afterRequest`**:
-    - Triggered **after** the HTTP request is completed and a response is received.
-    - Allows you to inspect or modify the response, such as analyzing the body or updating the response class.
-    - If the method returns `false`, further processing of the response will be stopped.
-
----
-
-### Using Built-In Middlewares
-
-The Casafari SDK provides built-in middlewares that implement the `HttpMiddlewareInterface`.
-
-#### Example: LogMiddleware
-
-The `LogMiddleware` logs details about HTTP requests and responses, making debugging easier.
-It captures details like
-the HTTP method, endpoint, query parameters, request payload, and the returned response.
-
-```php
-use CasafariSDK\Middlewares\LogMiddleware;
-use CasafariSDK\PropertyApi;
-
-$PropertyApi = new PropertyApi($server, $access_token);
-
-// Attach the LogMiddleware to log requests and responses
-$PropertyApi->withMiddleware(new LogMiddleware());
-```
-
----
-
-### Creating and Using Custom Middleware
-
-To implement custom middleware, you need to create a class that implements the `HttpMiddlewareInterface`.
-This gives you
-control over the behavior of requests and responses.
-
-#### Example Custom Middleware: API Request Logger
-
-The following middleware logs request and response details to a file for debugging purposes.
-
-```php
-use CasafariSDK\Core\HttpMiddlewareInterface;
-use Alexanderpas\Common\HTTP\Method;
-use Psr\Http\Message\ResponseInterface;
-
-class CustomLoggerMiddleware implements HttpMiddlewareInterface
-{
-    public function beforeRequest(
-        string &$response_class,
-        Method &$method,
-        string &$endpoint,
-        ?array &$query,
-        ?string &$json
-    ): bool {
-        // Log request details
-        error_log("Request: {$method} {$endpoint}\nQuery: " . json_encode($query) . "\nPayload: {$json}");
-        return true; // Allow the request to continue
-    }
-
-    public function afterRequest(
-        string &$response_class,
-        Method &$method,
-        string &$endpoint,
-        ?array &$query,
-        ?string &$json,
-        ResponseInterface &$response,
-        ?string &$body
-    ): bool {
-        // Log response details
-        error_log("Response: HTTP " . $response->getStatusCode() . "\nBody: {$body}");
-        return true; // Allow further processing
-    }
-}
-```
-
----
-
-#### Adding Custom Middleware to the SDK Client
-
-```php
-use CasafariSDK\PropertyApi;
-
-// Initialize the API Client
-$PropertyApi = new PropertyApi($server, $access_token);
-
-// Attach the custom middleware
-$PropertyApi->withMiddleware(new CustomLoggerMiddleware());
-```
-
----
-
-### Notes on Middleware Execution
-
-- Middleware is executed **in the order it is added**:
-    - `beforeRequest` is called for all middlewares before the request is sent.
-    - `afterRequest` is called for all middlewares after the request is completed.
-- If middleware returns `false` in either method, the next middleware in the chain will not be executed, and the process
-  will stop.
-
-Middleware allows you to easily extend and customize the behavior of the SDK, whether it involves logging, adding
-headers, handling responses, or injecting additional functionality.
-
----
-
-## CRM API v1 coverage
-
-This package targets the **Casafari CRM API** (the `crmapi.casafaricrm.com` contract), **not**
-the separate Casafari REST/Platform APIs at `api.casafari.com` or `platform.casafari.com`.
-The contract snapshot is in `src/Core/v1.json`; verify it against your own CRM account
-before relying on it in production.
-
-| API class | Supported operations |
+| Exception | When |
 | --- | --- |
-| `PropertyApi` | `sendProperty`, `deleteProperty`, `getPropertyList`, `getLocations`, `getInnerLocations`, `recordHit` |
-| `AgencyApi` | `getAgencies` |
-| `EntityApi` | `getAgents` |
-| `LeadApi` | `insertLead`, `listLeads` |
-| `CasafariGoApi` | `getUrl`, `createUser`, `deleteUser` |
-| `CodeTableApi` | `getCodeTable` |
+| `Dmorenof\SdkRuntime\ApiException` | The API answered with a failing status. `$e->getCode()` is the status, `$e->response->body` the raw body. |
+| `Dmorenof\SdkRuntime\InvalidResponseException` | A success answer that does not fit the contract. `$e->response` keeps the raw answer. |
+| `UnexpectedValueException` / `TypeError` | What you build does not fit the contract (a value outside an enum, a wrong type); nothing is sent. |
 
-All new POST operations accept typed request DTOs, and return typed response DTOs.
-GET `CodeTable` maps initialized request fields to its documented `rq.*` query fields.
+The API reports business errors inside a `200` answer (`Success` missing, `Errors` filled); the SDK returns that
+model as is, so check `$response->Success` and `$response->Errors` yourself.
+
+## Middleware
+
+`CasafariSDK\Middlewares\LogMiddleware` (error log) and `EchoMiddleware` (standard output) show requests and responses.
+They implement the runtime's `HttpMiddlewareInterface`, so you can write your own:
 
 ```php
-use CasafariSDK\LeadApi;
-use CasafariSDK\Requests\LeadListRequest;
-use CasafariSDK\Core\HttpClient;
-
-$api = new LeadApi(HttpClient::PRODUCTION_SERVER_URL, $accessToken);
-$request = new LeadListRequest();
-$request->StartDate = '2025-01-01T00:00:00Z';
-$request->EndDate = '2025-01-31T23:59:59Z';
-$result = $api->listLeads($request);
+$configuration->middleware = [new \CasafariSDK\Middlewares\LogMiddleware()];
 ```
 
-API calls require an account-authorized token. Do not publish tokens, and do not enable
-full request/response logging where personal customer details could be exposed.
+## Regenerating
 
-### Testing
+`src/` is a build output. To follow a new contract, replace `contract/v1.json` and run:
 
-Run `composer install` and `vendor/bin/phpunit -c phpunit.xml`.
-The tests use mocked Guzzle responses and do **not** make live API requests.
-
-### Existing API schema mismatch to review
-
-The pre-existing `PropertyListRequest::Locations` field is a collection
-(`LocationListRequestsArray`), while the bundled CRM Swagger v1 describes
-`FilterRq.Locations` as a **single** `LocationList` object. Existing client
-code may rely on the SDK shape. This difference is intentionally left
-unchanged pending a live contract check, rather than silently changing a
-public request type.
-
-
-## License and independence
-
-The SDK's own code is offered under the [MIT license](LICENSE.md), subject to
-confirmation of rights over any incorporated third-party material. It is not
-an official Casafari client. See [third-party API notices](NOTICE.md).
-
-## Continuous integration and contributions
-
-Every pull request to `master` runs PHP 8.3 tests and Composer metadata
-validation (both required for merge). Additional jobs exercise newer supported
-PHP versions, minimum dependency versions and dependency security advisories.
-The suite uses mocked HTTP responses; it **does not** establish live CRM API
-compatibility.
-
-Coverage reports are archived with the CI run; coverage is a diagnostic, not
-a claim of live API testing.
-
-Run the same essential checks locally:
-
-```sh
-composer validate --strict --no-check-lock
+```bash
 composer install
-find src Tests -name '*.php' -print0 | xargs -0 -n1 php -l
-vendor/bin/phpunit -c phpunit.xml
-composer audit
+composer regenerate          # rewrites src/
+composer regenerate:check    # fails if src/ differs from the contract (also run by the tests)
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) to contribute and
-[RELEASING.md](RELEASING.md) for future versions.
+## Moving from 0.1
+
+0.2 replaces the hand-written SDK; the namespace and method names changed, the 14 operations did not.
+
+| 0.1 | 0.2 |
+| --- | --- |
+| `AgencyApi::getAgencies(AgencyListRequest)` | `Api\Agency\GetAgencies::post(AgencyListExternalRq)` |
+| `CasafariGoApi::getUrl / createUser / deleteUser` | `Api\CasafariGo\GetUrl / CreateUser / DeleteUser::post(...)` |
+| `CodeTableApi::getCodeTable(CodeTableRequest)` | `Api\CodeTable::get(GetParams\Api\CodeTable)` |
+| `EntityApi::getAgents(AgentListRequest)` | `Api\Entity\GetAgents::post(SystemUserRq)` |
+| `LeadApi::insertLead / listLeads` | `Api\Leads\Insert::post(LeadRq)` / `Api\Leads\ListResource::post(GetLeadRq)` |
+| `PropertyApi::sendProperty / deleteProperty` | `Api\Property\SendProperty / DeleteProperty::post(PropertyRq)` |
+| `PropertyApi::getPropertyList / getLocations` | `Api\Property\ListProperties::post(FilterRq)` / `Api\Property\Location::post(LocationRq)` |
+| `PropertyApi::getInnerLocations() / recordHit()` | `Api\Property\InnerLocations::post()` / `Api\Property\Hit::post(HitRq)` |
+| `new XApi($server, $token)` | `Client::connect($configuration)` with `Authorization` in `headers` |
+| `Requests\*`, `Responses\*`, `TypedArrays\*` | `DTOs\Casafari\Crm\Api\Dtos\...`, `Collections\...` (the contract's own names) |
+
+Behavior that differs from 0.1 and follows the contract:
+
+- A boolean query parameter is sent as `true`/`false` (0.1 sent `1`/`0`).
+- `FilterRq::Locations` is one `LocationList` object, as the contract defines it; 0.1 modelled it as a list.
+- Requests and answers are validated: a wrong type or a value outside an enum is refused, and unknown fields in
+  an answer are ignored.
+
+## Releasing
+
+See [RELEASING.md](RELEASING.md). The contract is the CRM Swagger snapshot `contract/v1.json`, not the distinct
+Casafari REST API. Automated tests mock HTTP; none runs against the live service.
