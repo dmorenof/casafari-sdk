@@ -139,7 +139,7 @@ final class BehaviorTest extends TestCase
         self::assertSame('r', $token->refresh_token);
     }
 
-    public function testQueryParametersGoInTheQueryAndTheirRangesAreCheckedWhenAssigned(): void
+    public function testQueryParametersGoInTheQueryAndTheirRangesAreCheckedBeforeSending(): void
     {
         $history = [];
         $client = Client::connect(self::configuration([self::json('{"administrative_level":"city","location_id":7,"locations_structure":[],"name":"Barcelona","parent_id":3}')], $history));
@@ -154,8 +154,14 @@ final class BehaviorTest extends TestCase
         self::assertInstanceOf(ReferenceLocationV1::class, $location);
         self::assertSame('Barcelona', $location->name);
 
-        $this->expectException(\UnexpectedValueException::class);
         $params->latitude = 91.0;
+        $before = count($history);
+        try {
+            $client->resource(ByCoordinatesResource::class)->get($params);
+            self::fail('A latitude outside -90..90 must be refused.');
+        } catch (\UnexpectedValueException) {
+            self::assertCount($before, $history, 'Nothing is sent.');
+        }
     }
 
     public function testAnHttpErrorIsAnApiExceptionWithTheRawResponse(): void

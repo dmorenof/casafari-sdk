@@ -68,7 +68,7 @@ use CasafariSDK\GetParams\Api\V1\References\Locations\ByCoordinates;
 use CasafariSDK\Resources\Api\V1\References\Locations\ByCoordinates as LocationByCoordinates;
 
 $params = new ByCoordinates();
-$params->latitude = 41.3874;     // -90..90: a value outside the range is refused here, nothing is sent
+$params->latitude = 41.3874;     // -90..90: a value outside the range is refused when you call, nothing is sent
 $params->longitude = 2.1686;
 
 $location = $client->resource(LocationByCoordinates::class)->get($params);   // ReferenceLocationV1
@@ -93,8 +93,9 @@ throws; test with `isset()`.
 | `Dmorenof\SdkRuntime\InvalidResponseException` | A success answer that does not fit the contract. `$e->response` keeps the raw answer. |
 | `UnexpectedValueException` / `TypeError` | What you build does not fit the contract (a value outside a range or an enum, a wrong type); nothing is sent. |
 
-A value is checked once, where it enters a model: `$params->latitude = 91` raises at once and the value is not stored,
-and nothing is checked again when the request is sent (`$model->validate()` checks everything on demand).
+A value is checked where it enters a model: a body or an answer is checked when you set a property or when it is read
+(`$login->password = ''` raises at once), and the parameters of a call are checked once when the call is made, before
+anything is sent. `$model->validate()` checks everything on demand.
 
 ## Middleware
 
