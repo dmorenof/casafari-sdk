@@ -23,6 +23,11 @@ Idéntico en los tres repositorios.
 
 Este repositorio no recibe cambios de migración hasta cerrar las fases 1 y 2. Mientras tanto solo se mantiene (correcciones y dependencias).
 
+## Actualización 2026-11-20
+
+- [x] **Contrato aclarado:** Casafari publica su especificación OpenAPI 3.1 en https://docs.api.casafari.com/openapi.json (API REST, 46 operaciones, OAuth2 client credentials y bearer). `contract/openapi.json` la sustituye y el SDK se genera de ella (0.6.0). El CRM API v1 queda solo en 0.5.x.
+- [ ] Verificar con credenciales reales (requiere autorización del titular) y decidir qué hacer con los consumidores de 0.5.x.
+
 ## 0. Línea base ya disponible
 
 - [x] Cobertura completa del Casafari **CRM API v1** (`contract/v1.json`): Agency, Entity, Leads, CasafariGo, CodeTable y Property, con DTOs y colecciones tipadas.
