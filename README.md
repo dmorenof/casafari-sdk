@@ -8,7 +8,7 @@
 Unofficial PHP SDK for the **Casafari CRM API v1** (agencies, agents, leads, properties, locations, code tables).
 The code in `src/` is **generated** from the API's Swagger contract (`contract/v1.json`) by
 [sdk-generator](https://github.com/dmorenof/sdk-generator) and runs on [sdk-runtime](https://github.com/dmorenof/sdk-runtime):
-typed models, typed collections, validation before sending, one exception type per kind of failure. Nothing in `src/`
+typed models, typed collections, validation where a value enters a model (when you set a property or when an answer is read), one exception type per kind of failure. Nothing in `src/`
 is edited by hand.
 
 ## Installation
@@ -128,7 +128,9 @@ Behavior that differs from 0.1 and follows the contract:
 - A boolean query parameter is sent as `true`/`false` (0.1 sent `1`/`0`).
 - `FilterRq::Locations` is one `LocationList` object, as the contract defines it; 0.1 modelled it as a list.
 - Requests and answers are validated: a wrong type or a value outside an enum is refused, and unknown fields in
-  an answer are ignored.
+  an answer are ignored. A value is checked once, where it enters a model: `$filter->price_from = -1` raises at
+  once and the value is not stored, and nothing is checked again when the request is sent (`$model->validate()`
+  checks everything on demand). Since 0.3.0 PHP 8.4 is the minimum.
 
 ## Releasing
 
