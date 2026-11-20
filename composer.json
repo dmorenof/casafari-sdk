@@ -1,6 +1,6 @@
 {
   "name": "dmorenof/casafari-sdk",
-  "description": "Unofficial PHP SDK for the Casafari CRM API, generated from its Swagger contract with sdk-generator.",
+  "description": "Unofficial PHP SDK for the Casafari REST API, generated from its OpenAPI contract with sdk-generator.",
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -11,15 +11,15 @@
   },
   "require": {
     "php": ">=8.4",
-    "dmorenof/sdk-runtime": "^1.6.0"
+    "dmorenof/sdk-runtime": "^1.9.0"
   },
   "require-dev": {
-    "dmorenof/sdk-generator": "^1.8.0",
+    "dmorenof/sdk-generator": "^1.10.0",
     "phpunit/phpunit": "^11.5"
   },
   "keywords": [
     "casafari",
-    "casafari-crm",
+    "openapi",
     "sdk",
     "php",
     "api-client",

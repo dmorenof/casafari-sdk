@@ -1,10 +1,10 @@
 # Third-party API and trademark notices
 
-This is an **independent, unofficial** client library for the Casafari CRM API.
+This is an **independent, unofficial** client library for the Casafari REST API.
 It is not affiliated with, endorsed by, maintained by, or supported by Casafari
-or the operators of the Casafari CRM service.
+or the operators of the Casafari API service.
 
-- Casafari, Casafari CRM and any associated trademarks, service names and API
+- Casafari and any associated trademarks, service names and API
   services belong to their respective owners. No rights to those trademarks or
   services are granted by this project's MIT license.
 - **The MIT license applies only to code and material for which the SDK's
@@ -18,9 +18,9 @@ or the operators of the Casafari CRM service.
 
 ## Pre-release source review
 
-The repository currently includes `contract/v1.json`, a Swagger schema of the
-Casafari CRM API. Before distributing the first versioned release, confirm
-that its redistribution is authorized, or remove/restructure it as appropriate.
+The repository includes `contract/openapi.json`, the OpenAPI specification
+Casafari publishes at https://docs.api.casafari.com/openapi.json. Confirm that
+its redistribution is authorized, or remove/restructure it as appropriate.
 A public repository and a permissively licensed SDK do **not** in themselves
 establish licensing rights over a third-party API specification.
 

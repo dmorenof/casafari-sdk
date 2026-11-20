@@ -6,12 +6,11 @@ It was tagged and released manually. It must never be retagged or overwritten.
 
 - Package: https://packagist.org/packages/dmorenof/casafari-sdk
 - Default branch: `master` (protected)
-- PHP: `>=8.3`
+- PHP: `>=8.4`
 - License: MIT for the SDK's own code, with third-party notices in `NOTICE.md`
-- Source API contract: Casafari **CRM** Swagger snapshot `contract/v1.json`,
-  not the distinct Casafari REST API
-- Automated unit tests mock HTTP; no authorized live CRM integration test is
-  performed by CI.
+- Source API contract: the Casafari REST API OpenAPI specification,
+  `contract/openapi.json` (from 0.6.0; earlier versions covered the CRM API v1)
+- Automated unit tests mock HTTP; no live integration test is performed by CI.
 
 ## Future versions
 

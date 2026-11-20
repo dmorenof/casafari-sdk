@@ -5,7 +5,20 @@ namespace CasafariSDK;
 
 class Client extends \Dmorenof\SdkRuntime\ApiClient
 {
-    protected const array SECURITY_SCHEMES = [];
+    protected const array SECURITY_SCHEMES = [
+    'HTTPBearer' => [
+        'type' => 'http',
+        'scheme' => 'bearer',
+        'location' => NULL,
+        'parameterName' => NULL,
+    ],
+    'OAuth2ClientCredentials' => [
+        'type' => 'oauth2',
+        'scheme' => NULL,
+        'location' => NULL,
+        'parameterName' => NULL,
+    ],
+];
 
     private static ?self $currentConnection = null;
 

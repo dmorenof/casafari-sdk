@@ -1,6 +1,6 @@
 # Contributing to Casafari SDK
 
-Thank you for helping maintain this **unofficial** Casafari CRM API client.
+Thank you for helping maintain this **unofficial** Casafari API client.
 
 ## Workflow
 
@@ -27,9 +27,9 @@ vendor/bin/phpunit -c phpunit.xml
 composer audit --no-interaction
 ```
 
-The SDK targets a saved **Casafari CRM API v1** contract, not the separate
-Casafari REST/Platform API. Tests use mocked requests and responses, and do not
-verify connectivity to Casafari's live service.
+The SDK targets the saved **Casafari REST API** contract (`contract/openapi.json`,
+published at https://docs.api.casafari.com/openapi.json). Tests use mocked requests
+and responses, and do not verify connectivity to Casafari's live service.
 
 ## Versions
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0]
+
+**The SDK now covers the Casafari REST API, not the CRM API v1.** Casafari publishes its API specification at https://docs.api.casafari.com/openapi.json (OpenAPI 3.1, 46 operations: properties, comparables, listing alerts, references, valuation, market analytics, alert webhooks and feeds, login). `contract/openapi.json` is that specification and `src/` is generated from it with sdk-generator 1.10.0 on sdk-runtime ^1.9.0.
+
+- **Breaking.** None of the 14 CRM v1 operations is in the new specification, so the namespace `CasafariSDK\Api\Agency`, `CasafariGo`, `Leads`, `Property`, `CodeTable`, `Entity` and their models are gone. If you need the CRM API v1, stay on 0.5.x.
+- Authentication follows the specification: `HTTPBearer` (token from `POST /login`, renewed with `GET /refresh-token`) and `OAuth2ClientCredentials` (recommended; `https://api.casafari.com/oauth/token`, scope `api`, 30 minute tokens). Give either to `SecurityCredentials`; the README shows both.
+- The default server is `https://api.casafari.com`. The tests are rewritten for the new contract, and the facade class is `CasafariSDK\CasafariAPISDK`.
+
 ## [0.5.0]
 
 Regenerated with sdk-generator 1.8.0 on sdk-runtime ^1.6.0. No change to what the SDK accepts or sends: a model whose property is a list of nested models now builds them inline, which takes less time per call for answers with lists of objects.
