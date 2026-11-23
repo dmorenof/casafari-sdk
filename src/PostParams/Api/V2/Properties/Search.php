@@ -29,9 +29,19 @@ final class Search extends \Dmorenof\SdkRuntime\DTO
 ];
 
     public ?string $cursor;
-    public ?int $limit;
+    public ?int $limit {
+        set {
+            $this->assigning('limit', $value);
+            $this->limit = $value;
+        }
+    }
     public ?\CasafariSDK\Enums\Api\V2\Properties\Search\Post\Query\QueryOrderEnum $order;
     public ?\CasafariSDK\Enums\Api\V2\Properties\Search\Post\Query\OrderByEnum $order_by;
-    public ?string $pagination_state_id;
+    public ?string $pagination_state_id {
+        set {
+            $this->assigning('pagination_state_id', $value);
+            $this->pagination_state_id = $value;
+        }
+    }
     public ?\CasafariSDK\DTOs\Api\PropertiesSearchRequestV2 $body;
 }

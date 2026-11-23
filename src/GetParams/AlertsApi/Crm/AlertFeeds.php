@@ -22,5 +22,10 @@ final class AlertFeeds extends \Dmorenof\SdkRuntime\DTO
 ];
 
     public ?string $cursor;
-    public ?int $limit;
+    public ?int $limit {
+        set {
+            $this->assigning('limit', $value);
+            $this->limit = $value;
+        }
+    }
 }

@@ -17,21 +17,21 @@ final class AiBuilder extends \CasafariSDK\Client
             ],
         ],
         'errors' => [
-            401 => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus401Response',
-            403 => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus403Response',
-            404 => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus404Response',
+            401 => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
+            403 => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
+            404 => '\\CasafariSDK\\Responses\\Errors\\Status404Response',
         ],
         'errorResponses' => [
             401 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus401Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
                 'schemaNullable' => false,
             ],
             403 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus403Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
                 'schemaNullable' => false,
             ],
             404 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V2\\Comparables\\AiBuilder\\PostStatus404Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status404Response',
                 'schemaNullable' => false,
             ],
         ],

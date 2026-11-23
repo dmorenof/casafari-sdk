@@ -154,12 +154,13 @@ final class BehaviorTest extends TestCase
         self::assertInstanceOf(ReferenceLocationV1::class, $location);
         self::assertSame('Barcelona', $location->name);
 
-        $params->latitude = 91.0;
+        // A value is checked where it is assigned (a `set` hook), not when the call is made.
         $before = count($history);
         try {
-            $client->resource(ByCoordinatesResource::class)->get($params);
-            self::fail('A latitude outside -90..90 must be refused.');
+            $params->latitude = 91.0;
+            self::fail('A latitude outside -90..90 must be refused where it is assigned.');
         } catch (\UnexpectedValueException) {
+            self::assertSame(41.3874, $params->latitude, 'The refused value was not stored.');
             self::assertCount($before, $history, 'Nothing is sent.');
         }
     }

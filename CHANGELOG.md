@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.0]
+
+Regenerated with sdk-generator 1.14.0 on sdk-runtime ^1.12.0 (`composer regenerate`). 1,003 files changed, so this is a new version, not a refresh: **a call only serializes and an answer is trusted** (runtime decision D25).
+
+- **Behavior.** A request is not validated when it is sent, and an answer is not validated when it is read: a field the API leaves out is simply not set, and a value outside a rule is returned. What you assign is still checked where you assign it: the parameter classes (`GetParams\…`, `PathParams\…`) now have the same `set` hooks as the models, so a latitude of 91 is refused on that line. A native list parameter has no hook.
+- **Breaking: error classes.** Operations that declare the very same error body for a status share one class: `Responses\Errors\Status401Response` replaces one class per operation (79 error classes became 7). Code that caught `Responses\Errors\Api\V1\…\PostStatus401Response` catches `Responses\Errors\Status401Response`; `ApiException::$error` holds an instance of the shared class.
+- The package is smaller (928 files, 1.10 MB generated code), and a default timeout of 30 s applies to the HTTP client (runtime).
+- Requires sdk-runtime ^1.12.0.
+
 ## [0.6.0]
 
 **The SDK now covers the Casafari REST API, not the CRM API v1.** Casafari publishes its API specification at https://docs.api.casafari.com/openapi.json (OpenAPI 3.1, 46 operations: properties, comparables, listing alerts, references, valuation, market analytics, alert webhooks and feeds, login). `contract/openapi.json` is that specification and `src/` is generated from it with sdk-generator 1.10.0 on sdk-runtime ^1.9.0.

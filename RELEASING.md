@@ -14,6 +14,8 @@ It was tagged and released manually. It must never be retagged or overwritten.
 
 ## Future versions
 
+A release is requested only when the owner confirms it, and only when its work is finished and proven; versions are not published piecemeal.
+
 The workflow `.github/workflows/release.yml` automates publication **only
 after** a pull request changing the root `VERSION` file merges to `master`.
 

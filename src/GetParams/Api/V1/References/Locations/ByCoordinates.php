@@ -31,6 +31,16 @@ final class ByCoordinates extends \Dmorenof\SdkRuntime\DTO
 ];
 
     public ?string $lang;
-    public float $latitude;
-    public float $longitude;
+    public float $latitude {
+        set {
+            $this->assigning('latitude', $value);
+            $this->latitude = $value;
+        }
+    }
+    public float $longitude {
+        set {
+            $this->assigning('longitude', $value);
+            $this->longitude = $value;
+        }
+    }
 }
