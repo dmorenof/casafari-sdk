@@ -13,7 +13,7 @@ Una versión se publica cuando el trabajo está **terminado y probado**, y solo 
 - [ ] **Probar con la API real** (requiere credenciales y autorización del titular). Todas las pruebas usan HTTP simulado: nada se ha ejecutado contra `api.casafari.com`.
 - [ ] **Decidir qué hacer con los consumidores de la 0.5.x** (CRM API v1): mantener esa línea con correcciones, o dejarla como está. La 0.6.0 no tiene ninguna operación en común con ella.
 - [ ] **Guía de migración y plan de vuelta atrás** para quien venga de la 0.5.x o de la 0.1.x, si se decide darles continuidad.
-- [x] **Regenerado** con el generador 1.14.0 y el runtime 1.12.0 (rama; CHANGELOG "Unreleased"). Falta: publicarlos antes, quitar el override temporal de `ci.yml` y el disparador temporal de `regenerate.yml`, y cambiar `VERSION` (eso publica).
+- [x] **Regenerado** con el generador 1.14.0 y el runtime 1.12.0 (rama; CHANGELOG "Unreleased"). Falta: publicarlos antes, quitar el override temporal de `ci.yml` y cambiar `VERSION` (eso publica).
 
 ## Mantenimiento
 
