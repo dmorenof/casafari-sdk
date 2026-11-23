@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
-namespace CasafariSDK\Responses\Errors\Api\V1\References\Features;
+namespace CasafariSDK\Responses\Errors;
 
-final class GetStatus401Response extends \Dmorenof\SdkRuntime\DTO
+final class Status403Response extends \Dmorenof\SdkRuntime\DTO
 {
     /**
      * Description of the error encountered.
-     * Example: "Authentication credentials were not provided."
+     * Example: "You do not have permission to perform this action."
      */
     public string $detail;
 

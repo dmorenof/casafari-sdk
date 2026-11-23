@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\UserManagement\Access;
@@ -22,7 +23,6 @@ final class Request extends \Dmorenof\SdkRuntime\DTO
     'url' => [
         'minLength' => 1,
         'maxLength' => 2083,
-        'format' => 'uri',
     ],
 ];
 

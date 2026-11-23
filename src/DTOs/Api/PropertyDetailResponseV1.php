@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -59,12 +60,6 @@ final class PropertyDetailResponseV1 extends \Dmorenof\SdkRuntime\DTO
     'zip_code',
 ];
 
-    protected const array VALIDATION = [
-    'changed_at' => [
-        'format' => 'date',
-    ],
-];
-
     protected const array READ_ONLY_FIELDS = [
     'distance',
     'pictures',
@@ -97,12 +92,7 @@ final class PropertyDetailResponseV1 extends \Dmorenof\SdkRuntime\DTO
      * The date and time when the property was last updated.
      * Format: date
      */
-    public string $changed_at {
-        set {
-            $this->assigning('changed_at', $value);
-            $this->changed_at = $value;
-        }
-    }
+    public string $changed_at;
     /**
      * Property condition, as returned by the [GET /api/v1/references/conditions](/#operation/api__get__v1__references__conditions) endpoint.
      */

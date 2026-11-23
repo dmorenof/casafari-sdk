@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -52,9 +53,6 @@ final class SearchNewDevelopmentComparablesRequestV2 extends \Dmorenof\SdkRuntim
     'rooms' => [
         'minimum' => 0.0,
         'maximum' => 15000.0,
-    ],
-    'sold_or_rented_after' => [
-        'format' => 'date',
     ],
     'total_area' => [
         'minimum' => 5.0,
@@ -200,12 +198,7 @@ final class SearchNewDevelopmentComparablesRequestV2 extends \Dmorenof\SdkRuntim
      * Properties sold/rented since this date (in the format `YYYY-MM-DD`) will be considered as possible comparables. Default value: 9 months ago, counting from today. If `null` is passed, only active properties will be considered.
      * Format: date
      */
-    public ?string $sold_or_rented_after {
-        set {
-            $this->assigning('sold_or_rented_after', $value);
-            $this->sold_or_rented_after = $value;
-        }
-    }
+    public ?string $sold_or_rented_after;
     /**
      * Desired total area, square meters. This field is required for `hotel`, `industrial`, `office`, `other_commercial`, `restaurant`, `retail`, `warehouse`, `werkstatt` property types if `target_point.cadastral_reference` is not provided.
      */

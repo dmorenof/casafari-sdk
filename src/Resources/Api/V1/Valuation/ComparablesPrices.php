@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Resources\Api\V1\Valuation;
@@ -17,21 +18,21 @@ final class ComparablesPrices extends \CasafariSDK\Client
             ],
         ],
         'errors' => [
-            400 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus400Response',
-            401 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus401Response',
-            403 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus403Response',
+            400 => '\\CasafariSDK\\Responses\\Errors\\Status400Response',
+            401 => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
+            403 => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
         ],
         'errorResponses' => [
             400 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus400Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status400Response',
                 'schemaNullable' => false,
             ],
             401 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus401Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
                 'schemaNullable' => false,
             ],
             403 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Valuation\\ComparablesPrices\\PostStatus403Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
                 'schemaNullable' => false,
             ],
         ],

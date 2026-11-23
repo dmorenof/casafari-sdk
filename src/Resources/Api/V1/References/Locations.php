@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Resources\Api\V1\References;
@@ -17,16 +18,16 @@ final class Locations extends \CasafariSDK\Client
             ],
         ],
         'errors' => [
-            401 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\References\\Locations\\PostStatus401Response',
-            403 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\References\\Locations\\PostStatus403Response',
+            401 => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
+            403 => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
         ],
         'errorResponses' => [
             401 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\References\\Locations\\PostStatus401Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
                 'schemaNullable' => false,
             ],
             403 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\References\\Locations\\PostStatus403Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
                 'schemaNullable' => false,
             ],
         ],

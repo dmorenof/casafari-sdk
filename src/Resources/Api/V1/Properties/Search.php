@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Resources\Api\V1\Properties;
@@ -17,21 +18,21 @@ final class Search extends \CasafariSDK\Client
             ],
         ],
         'errors' => [
-            400 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus400Response',
-            401 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus401Response',
-            403 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus403Response',
+            400 => '\\CasafariSDK\\Responses\\Errors\\Status400Response',
+            401 => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
+            403 => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
         ],
         'errorResponses' => [
             400 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus400Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status400Response',
                 'schemaNullable' => false,
             ],
             401 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus401Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
                 'schemaNullable' => false,
             ],
             403 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\PostStatus403Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
                 'schemaNullable' => false,
             ],
         ],
@@ -68,21 +69,21 @@ final class Search extends \CasafariSDK\Client
             ],
         ],
         'errors' => [
-            401 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus401Response',
-            403 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus403Response',
-            404 => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus404Response',
+            401 => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
+            403 => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
+            404 => '\\CasafariSDK\\Responses\\Errors\\Status404Response',
         ],
         'errorResponses' => [
             401 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus401Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status401Response',
                 'schemaNullable' => false,
             ],
             403 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus403Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status403Response',
                 'schemaNullable' => false,
             ],
             404 => [
-                'type' => '\\CasafariSDK\\Responses\\Errors\\Api\\V1\\Properties\\Search\\ByPropertyId\\GetStatus404Response',
+                'type' => '\\CasafariSDK\\Responses\\Errors\\Status404Response',
                 'schemaNullable' => false,
             ],
         ],

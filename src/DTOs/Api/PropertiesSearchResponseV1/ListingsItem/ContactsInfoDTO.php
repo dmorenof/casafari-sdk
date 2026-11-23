@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV1\ListingsItem;
@@ -14,22 +15,11 @@ final class ContactsInfoDTO extends \Dmorenof\SdkRuntime\DTO
     'phone',
 ];
 
-    protected const array VALIDATION = [
-    'email' => [
-        'format' => 'email',
-    ],
-];
-
     /**
      * The email contact.
      * Format: email
      */
-    public ?string $email {
-        set {
-            $this->assigning('email', $value);
-            $this->email = $value;
-        }
-    }
+    public ?string $email;
     /**
      * The owner name. Only for FSBO listings.
      */

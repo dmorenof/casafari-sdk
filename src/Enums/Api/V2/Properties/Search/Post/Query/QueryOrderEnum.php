@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Enums\Api\V2\Properties\Search\Post\Query;

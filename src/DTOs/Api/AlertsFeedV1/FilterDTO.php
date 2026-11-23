@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\AlertsFeedV1;
@@ -20,12 +21,6 @@ final class FilterDTO extends \Dmorenof\SdkRuntime\DTO
 ];
 
     protected const array VALIDATION = [
-    'alert_date_from' => [
-        'format' => 'date',
-    ],
-    'alert_date_to' => [
-        'format' => 'date',
-    ],
     'bathrooms_from' => [
         'minimum' => 1.0,
         'maximum' => 15000.0,
@@ -49,18 +44,6 @@ final class FilterDTO extends \Dmorenof\SdkRuntime\DTO
     'construction_year_to' => [
         'minimum' => 1.0,
         'maximum' => 3000.0,
-    ],
-    'created_at_from' => [
-        'format' => 'date-time',
-    ],
-    'created_at_to' => [
-        'format' => 'date-time',
-    ],
-    'created_at_with_photos_from' => [
-        'format' => 'date-time',
-    ],
-    'created_at_with_photos_to' => [
-        'format' => 'date-time',
     ],
     'custom_location' => [
         'minItems' => 4,
@@ -115,22 +98,12 @@ final class FilterDTO extends \Dmorenof\SdkRuntime\DTO
      * Start date (in the format `YYYY-MM-DD`) of the period for alerts of interest.
      * Format: date
      */
-    public string $alert_date_from {
-        set {
-            $this->assigning('alert_date_from', $value);
-            $this->alert_date_from = $value;
-        }
-    }
+    public string $alert_date_from;
     /**
      * End date (in the format `YYYY-MM-DD`) of the period for alerts of interest.
      * Format: date
      */
-    public string $alert_date_to {
-        set {
-            $this->assigning('alert_date_to', $value);
-            $this->alert_date_to = $value;
-        }
-    }
+    public string $alert_date_to;
     /**
      * Alert subtypes.
      */
@@ -209,44 +182,24 @@ final class FilterDTO extends \Dmorenof\SdkRuntime\DTO
      * Start date and time (in the format `YYYY-MM-DDTHH:mm:ss`) to filter alerts by their creation in the database (UTC). Useful for incremental sync to avoid fetching already fetched data.
      * Format: date-time
      */
-    public string $created_at_from {
-        set {
-            $this->assigning('created_at_from', $value);
-            $this->created_at_from = $value;
-        }
-    }
+    public string $created_at_from;
     /**
      * End date and time (in the format `YYYY-MM-DDTHH:mm:ss`) to filter alerts by their creation in the database (UTC). Useful for incremental sync to avoid fetching already fetched data.
      * Format: date-time
      */
-    public string $created_at_to {
-        set {
-            $this->assigning('created_at_to', $value);
-            $this->created_at_to = $value;
-        }
-    }
+    public string $created_at_to;
     /**
      * Start date and time (in the format YYYY-MM-DDTHH:mm:ss) to filter alerts by their creation in the database (UTC), only including alerts for which photo processing has been completed. Use it to fetch alerts with already assigned photos.
      * Note: Some alerts may still not have photos if the original listing did not include any.
      * Format: date-time
      */
-    public string $created_at_with_photos_from {
-        set {
-            $this->assigning('created_at_with_photos_from', $value);
-            $this->created_at_with_photos_from = $value;
-        }
-    }
+    public string $created_at_with_photos_from;
     /**
      * End date and time (in the format YYYY-MM-DDTHH:mm:ss) to filter alerts by their creation in the database (UTC), only including alerts for which photo processing has been completed. Use it to fetch alerts with already assigned photos.
      * Note: Some alerts may still not have photos if the original listing did not include any.
      * Format: date-time
      */
-    public string $created_at_with_photos_to {
-        set {
-            $this->assigning('created_at_with_photos_to', $value);
-            $this->created_at_with_photos_to = $value;
-        }
-    }
+    public string $created_at_with_photos_to;
     /**
      * Closed polygon of geo-points to search within. First and last points must match.<br/><strong>This field is deprecated and will be removed in the next major update.</strong><br/><strong>Please, use `custom_locations` field instead.</strong>
      */

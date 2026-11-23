@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV1;
@@ -15,35 +16,16 @@ final class OnMarketDTO extends \Dmorenof\SdkRuntime\DTO
     'has_untracked_period',
 ];
 
-    protected const array VALIDATION = [
-    'date_end' => [
-        'format' => 'date',
-    ],
-    'date_start' => [
-        'format' => 'date',
-    ],
-];
-
     /**
      * End date of activity on the market.
      * Format: date
      */
-    public ?string $date_end {
-        set {
-            $this->assigning('date_end', $value);
-            $this->date_end = $value;
-        }
-    }
+    public ?string $date_end;
     /**
      * Start date of activity on the market.
      * Format: date
      */
-    public string $date_start {
-        set {
-            $this->assigning('date_start', $value);
-            $this->date_start = $value;
-        }
-    }
+    public string $date_start;
     /**
      * Number of days property was / is on the market.
      */

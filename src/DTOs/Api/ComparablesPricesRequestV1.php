@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -56,9 +57,6 @@ final class ComparablesPricesRequestV1 extends \Dmorenof\SdkRuntime\DTO
     'rooms' => [
         'minimum' => 0.0,
         'maximum' => 15000.0,
-    ],
-    'sold_or_rented_after' => [
-        'format' => 'date',
     ],
     'total_area' => [
         'minimum' => 5.0,
@@ -225,12 +223,7 @@ final class ComparablesPricesRequestV1 extends \Dmorenof\SdkRuntime\DTO
      * Properties sold/rented since this date (in the format `YYYY-MM-DD`) will be considered as possible comparables. Default value: 9 months ago, counting from today. If `null` is passed, only active properties will be considered.
      * Format: date
      */
-    public ?string $sold_or_rented_after {
-        set {
-            $this->assigning('sold_or_rented_after', $value);
-            $this->sold_or_rented_after = $value;
-        }
-    }
+    public ?string $sold_or_rented_after;
     /**
      * Target point to search around. Can be defined as coordinates, address or cadastral reference of the property. Only one value should be provided.<br/><strong>This field is deprecated and will be removed in the next major update.</strong><br/><strong>Please, use `location_boundary.circle` field instead.</strong>
      */

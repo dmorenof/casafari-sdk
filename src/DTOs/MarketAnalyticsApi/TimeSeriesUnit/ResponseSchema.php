@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\MarketAnalyticsApi\TimeSeriesUnit;
@@ -13,22 +14,11 @@ final class ResponseSchema extends \Dmorenof\SdkRuntime\DTO
     'value',
 ];
 
-    protected const array VALIDATION = [
-    'date_start' => [
-        'format' => 'date',
-    ],
-];
-
     /**
      * The starting date of the period associated with the passed `date_interval` field value. The format follows `YYYY-MM-DD`.
      * Format: date
      */
-    public string $date_start {
-        set {
-            $this->assigning('date_start', $value);
-            $this->date_start = $value;
-        }
-    }
+    public string $date_start;
     /**
      * The numerical value corresponding to the passed `data_point` field value for the given `date_start`.
      */

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Enums\Api\SearchComparablesRequestV1\LocationBoundary\Circle\TargetPoint\CadastralReference;

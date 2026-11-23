@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertyDetailResponseV1\SalePriceHistoryItem;
@@ -12,35 +13,16 @@ final class PriceHistoryDTO extends \Dmorenof\SdkRuntime\DTO
     'sale_price_old',
 ];
 
-    protected const array VALIDATION = [
-    'date_end' => [
-        'format' => 'date',
-    ],
-    'date_start' => [
-        'format' => 'date',
-    ],
-];
-
     /**
      * End date when the change was applied.
      * Format: date
      */
-    public string $date_end {
-        set {
-            $this->assigning('date_end', $value);
-            $this->date_end = $value;
-        }
-    }
+    public string $date_end;
     /**
      * Start date when the change was applied.
      * Format: date
      */
-    public string $date_start {
-        set {
-            $this->assigning('date_start', $value);
-            $this->date_start = $value;
-        }
-    }
+    public string $date_start;
     /**
      * New sale price, in the currency of the listings.
      */

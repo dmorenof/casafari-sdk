@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -40,12 +41,6 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
     'construction_year_to' => [
         'minimum' => 1.0,
         'maximum' => 3000.0,
-    ],
-    'created_date_from' => [
-        'format' => 'date-time',
-    ],
-    'created_date_to' => [
-        'format' => 'date-time',
     ],
     'days_on_market_from' => [
         'minimum' => 1.0,
@@ -106,12 +101,6 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
         'minimum' => 1.0,
         'maximum' => 2147483647.0,
     ],
-    'property_date_from' => [
-        'format' => 'date',
-    ],
-    'property_date_to' => [
-        'format' => 'date',
-    ],
     'rooms_from' => [
         'minimum' => 1.0,
         'maximum' => 15000.0,
@@ -127,12 +116,6 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
     'total_area_to' => [
         'minimum' => 1.0,
         'maximum' => 10000000.0,
-    ],
-    'updated_date_from' => [
-        'format' => 'date-time',
-    ],
-    'updated_date_to' => [
-        'format' => 'date-time',
     ],
 ];
 
@@ -214,22 +197,12 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
      * Created date from (in the format `YYYY-MM-DDTHH:mm:ss`).
      * Format: date-time
      */
-    public string $created_date_from {
-        set {
-            $this->assigning('created_date_from', $value);
-            $this->created_date_from = $value;
-        }
-    }
+    public string $created_date_from;
     /**
      * Created date to (in the format `YYYY-MM-DDTHH:mm:ss`).
      * Format: date-time
      */
-    public string $created_date_to {
-        set {
-            $this->assigning('created_date_to', $value);
-            $this->created_date_to = $value;
-        }
-    }
+    public string $created_date_to;
     /**
      * Custom location to search within. Can be defined as a polygon of geo-points or a circle with a given target point and a distance. Only one value should be provided.
      */
@@ -421,22 +394,12 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
      * Start date (in the format `YYYY-MM-DD`) of the period for property of interest.
      * Format: date
      */
-    public string $property_date_from {
-        set {
-            $this->assigning('property_date_from', $value);
-            $this->property_date_from = $value;
-        }
-    }
+    public string $property_date_from;
     /**
      * End date (in the format `YYYY-MM-DD`) of the period for property of interest.
      * Format: date
      */
-    public string $property_date_to {
-        set {
-            $this->assigning('property_date_to', $value);
-            $this->property_date_to = $value;
-        }
-    }
+    public string $property_date_to;
     /**
      * Property types, as returned by the [GET /api/v1/references/types](/#operation/api__get__v1__references__types) endpoint.<br/><strong>This field is deprecated and will be removed in the next major update.</strong><br/><strong>Please, use `types` field instead.</strong>
      */
@@ -493,22 +456,12 @@ final class PropertiesSearchRequestV2 extends \Dmorenof\SdkRuntime\DTO
      * Updated date from (in the format `YYYY-MM-DDTHH:mm:ss`).
      * Format: date-time
      */
-    public string $updated_date_from {
-        set {
-            $this->assigning('updated_date_from', $value);
-            $this->updated_date_from = $value;
-        }
-    }
+    public string $updated_date_from;
     /**
      * Updated date to (in the format `YYYY-MM-DDTHH:mm:ss`).
      * Format: date-time
      */
-    public string $updated_date_to {
-        set {
-            $this->assigning('updated_date_to', $value);
-            $this->updated_date_to = $value;
-        }
-    }
+    public string $updated_date_to;
     /**
      * View from the property. <br/><strong>This field is deprecated and will be removed in the next major update.</strong><br/><strong>Please, use `views` field instead.</strong>
      */

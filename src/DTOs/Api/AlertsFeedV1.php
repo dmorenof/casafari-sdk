@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -13,9 +14,6 @@ final class AlertsFeedV1 extends \Dmorenof\SdkRuntime\DTO
     protected const array VALIDATION = [
     'name' => [
         'maxLength' => 200,
-    ],
-    'user' => [
-        'format' => 'email',
     ],
 ];
 
@@ -41,12 +39,7 @@ final class AlertsFeedV1 extends \Dmorenof\SdkRuntime\DTO
     /**
      * Format: email
      */
-    public string $user {
-        set {
-            $this->assigning('user', $value);
-            $this->user = $value;
-        }
-    }
+    public string $user;
 
     protected function assignMember(string $name, mixed $value): void
     {

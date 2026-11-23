@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Resources\MarketAnalyticsApi;
@@ -40,7 +41,7 @@ final class TimeSeries extends \CasafariSDK\Client
                 'schemaNullable' => false,
             ],
             204 => [
-                'type' => NULL,
+                'type' => null,
                 'schemaNullable' => false,
             ],
         ],

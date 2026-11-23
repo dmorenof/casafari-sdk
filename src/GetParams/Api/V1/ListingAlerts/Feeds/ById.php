@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\GetParams\Api\V1\ListingAlerts\Feeds;
@@ -20,27 +21,6 @@ final class ById extends \Dmorenof\SdkRuntime\DTO
         'order_by' => 'order_by',
     ],
     'header' => [],
-];
-
-    protected const array VALIDATION = [
-    'alert_date_from' => [
-        'format' => 'date',
-    ],
-    'alert_date_to' => [
-        'format' => 'date',
-    ],
-    'created_at_from' => [
-        'format' => 'date-time',
-    ],
-    'created_at_to' => [
-        'format' => 'date-time',
-    ],
-    'created_at_with_photos_from' => [
-        'format' => 'date-time',
-    ],
-    'created_at_with_photos_to' => [
-        'format' => 'date-time',
-    ],
 ];
 
     public ?string $alert_date_from;

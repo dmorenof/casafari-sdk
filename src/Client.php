@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK;
@@ -9,14 +10,14 @@ class Client extends \Dmorenof\SdkRuntime\ApiClient
     'HTTPBearer' => [
         'type' => 'http',
         'scheme' => 'bearer',
-        'location' => NULL,
-        'parameterName' => NULL,
+        'location' => null,
+        'parameterName' => null,
     ],
     'OAuth2ClientCredentials' => [
         'type' => 'oauth2',
-        'scheme' => NULL,
-        'location' => NULL,
-        'parameterName' => NULL,
+        'scheme' => null,
+        'location' => null,
+        'parameterName' => null,
     ],
 ];
 

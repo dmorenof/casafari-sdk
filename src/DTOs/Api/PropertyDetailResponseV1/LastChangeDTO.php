@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertyDetailResponseV1;
@@ -14,22 +15,11 @@ final class LastChangeDTO extends \Dmorenof\SdkRuntime\DTO
     'old_value',
 ];
 
-    protected const array VALIDATION = [
-    'change_date' => [
-        'format' => 'date',
-    ],
-];
-
     /**
      * Date of the change.
      * Format: date
      */
-    public string $change_date {
-        set {
-            $this->assigning('change_date', $value);
-            $this->change_date = $value;
-        }
-    }
+    public string $change_date;
     /**
      * Value after change.
      */

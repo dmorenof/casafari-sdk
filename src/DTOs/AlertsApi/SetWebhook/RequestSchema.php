@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\AlertsApi\SetWebhook;
@@ -16,7 +17,6 @@ final class RequestSchema extends \Dmorenof\SdkRuntime\DTO
     'url' => [
         'minLength' => 1,
         'maxLength' => 2083,
-        'format' => 'uri',
     ],
 ];
 

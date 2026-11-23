@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV2;
@@ -13,22 +14,11 @@ final class HistoryDTO extends \Dmorenof\SdkRuntime\DTO
     'sale_price',
 ];
 
-    protected const array VALIDATION = [
-    'changed_at' => [
-        'format' => 'date',
-    ],
-];
-
     /**
      * Date when the estate was last updated.
      * Format: date
      */
-    public string $changed_at {
-        set {
-            $this->assigning('changed_at', $value);
-            $this->changed_at = $value;
-        }
-    }
+    public string $changed_at;
     /**
      * Rent price currency code.
      */

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\PostParams\Api\V1\ListingAlerts;
@@ -28,8 +29,18 @@ final class Search extends \Dmorenof\SdkRuntime\DTO
 ];
 
     public ?\CasafariSDK\Enums\Api\V1\ListingAlerts\Search\Post\Query\AlertSubtypeEnum $alert_subtype;
-    public ?int $limit;
-    public ?int $offset;
+    public ?int $limit {
+        set {
+            $this->assigning('limit', $value);
+            $this->limit = $value;
+        }
+    }
+    public ?int $offset {
+        set {
+            $this->assigning('offset', $value);
+            $this->offset = $value;
+        }
+    }
     public ?\CasafariSDK\Enums\Api\V1\ListingAlerts\Search\Post\Query\OrderByEnum $order_by;
     public ?\CasafariSDK\DTOs\Api\AlertsSearchFilterV1 $body;
 }

@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
-namespace CasafariSDK\Responses\Errors\Api\V1\Properties\SmartLinks;
+namespace CasafariSDK\Responses\Errors;
 
-final class PostStatus401Response extends \Dmorenof\SdkRuntime\DTO
+final class Status401Response extends \Dmorenof\SdkRuntime\DTO
 {
     /**
      * Description of the error encountered.

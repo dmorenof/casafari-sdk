@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CasafariSDK\Responses\Api\V1\ListingAlerts\Feeds\ById;
