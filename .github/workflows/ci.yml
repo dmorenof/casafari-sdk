@@ -32,12 +32,6 @@ jobs:
         with:
           path: ~/.cache/composer/files
           key: composer-php83-${{ runner.os }}-${{ hashFiles('composer.json') }}
-      - name: Use the unreleased runtime and generator (TEMPORARY, removed when they are published)
-        run: |
-          composer config repositories.runtime vcs https://github.com/dmorenof/sdk-runtime
-          composer config repositories.generator vcs https://github.com/dmorenof/sdk-generator
-          composer config minimum-stability dev
-          composer require "dmorenof/sdk-runtime:dev-claude/busy-franklin-9x9zpa as 1.99.0" "dmorenof/sdk-generator:dev-claude/busy-franklin-9x9zpa as 1.99.0" --dev --no-update --no-interaction
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Check PHP syntax
@@ -70,12 +64,6 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - name: Use the unreleased runtime and generator (TEMPORARY, removed when they are published)
-        run: |
-          composer config repositories.runtime vcs https://github.com/dmorenof/sdk-runtime
-          composer config repositories.generator vcs https://github.com/dmorenof/sdk-generator
-          composer config minimum-stability dev
-          composer require "dmorenof/sdk-runtime:dev-claude/busy-franklin-9x9zpa as 1.99.0" "dmorenof/sdk-generator:dev-claude/busy-franklin-9x9zpa as 1.99.0" --dev --no-update --no-interaction
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Run tests
@@ -92,12 +80,6 @@ jobs:
           php-version: '8.4'
           tools: composer:v2
           coverage: none
-      - name: Use the unreleased runtime and generator (TEMPORARY, removed when they are published)
-        run: |
-          composer config repositories.runtime vcs https://github.com/dmorenof/sdk-runtime
-          composer config repositories.generator vcs https://github.com/dmorenof/sdk-generator
-          composer config minimum-stability dev
-          composer require "dmorenof/sdk-runtime:dev-claude/busy-franklin-9x9zpa as 1.99.0" "dmorenof/sdk-generator:dev-claude/busy-franklin-9x9zpa as 1.99.0" --dev --no-update --no-interaction
       - name: Install lowest permitted dependency versions
         run: composer update --prefer-lowest --prefer-stable --no-interaction --prefer-dist --no-progress
       - name: Run tests
@@ -114,12 +96,6 @@ jobs:
           php-version: '8.4'
           tools: composer:v2
           coverage: none
-      - name: Use the unreleased runtime and generator (TEMPORARY, removed when they are published)
-        run: |
-          composer config repositories.runtime vcs https://github.com/dmorenof/sdk-runtime
-          composer config repositories.generator vcs https://github.com/dmorenof/sdk-generator
-          composer config minimum-stability dev
-          composer require "dmorenof/sdk-runtime:dev-claude/busy-franklin-9x9zpa as 1.99.0" "dmorenof/sdk-generator:dev-claude/busy-franklin-9x9zpa as 1.99.0" --dev --no-update --no-interaction
       - name: Resolve dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Audit direct and transitive dependencies

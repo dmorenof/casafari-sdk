@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.7.0]
 
 Regenerated with sdk-generator 1.14.0 on sdk-runtime ^1.12.0 (`composer regenerate`). 1,003 files changed, so this is a new version, not a refresh: **a call only serializes and an answer is trusted** (runtime decision D25).
 
