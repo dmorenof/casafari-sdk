@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV1;
@@ -13,16 +12,35 @@ final class StatusHistoryDTO extends \Dmorenof\SdkRuntime\DTO
     'rent_status_old',
 ];
 
+    protected const array VALIDATION = [
+    'date_end' => [
+        'format' => 'date',
+    ],
+    'date_start' => [
+        'format' => 'date',
+    ],
+];
+
     /**
      * End date when the change was applied.
      * Format: date
      */
-    public string $date_end;
+    public string $date_end {
+        set {
+            $this->assigning('date_end', $value);
+            $this->date_end = $value;
+        }
+    }
     /**
      * Start date when the change was applied.
      * Format: date
      */
-    public string $date_start;
+    public string $date_start {
+        set {
+            $this->assigning('date_start', $value);
+            $this->date_start = $value;
+        }
+    }
     /**
      * New rent status, in the currency of the listings.
      */

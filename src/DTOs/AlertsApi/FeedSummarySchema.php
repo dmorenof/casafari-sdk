@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\AlertsApi;
@@ -16,16 +15,35 @@ final class FeedSummarySchema extends \Dmorenof\SdkRuntime\DTO
     'updated_at',
 ];
 
+    protected const array VALIDATION = [
+    'created_at' => [
+        'format' => 'date-time',
+    ],
+    'updated_at' => [
+        'format' => 'date-time',
+    ],
+];
+
     /**
      * Format: date-time
      */
-    public string $created_at;
+    public string $created_at {
+        set {
+            $this->assigning('created_at', $value);
+            $this->created_at = $value;
+        }
+    }
     public string $feed_name;
     public int $id;
     /**
      * Format: date-time
      */
-    public string $updated_at;
+    public string $updated_at {
+        set {
+            $this->assigning('updated_at', $value);
+            $this->updated_at = $value;
+        }
+    }
 
     protected function assignMember(string $name, mixed $value): void
     {

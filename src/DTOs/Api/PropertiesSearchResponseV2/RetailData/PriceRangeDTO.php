@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV2\RetailData;

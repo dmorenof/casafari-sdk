@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\Collections\Api\V1\References\Agents\Get;

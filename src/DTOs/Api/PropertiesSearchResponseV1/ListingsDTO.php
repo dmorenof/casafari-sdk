@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\PropertiesSearchResponseV1;
@@ -40,6 +39,12 @@ final class ListingsDTO extends \Dmorenof\SdkRuntime\DTO
     'source_name',
     'terrace_area',
     'total_area',
+];
+
+    protected const array VALIDATION = [
+    'created_at' => [
+        'format' => 'date',
+    ],
 ];
 
     protected const array READ_ONLY_FIELDS = [
@@ -92,7 +97,12 @@ final class ListingsDTO extends \Dmorenof\SdkRuntime\DTO
      * The datetime when the listing was added.
      * Format: date
      */
-    public string $created_at;
+    public string $created_at {
+        set {
+            $this->assigning('created_at', $value);
+            $this->created_at = $value;
+        }
+    }
     /**
      * Property description.
      */

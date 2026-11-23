@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\PostParams\Api\V2\Properties;
@@ -24,6 +23,9 @@ final class Search extends \Dmorenof\SdkRuntime\DTO
     'limit' => [
         'maximum' => 100.0,
     ],
+    'pagination_state_id' => [
+        'format' => 'uuid',
+    ],
 ];
 
     public ?string $cursor;
@@ -35,6 +37,11 @@ final class Search extends \Dmorenof\SdkRuntime\DTO
     }
     public ?\CasafariSDK\Enums\Api\V2\Properties\Search\Post\Query\QueryOrderEnum $order;
     public ?\CasafariSDK\Enums\Api\V2\Properties\Search\Post\Query\OrderByEnum $order_by;
-    public ?string $pagination_state_id;
+    public ?string $pagination_state_id {
+        set {
+            $this->assigning('pagination_state_id', $value);
+            $this->pagination_state_id = $value;
+        }
+    }
     public ?\CasafariSDK\DTOs\Api\PropertiesSearchRequestV2 $body;
 }

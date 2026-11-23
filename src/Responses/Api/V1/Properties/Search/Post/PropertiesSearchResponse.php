@@ -1,11 +1,19 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\Responses\Api\V1\Properties\Search\Post;
 
 final class PropertiesSearchResponse extends \Dmorenof\SdkRuntime\DTO
 {
+    protected const array VALIDATION = [
+    'next' => [
+        'format' => 'uri',
+    ],
+    'previous' => [
+        'format' => 'uri',
+    ],
+];
+
     /**
      * Example: 123
      */
@@ -14,12 +22,22 @@ final class PropertiesSearchResponse extends \Dmorenof\SdkRuntime\DTO
      * Example: "http://api.example.org/accounts/?offset=400&limit=100"
      * Format: uri
      */
-    public ?string $next;
+    public ?string $next {
+        set {
+            $this->assigning('next', $value);
+            $this->next = $value;
+        }
+    }
     /**
      * Example: "http://api.example.org/accounts/?offset=200&limit=100"
      * Format: uri
      */
-    public ?string $previous;
+    public ?string $previous {
+        set {
+            $this->assigning('previous', $value);
+            $this->previous = $value;
+        }
+    }
     public \CasafariSDK\DTOs\Api\PropertiesSearchResponseV1 $results;
 
     protected function assignMember(string $name, mixed $value): void

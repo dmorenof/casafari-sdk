@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\ComparablesPricesRequestV1;
@@ -20,7 +19,7 @@ final class LocationBoundaryDTO extends \Dmorenof\SdkRuntime\DTO
      */
     public \CasafariSDK\DTOs\Api\ComparablesPricesRequestV1\LocationBoundary\CircleDTO $circle;
     /**
-     * Closed polygon of geo-points to search within. First and last points must match.
+     * Closed polygon of geo-points to search within. First and last points must match. 
      */
     public \CasafariSDK\Collections\Api\ComparablesPricesRequestV1\LocationBoundary\PolygonCollection $polygon {
         set {

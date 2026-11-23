@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\SearchNewDevelopmentComparablesResponseV2\ResultsItem\SaleTimeOnMarket;

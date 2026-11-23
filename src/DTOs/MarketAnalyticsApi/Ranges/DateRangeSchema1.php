@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\MarketAnalyticsApi\Ranges;
@@ -13,16 +12,35 @@ final class DateRangeSchema1 extends \Dmorenof\SdkRuntime\DTO
     'min',
 ];
 
+    protected const array VALIDATION = [
+    'max' => [
+        'format' => 'date',
+    ],
+    'min' => [
+        'format' => 'date',
+    ],
+];
+
     /**
      * End date in the format `YYYY-MM-DD`.
      * Format: date
      */
-    public ?string $max;
+    public ?string $max {
+        set {
+            $this->assigning('max', $value);
+            $this->max = $value;
+        }
+    }
     /**
      * Start date in the format `YYYY-MM-DD`.
      * Format: date
      */
-    public ?string $min;
+    public ?string $min {
+        set {
+            $this->assigning('min', $value);
+            $this->min = $value;
+        }
+    }
 
     protected function assignMember(string $name, mixed $value): void
     {

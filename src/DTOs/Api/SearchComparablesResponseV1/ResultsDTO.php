@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api\SearchComparablesResponseV1;
@@ -54,6 +53,15 @@ final class ResultsDTO extends \Dmorenof\SdkRuntime\DTO
     'type',
     'type_group',
     'zip_code',
+];
+
+    protected const array VALIDATION = [
+    'rented_at' => [
+        'format' => 'date',
+    ],
+    'sold_at' => [
+        'format' => 'date',
+    ],
 ];
 
     protected const array READ_ONLY_FIELDS = [
@@ -143,7 +151,7 @@ final class ResultsDTO extends \Dmorenof\SdkRuntime\DTO
     /**
      * Listing urls of the comparable.
      */
-    public \CasafariSDK\Collections\StringCollection $listing_urls;
+    public \CasafariSDK\Collections\Api\SearchComparablesResponseV1\ResultsItem\ListingUrlsCollection $listing_urls;
     /**
      * Living area.
      */
@@ -224,7 +232,12 @@ final class ResultsDTO extends \Dmorenof\SdkRuntime\DTO
      * Date when the property was rented.
      * Format: date
      */
-    public ?string $rented_at;
+    public ?string $rented_at {
+        set {
+            $this->assigning('rented_at', $value);
+            $this->rented_at = $value;
+        }
+    }
     /**
      * Number of rooms.
      */
@@ -273,7 +286,12 @@ final class ResultsDTO extends \Dmorenof\SdkRuntime\DTO
      * Date when the property was sold.
      * Format: date
      */
-    public ?string $sold_at;
+    public ?string $sold_at {
+        set {
+            $this->assigning('sold_at', $value);
+            $this->sold_at = $value;
+        }
+    }
     /**
      * Terrace area.
      */
@@ -330,7 +348,7 @@ final class ResultsDTO extends \Dmorenof\SdkRuntime\DTO
             'is_private_property' => is_bool($value) ? $this->is_private_property = $value : parent::assignMember($name, $value),
             'last_rent_price_reduction' => is_float($value) ? $this->last_rent_price_reduction = $value : parent::assignMember($name, $value),
             'last_sale_price_reduction' => is_float($value) ? $this->last_sale_price_reduction = $value : parent::assignMember($name, $value),
-            'listing_urls' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_string($item)) ? $this->listing_urls = new \CasafariSDK\Collections\StringCollection($value) : parent::assignMember($name, $value),
+            'listing_urls' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_string($item)) ? $this->listing_urls = new \CasafariSDK\Collections\Api\SearchComparablesResponseV1\ResultsItem\ListingUrlsCollection($value) : parent::assignMember($name, $value),
             'living_area' => is_int($value) ? $this->living_area = $value : parent::assignMember($name, $value),
             'pictures' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => is_string($item)) ? $this->pictures = new \CasafariSDK\Collections\StringCollection($value) : parent::assignMember($name, $value),
             'plot_area' => is_int($value) ? $this->plot_area = $value : parent::assignMember($name, $value),

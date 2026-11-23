@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CasafariSDK\DTOs\Api;
@@ -70,6 +69,27 @@ final class AlertDocumentsV1 extends \Dmorenof\SdkRuntime\DTO
     'zip_code',
 ];
 
+    protected const array VALIDATION = [
+    'alert_date' => [
+        'format' => 'date',
+    ],
+    'available_from' => [
+        'format' => 'date',
+    ],
+    'available_to' => [
+        'format' => 'date',
+    ],
+    'created_at' => [
+        'format' => 'date-time',
+    ],
+    'created_at_with_photos' => [
+        'format' => 'date-time',
+    ],
+    'updated_at' => [
+        'format' => 'date-time',
+    ],
+];
+
     protected const array READ_ONLY_FIELDS = [
     'alert_date_and_time',
     'listing_old_url',
@@ -99,7 +119,12 @@ final class AlertDocumentsV1 extends \Dmorenof\SdkRuntime\DTO
      * Date when the alert occurred.
      * Format: date
      */
-    public string $alert_date;
+    public string $alert_date {
+        set {
+            $this->assigning('alert_date', $value);
+            $this->alert_date = $value;
+        }
+    }
     /**
      * Date and time when the alert occurred.
      */
@@ -120,12 +145,22 @@ final class AlertDocumentsV1 extends \Dmorenof\SdkRuntime\DTO
      * The date the listing property becomes available for occupancy. The start of the availability window.
      * Format: date
      */
-    public ?string $available_from;
+    public ?string $available_from {
+        set {
+            $this->assigning('available_from', $value);
+            $this->available_from = $value;
+        }
+    }
     /**
      * The date the listing property stops being available. The end of the availability window.
      * Format: date
      */
-    public ?string $available_to;
+    public ?string $available_to {
+        set {
+            $this->assigning('available_to', $value);
+            $this->available_to = $value;
+        }
+    }
     /**
      * Number of bathrooms.
      */
@@ -158,13 +193,23 @@ final class AlertDocumentsV1 extends \Dmorenof\SdkRuntime\DTO
      * Date and time when the alert was created (UTC).
      * Format: date-time
      */
-    public string $created_at;
+    public string $created_at {
+        set {
+            $this->assigning('created_at', $value);
+            $this->created_at = $value;
+        }
+    }
     /**
      * Date and time (UTC) when the alert was created and its photos were processed. Can be `null` if photo processing has not finished yet.
      * If the listing has no photos but the system has finished the processing, this field will contain its date and time.
      * Format: date-time
      */
-    public ?string $created_at_with_photos;
+    public ?string $created_at_with_photos {
+        set {
+            $this->assigning('created_at_with_photos', $value);
+            $this->created_at_with_photos = $value;
+        }
+    }
     /**
      * Listing description.
      */
@@ -349,7 +394,12 @@ final class AlertDocumentsV1 extends \Dmorenof\SdkRuntime\DTO
      * Date and time when the alert data was updated (UTC).
      * Format: date-time
      */
-    public string $updated_at;
+    public string $updated_at {
+        set {
+            $this->assigning('updated_at', $value);
+            $this->updated_at = $value;
+        }
+    }
     /**
      * The location zip code.
      */
